@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        body{
+            height: 5000px;
+        }
+        .div{
+            width: 300px;
+            height: 300px;
+            margin: 10px auto;
+            padding: 10px;
+            border: 1px solid #0075ff;
+            position: relative;
+            background: gray;
+            overflow: auto;
+        }
+        .box{
+            width: 200px;
+            height: 1000px;
+            margin: 10px;
+            padding: 10px;
+            border: 1px solid #0075ff;
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            background: #ccc;
+        }
+    </style>
+    <script src="../jquery-1.11.1.js"></script>
+    <script>
+        $(document).ready(function(){
+            $('button:eq(0)').click(function(){
+                //  object.offset().top     获取值
+                // 获取object距离文档顶部的距离
+                console.log($('.box').offset().top);
+            });
+
+            $('button:eq(2)').click(function(){
+                //  object.offset().left     获取值
+                // 获取object距离文档最左边的距离
+                console.log($('.box').offset().left);
+            });
+
+            $('button:eq(1)').click(function(){
+                //  object.offset().top     设置值
+                console.log($('.box').offset({'top':100}));
+            });
+
+            $('button:eq(3)').click(function(){
+                //  object.offset().left     设置值
+                console.log($('.box').offset({'left':100}));
+            });
+
+            $('button:eq(4)').click(function(){
+                //  object.position().top     获取值
+                // 获取object距离父级元素带有position的top距离，如果没有position则是获取body的top距离
+                console.log($('.box').position().top);
+            });
+
+            $('button:eq(6)').click(function(){
+                //  object.position().left     获取值
+                // 获取object距离父级元素带有position的left距离，如果没有position则是获取body的left距离
+                console.log($('.box').position().left);
+            });
+
+            $('button:eq(5)').click(function(){
+                //  object.position().top     设置值
+                //  jQuery不支持
+            });
+
+            $('button:eq(7)').click(function(){
+                //  object.position().left     设置值
+                //  jQuery不支持
+            });
+
+            $('button:eq(8)').click(function(){
+                //  object.scrollTop()    获取值
+                //  一般都是用document或者window来获取被卷去的值。
+                // 如果想要获取的只是元素被卷去的值，那么需要父盒子出现滚动条然后同样用父盒子.scrollTop()来获取子元素被卷去的值,如果用子元素.scrollTop()来获取值的话，那么值一直都是0
+                console.log($('.box').scrollTop());
+                console.log($('.div').scrollTop());
+            });
+
+            $('button:eq(10)').click(function(){
+                //  object.scrollLeft()    获取值
+                console.log($('.box').scrollTop());
+                console.log($('.div').scrollTop());
+            });
+
+            $('button:eq(9)').click(function(){
+                //  object.scrollTop(num)    设置值
+                console.log($(window).scrollTop(100));
+            });
+
+            $('button:eq(11)').click(function(){
+                //  object.scrollLeft(num)    设置值
+                console.log($(window).scrollTop(100));
+            });
+        });
+    </script>
+</head>
+<body>
+    <div class="div">
+        <div class="box">
+
+        </div>
+    </div>
+    <button>offset().top获取</button>
+    <button>offset().top设置</button>
+    <button>offset().left获取</button>
+    <button>offset().left设置</button>
+    <button>position().top获取</button>
+    <button>position().top设置</button>
+    <button>position().left获取</button>
+    <button>position().left设置</button>
+    <button>scrollTop()获取</button>
+    <button>scrollTop()设置</button>
+    <button>scrollLeft()获取</button>
+    <button>scrollLeft()设置</button>
+</body>
+</html>

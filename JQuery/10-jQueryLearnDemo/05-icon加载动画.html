@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        .div{
+            width: 300px;
+            height: 300px;
+            border-radius: 50%;
+            box-sizing: border-box;
+            border: 20px solid #000;
+            margin: 200px auto;
+            position: relative;
+            transition: border .6s;
+        }
+        .div1{
+            position: absolute;
+            top: -20px;
+            left: 125px;
+            width: 10px;
+            height: 300px;
+            background: red;
+            transition: height .6s ease .6s;
+        }
+        .div2{
+            position: absolute;
+            top: -20px;
+            left: 125px;
+            width: 10px;
+            height: 300px;
+            background: red;
+            transition: height .6s ease .6s;
+        }
+        .div:after{
+            content:'';
+            width: 260px;
+            height: 260px;
+            background: white;
+            border-radius: 50%;
+            position: absolute;
+        }
+        .div:hover .div1{
+            animation: a 2s both;
+        }
+        .div:hover .div2{
+            animation: b 2s both;
+        }
+        @keyframes a{
+            0%{
+
+            }
+            100%{
+                transform: rotate(180deg);
+                width: 100%;
+            }
+        }
+        @keyframes b{
+            0%{
+
+            }
+            100%{
+                left: -125px;
+                transform: rotate(-180deg);
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="div">
+        <div class="div1"></div>
+        <div class="div2"></div>
+    </div>
+</body>
+</html>

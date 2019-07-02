@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<style>
+    *{
+        margin: 0;
+        padding: 0;
+        list-style: none;
+    }
+    .wrap{
+        width: 400px;
+        height: 500px;
+        margin: 100px auto;
+    }
+    ul{
+        width: 400px;
+        height: 40px;
+        background: #0075ff;
+        color: white;
+        border-radius: 10px;
+    }
+    ul>li{
+        float: left;
+        width: 100px;
+        height: 40px;
+        line-height: 40px;
+        text-align: center;
+        cursor: pointer;
+    }
+    .wrap section{
+        display: none;
+    }
+    section{
+        background: #ccc;
+        height: 100px;
+        border-radius: 10px;
+    }
+</style>
+<body>
+    <div class="wrap">
+        <ul>
+            <li>我是tab1</li>
+            <li>我是tab2</li>
+            <li>我是tab3</li>
+            <li>我是tab4</li>
+        </ul>
+        <section>
+            1
+        </section>
+        <section>
+            2
+        </section>
+        <section>
+            3
+        </section>
+        <section>
+            4
+        </section>
+    </div>   
+    <script>
+        window.onload = function(){
+            var wrap = document.getElementsByClassName('wrap')[0],
+                ul = wrap.children[0],
+                list = ul.children,
+                section = wrap.getElementsByTagName('section');
+            console.log(section.length);
+            (function a(key){
+                if(key >= 0) section[key].style.display = 'block';
+                for(var i=0; i<list.length; i++){
+                    list[i].index = i;
+                    list[i].onclick = function(){
+                        for(var j=0; j<list.length; j++){
+                            section[j].style.display = 'none';
+                        }
+                        section[this.index].style.display = 'block';
+                    }
+                }
+            })(0);
+        }
+    </script> 
+</body>
+</html>

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="../jquery-1.11.1.js"></script>
+    <script>
+        $(function(){
+            var div = document.getElementsByTagName('div')[0];
+            var inp = document.getElementsByTagName('input')[0];
+            // .val(参数)   仅适用于标签中带有value属性的,如果填写参数则是赋值，不填写参数则是获取值
+            // 与JS中的value相等
+            console.log('我是使用JQ-val()    ' + $('input').val());
+            console.log('我是使用JS-value方法    ' + inp.value);
+
+           // .text(参数)   输出标签内的文本信息(不包含标签名)，如果填写参数则是赋值，不填写参数则是获取值，不识别标签，如果写入的参数带闭合标签那么JS则自动转换为&lt(<) * &gt(>)
+            // 与JS中的innerText相等
+            console.log('我是使用JQ-text()    ' + $('span').text());
+            $('span').text('<li>我是使用JQ-text(参数)写入闭合标签</li>');
+            console.log('我是使用JQ-text(参数)    ' + $('span').text());
+
+            div.innerText = '<li>我是使用JS-innerText写入闭合标签直接赋值</li>';
+            console.log('我是使用JS-innerText方法赋值    ' + div.innerText);
+
+
+            // .html(参数)    输出标签的文本信息(含标签名)，如果填写参数则是赋值，不填写参数则是获取值，识别标签
+            //与JS中的innerHTML相等
+            console.log('我是使用JQ-html()    ' + $('.div').html());
+            console.log('我是使用JS-innerHTML方法    ' + div.innerHTML)
+        });
+    </script>
+</head>
+<body>
+<input type="text" value="我是原生文本">
+<div class="div" value="hehe">
+    <span>呵呵</span>
+</div>
+</body>
+</html>

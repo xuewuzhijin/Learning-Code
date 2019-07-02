@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script>
+        window.onload = function(){
+            var body = document.getElementsByTagName('body')[0],
+                div = body.children[0],
+                inp = body.children[1],
+                p = body.children[2],
+                span = body.children[3],
+                btn = body.children[4];
+
+            //--------------------------------单个文本节点--------------------------------------------------
+            // console.log(div.innerText);         //获取的值仅文本信息，不包含空白节点
+            // console.log(inp.value);             //仅获取带有value属性的标签,如果是div/p/i...这种标签里面加value，返回undefined，不支持伪value
+            // console.log(p.innerHTML);           //如果元素里面有空白节点，那么空白节点也会获取到
+            // console.log(btn.childNodes[0].nodeValue);    //若单个文本，仅支持button元素，若多个文本支持很多标签，但仅获取第一个节点的文本信息，详看27行
+            //--------------------------------单个文本节点--------------------------------------------------
+
+            //--------------------------------多个文本节点--------------------------------------------------
+            console.log(span.innerText);            //仅获取文本信息，不包含空白节点和标签名,若是p标签，</p>结束标签会产生空行
+            console.log(span.value);                //获取带有value属性的标签,如果是div/p/i...这种标签里面加value，返回undefined，不支持伪value
+            console.log(span.innerHTML);            //获取文本信息，包含空白节点以及标签名
+            console.log(span.textContent);          //仅获取文本信息，但obj的第一个和最后一个空白节点会获取，不包含标签名
+            console.log(span.childNodes[0].nodeValue);//若单个文本，仅支持button元素，若多个文本支持很多标签，但仅获取第一个节点的文本信息，不包含标签名
+            //--------------------------------多个文本节点--------------------------------------------------
+        }
+    </script>
+</head>
+<body>
+    <div class="div">我是第一个div的内容</div>
+    <input type="text" value="我是第二个input的内容">
+    <p>我是第三个p的内容</p>
+    <span>
+        我是第四个span的内容
+        <p>我是第四个span内容里面的p内容</p>
+        <div>我是的四个span内容里面的div内容</div>
+        <p>我是第四个span内容里面的p内容</p>
+        <p>我是第四个span内容里面的p内容</p>
+    </span>
+    <button>获取</button>
+</body>
+</html>

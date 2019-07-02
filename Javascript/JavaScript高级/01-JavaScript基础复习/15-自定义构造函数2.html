@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+
+</body>
+<script>
+    //为什么输出dog的时候，bark是在第一个？
+    //对象是无序的键值对集合,而数组是有序的键值对集合
+    function Animal(name, type, barkWay) {
+        this.name = name;
+        this.type = type;
+        this.bark = barkWay;
+    }
+
+    var dog = new Animal('大黄', 'Big Yellow Dog', function() {
+        console.log('汪汪汪');
+    });
+    console.log(dog);
+
+    var cat = new Animal('大花猫', 'Big Hua Cat', function() {
+        console.log('喵喵喵');
+    });
+    console.log(cat);
+</script>
+
+</html>

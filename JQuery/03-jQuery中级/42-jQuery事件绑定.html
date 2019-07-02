@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        div{
+            width: 100px;
+            height: 100px;
+            margin: 30px;
+            background: #0075ff;
+        }
+    </style>
+    <script src="../jquery-1.11.1.js"></script>
+    <script>
+        $(function(){
+            //这种绑定事件不会被层叠掉
+            // $(document).click(function(){
+            //     alert(1);
+            // })
+            // $(document).click(function(){
+            //     alert(2);
+            // })
+
+            //而用JS的方法则是直接输出2，跳过了1
+            // document.onclick = function(){
+            //     alert(1);
+            // };
+            // document.onclick = function(){
+            //     alert(2);
+            // };
+
+
+            //object.bind('事件1 事件2',fn) 为一个元素(仅一个)绑定一个或多个事件
+            // $(document).bind('click mouseenter',function(){
+            //         alert(1);
+            // });
+            // $(document).bind('click mouseenter',function(){
+            //         alert(2);
+            // });
+
+
+            //object.delegate('元素','事件1 事件2',fn)
+            //元素仅1个，可以是ID(#div),可以是Class(.div),也可以是TagName(div)。
+            //一个或多个事件
+            // $(document).delegate('div','click mouseenter',function(){
+            //         alert(1);
+            // });
+
+
+            //object.on('事件1 事件2',fn)
+            // $('div').on('click mouseenter',function(){
+            //             alert(1);
+            // })
+
+            //object.on('事件1 事件2','元素',fn)
+            // $(document).on('click mouseenter','div',function(){
+            //             alert(1);
+            // })
+
+            //object.on('事件1 事件2','元素',{json},fn(event))
+            // $(document).on('click mouseenter','div',{'name':'张三'},function(event){
+            //             alert(event.data.name);
+            // })
+        });
+    </script>
+</head>
+<body>
+    <div class="div"></div>
+    <div class="div1"></div>
+</body>
+</html>

@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<style>
+    *{
+        margin: 0;
+        padding: 0;
+    }
+    .box{
+        width: 500px;
+        height: 500px;
+        background: black;
+    }
+    .box2{
+        width: 300px;
+        height: 300px;
+        background: white;
+    }
+    .box3{
+        width: 100px;
+        height: 100px;
+        background: #ccc;
+    }
+</style>
+<body>
+<div class="box">
+    <div class="box2">
+        <div class="box3"></div>
+    </div>
+</div>
+<script>
+    var box = document.getElementsByTagName('div')[0],
+        box2 = box.children[0],
+        box3 = box2.children[0];
+
+    // box.onclick = function(){
+    //     console.log('我是盒子BOX')
+    // }
+    //
+    // box2.onclick = function(){
+    //     console.log('我是盒子BOX2')
+    // }
+    //
+    // box3.onclick = function(){
+    //     console.log('我是盒子BOX3')
+    // }
+    //
+    // document.onclick = function(){
+    //     console.log('我是文档document')
+    // }
+
+/*
+=======================================冒泡
+    以上代码执行顺序是box，box2，box3，document，这种事件叫冒泡。
+    如果网页是document > html > body > elements；那么冒泡就是从下到上。
+    IE：6冒泡顺序
+    element > body > html > document
+    其它浏览器：
+    element > body > html > document > window
+*/
+
+
+
+    // box.addEventListener('click',function(){
+    //     console.log('我是盒子BOX')
+    // },true);
+    // box2.addEventListener('click',function(){
+    //     console.log('我是盒子BOX2')
+    // },true);
+    // box3.addEventListener('click',function(){
+    //     console.log('我是盒子BOX3')
+    // },true);
+    // document.addEventListener('click',function(){
+    //     console.log('我是文档document')
+    // },true);
+
+/*
+=======================================捕获
+    以上代码执行顺序是document，box3，box2，box，这种事件叫捕获。
+    如果网页是document > html > body > elements；那么捕获就是从上到下。
+    element.addEventListener('事件','执行函数或函数名称',true/false)，这里的true那么就是捕获，如果用false就是冒泡。
+*/
+
+    // document.onclick = function(e){
+        // e = event || window.event;
+        // console.log(e.bubbles);
+        // console.log(e.target);
+        // console.log('我是盒子BOX')
+    // }
+
+/*
+=======================================检测是否冒泡
+    以上代码中的 e.bubbles 用来检测是否冒泡，是输出为true，否输出为false。
+    以上代码中的 e.target 用来检测哪个元素触动了事件，那么则会被输出。
+*/
+
+    // box.onclick = function(e){
+    //     e = event || window.event;
+    //
+    //     //兼容写法
+    //     if(e && e.stopPropagation){
+    //         e.stopPropagation();
+    //     }else{
+    //         e.cancelBubble = true;
+    //     };
+    //
+    //     console.log('我是盒子BOX')
+    // };
+    // document.onclick = function(){
+    //     console.log('我是文档document')
+    // };
+
+/*
+=======================================阻止冒泡
+    以上代码如果注释掉e以及下面的判断语句，点击BOX执行顺序是box，document，（从下到上：冒泡），而添加e以及判断语句之后，点击BOX仅输出BOX。
+*/
+
+
+
+
+
+//  什么时候用冒泡，请看冒泡登录框案例
+
+
+
+
+
+    /*
+
+    不冒泡的事件有：
+    blur、focus、load、unload、onmouseenter、onmouseleave
+
+     */
+</script>
+</body>
+</html>

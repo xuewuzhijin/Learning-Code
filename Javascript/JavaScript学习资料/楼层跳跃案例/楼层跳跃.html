@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<style>
+    *{
+        margin: 0;
+        padding: 0;
+    }
+    ul,body,html{
+        height: 100%;
+    }
+    ol,ul{
+        list-style-type: none;
+        text-align: center;
+    }
+    ul li{
+        width: 100%;
+        height: 100%;
+        line-height: 50;
+    }
+    ol{
+        position: fixed;
+        top: 100px;
+        left: 100px;
+    }
+    ol li{
+        width: 50px;
+        height: 50px;
+        line-height: 3;
+        margin: 10px 0;
+        border: 1px solid black;
+        cursor: pointer;
+    }
+</style>
+<body>
+<ul>
+    <li>1</li>
+    <li>2</li>
+    <li>3</li>
+    <li>4</li>
+    <li>5</li>
+    <li>6</li>
+    <li>7</li>
+</ul>
+<ol>
+    <li>1</li>
+    <li>2</li>
+    <li>3</li>
+    <li>4</li>
+    <li>5</li>
+    <li>6</li>
+    <li>7</li>
+</ol>
+</body>
+<script>
+    var ul,ulLis,ol,olLis,ArrColor,scrollTopValue,scrollLeftValue,timer;
+    ul = document.getElementsByTagName('ul')[0];
+    ulLis = ul.children;
+    ol = document.getElementsByTagName('ol')[0];
+    olLis = ol.children;
+    ArrColor = ['#ccc','#999','#888','#777','#666','#555','#444'];
+    timer = null;
+    scrollTopValue = 0;     //这里需要非常注意一下，下面的window.onscroll如果不滚动一下屏幕scrollTopValue是undefined，在执行动画的时候目标值与undefined相减，导致整个步骤全是NaN，定时器一直运行，所以在开始的时候就给一个值。
+
+    window.onscroll = function(){
+            scrollTopValue = window.pageYOffset || document.body.scrollTop || document.documentElement.scrollTop;
+            scrollLeftValue = window.pageXOffset || document.body.scrollLeft || document.documentElement.scrollLeft;
+    };
+
+    for(var i=0;i<ulLis.length;i++){
+        ulLis[i].style.background = ArrColor[i];    //给ulLis一个背景色
+        olLis[i].style.background = ArrColor[i];    //给olLis一个背景色
+
+        olLis[i].index = i;
+        olLis[i].onclick = function(){
+            move(ulLis[this.index].offsetTop);  //这里注意获取目标距离顶部的距离用 offsetTop。
+            console.log('我是第' + (this.index+1) + '个olLis，第' + (this.index+1) + '个ulLis距离顶部有' + ulLis[this.index].offsetTop + 'px');
+        }
+    }
+
+    //缓动动画，因为我们只移动页面的Y坐标，所以只需要一个值就行。
+    function move(target){
+        clearInterval(timer);
+        timer = setInterval(function(){
+            //需要理清思路，为什么是目标值-当前值，而不是当前值-目标值。 如果当前是0，目标值是1000，如果是当前值0-1000=-1000/10=-100，浏览器有-100的值吗？所以正确的值是用目标1000-0当前=1000/10=100，然后向目标移动100像素的距离，接着继续这个步骤直到满足if语句，定时器清除。
+            var step = (target - scrollTopValue) / 10;                      //如果当前值是1000，目标值是0,0-1000=-1000/10=-100
+            step = step > 0 ? Math.ceil(step) : Math.floor(step);           //-100向上取整=-100                 为保证IE10和IE11（这两个版本有问题，IE5~IE9没问题）运行正确，最好使用大于0向上取整，小于0向下取整。详细信息请见"返回顶部并添加缓动动画.html"里注释。
+            step = step + scrollTopValue;                                   //-100+当前值1000 = 此时页面要滚动到900像素的位置。
+            if(target === scrollTopValue){
+                clearInterval(timer);
+                return;
+            }
+            window.scrollTo(0,step);
+//            console.log(1);       //这里用检测定时器是否有关闭
+        },10);
+    }
+</script>
+</html>

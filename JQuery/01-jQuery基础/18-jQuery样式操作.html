@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="../jquery-1.11.1.js"></script>
+    <script>
+        $(window).ready(function(){
+            //操作方法1： css(json);
+        //     $('div').css({'width':100,'height':100,'background':'black','border': '1px solid #0075ff'});
+
+
+
+            //操作方法2：    css(属性，值)；
+            // $('div').css('width',100);
+
+
+
+            //操作方法3：    css(属性)；
+            console.log($("div").css("width"));
+            //这种获取值的方式是带px的，string类型。
+
+        });
+    </script>
+</head>
+<body>
+<div></div>
+</body>
+</html>

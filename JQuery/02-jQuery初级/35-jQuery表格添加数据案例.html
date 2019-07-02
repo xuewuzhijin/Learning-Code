@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        .div{
+            width: 400px;
+            height: 300px;
+            margin: 200px auto;
+        }
+        #adddata{
+            width: 120px;
+            height: 40px;
+            margin: 10px;
+            position: relative;
+            left: 120px;
+        }
+        #addcoursebtn{
+            width: 120px;
+            height: 40px;
+            margin: 10px;
+            position: relative;
+            left: 150px;
+        }
+        table{
+            border-collapse: collapse;
+            cursor: pointer;
+            text-align: center;
+        }
+        th{
+            width: 120px;
+            background: #0075ff;
+        }
+        tr{
+            background: #ccc;
+            height: 30px;
+        }
+        td a{
+            text-decoration: none;
+        }
+        td:hover{
+            background: white;
+        }
+        html,body,.box{
+            width: 100%;
+            height: 100%;
+        }
+        .box{
+            background: rgba(0,0,0,.5);
+            position: absolute;
+            top: 0;
+            display: none;
+        }
+        .boxdiv{
+            width: 500px;
+            height: 260px;
+            background: white;
+            margin: 200px auto;
+        }
+        .boxdivdiv{
+            padding: 30px;
+        }
+        .boxdivdiv span{
+            display: inline-block;
+            font-size: 25px;
+            margin: 10px auto;
+        }
+        .boxdivdiv input{
+            height: 25px;
+            width: 65%;
+        }
+        .title{
+            display: inline-block;
+            width: 100%;
+            height: 30px;
+            background: #ccc;
+            font-size: 18px;
+            line-height: 30px;
+            position: relative;
+        }
+        .title p{
+            position: absolute;
+            right: 0;
+            top: 0;
+            cursor: pointer;
+            font: bolder 22px/30px 'simsun';
+        }
+    </style>
+    <script src="../jquery-1.11.1.js"></script>
+    <script>
+        $(window).ready(function(){
+            //点击添加数据显示box
+            $('#adddata').click(function(){
+                $('.box').slideDown(200);
+            });
+
+            //点击X隐藏box
+            $('.title>p').click(function(){
+                $('.box').slideUp(200);
+            });
+
+            //点击get删除tr
+            $('tbody>tr>td>a').click(function(){
+                $(this).parent('td').parent('tr').remove();
+            })
+
+            //点击addcourse添加数据到表格
+            $('#addcoursebtn').click(function(){
+                if($('#addcourse').val() === ''){
+                    alert('请添加课程名称');
+                }else{
+                    $('.box').slideUp(200);
+                    var str = '<tr><td>'+ $('#addcourse').val() +'</td><td>'+ $('#xsxx').val() +'</td><td>'+ '<a href="#">GET</a>' +'</td></tr>';
+                    $('tbody').append(str);
+                    $('#addcourse').val('');
+                    // $('tr>td>a').click(function(){
+                    //     $(this).parents('tr').remove();
+                    // })
+                }
+            })
+
+            //BUG1,新添加的数据点击get不能删除,采用事件委托方式进行删除。
+            // $(document).click(function(e){
+            //     var e = event || window.event;
+            //     var a = e.target ? e.target : e.srcElement;
+            //     //这里要判断点击的这个元素标签名是否是A链接，并且判断他父亲是否是TD，还要判断他爷爷是不是TR，三者全为true那么就删除，否则什么也不做。
+            //     if(a.tagName === 'A' && a.parentNode.tagName === 'TD' && a.parentNode.parentNode.tagName === 'TR'){
+            //         $(a).parent('td').parent('tr').remove();
+            //     }
+            // })
+
+            // BUG1,新添加的数据点击get不能删除,采用jQuery事件委托方式进行删除。
+            $(document).click(function(event){
+                var $a = $(event.target);
+                //这里要判断点击的这个元素标签名是否是A链接，并且判断他父亲是否是TD，还要判断他爷爷是不是TR，三者全为true那么就删除，否则什么也不做。
+                if($a.is('a') && $a.parent().is('td') && $a.parent().parent().is('tr')){
+                    $a.parent('td').parent('tr').remove();
+                }
+            })
+
+            //BUG1,新添加的数据点击get不能删除,查看121~123，直接把新添加的A链接添加点击事件，相对于用事件委托，方便一点。。。。
+        });
+
+
+    </script>
+</head>
+<body>
+    <div class="div">
+        <input type="button" value="ADD DATA" id="adddata">
+        <table>
+            <thead>
+                <th>课程名称</th>
+                <th>线上/线下</th>
+                <th>是否学会</th>
+            </thead>
+            <tbody>
+            <tr>
+                <td>HTML5</td>
+                <td>线下</td>
+                <td><a href="#">GET</a></td>
+            </tr>
+            <tr>
+                <td>CSS</td>
+                <td>线上</td>
+                <td><a href="#">GET</a></td>
+            </tr>
+            <tr>
+                <td>JavaScript</td>
+                <td>线下</td>
+                <td><a href="#">GET</a></td>
+            </tr>
+            <tr>
+                <td>jQuery</td>
+                <td>线下</td>
+                <td><a href="#">GET</a></td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="box">
+        <div class="boxdiv">
+            <span class="title">学习计划<p>x</p></span>
+            <div class="boxdivdiv">
+                <span>添加课程：</span><input type="text" id="addcourse"></br>
+                <span>线上/线下：</span><input type="text" value="线下" id="xsxx"></br>
+                <input type="button" value="点击添加课程" id="addcoursebtn">
+            </div>
+        </div>
+    </div>
+</body>
+</html>

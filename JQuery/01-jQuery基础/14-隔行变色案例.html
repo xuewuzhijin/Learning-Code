@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="../jquery-1.11.1.js"></script>
+    <script>
+        $(window).ready(function(){
+            var JQli = $('li:odd');
+            var JQli1 = $('li:even');
+            JQli.css('background','black');//隔行变色
+            JQli1.css('background','gray');//隔行变色
+
+            var color = '';
+            $('li').mouseenter(function(){
+                color = $(this).css('background'); //鼠标进来的时候首先保存该li的背景颜色，方便在鼠标移出的时候继续还原。
+                $(this).css('background','#0075ff');
+            });
+            $('li').mouseleave(function(){
+                $(this).css('background',color);
+            });
+        });
+    </script>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        html.body{
+            width: 100%;
+            height: 100%;
+        }
+        .container{
+            width: 800px;
+            height: 500px;
+            margin: 100px auto;
+        }
+        ul{
+            list-style-type: none;
+        }
+        .menufirst{
+            width: 800px;
+            height: 60px;
+        }
+        .menufirst li{
+            width: 266.6px;
+            height: 60px;
+            float: left;
+            color: white;
+            background: gray;
+            line-height: 60px;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <ul class="menufirst">
+        <li>菜单一</li>
+        <li>菜单二</li>
+        <li>菜单三</li>
+        <li>菜单四</li>
+        <li>菜单五</li>
+        <li>菜单六</li>
+    </ul>
+</div>
+</body>
+</html>

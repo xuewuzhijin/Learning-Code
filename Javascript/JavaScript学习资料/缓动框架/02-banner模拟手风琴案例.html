@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<style>
+    *{
+        margin: 0;
+        padding: 0;
+    }
+    body{
+        background: rgba(0,0,0,.5);
+    }
+    .box{
+        width: 1150px;
+        height: 400px;
+        margin: 100px auto;
+        overflow: hidden;
+        border: 3px solid red;
+        position: relative;
+    }
+    ul{
+        width: 200%;
+    }
+    ul li{
+        list-style-type: none;
+        width: 240px;
+        height: 400px;
+        float: left;
+        color: #0075ff;
+        line-height: 400px;
+        text-align: center;
+        position: relative;
+    }
+</style>
+<body>
+<div class="box">
+    <ul>
+        <li>1</li>
+        <li>2</li>
+        <li>3</li>
+        <li>4</li>
+        <li>5</li>
+    </ul>
+</div>
+<script>
+    var box = document.getElementsByTagName('div')[0];
+    var ul = box.getElementsByTagName('ul')[0];
+    var li = ul.children;
+    var timer = null;
+    var colorArr = ['#ccc','#999','#666','#333','#000'];
+    for(var i = 0; i < li.length; i++){
+        li[i].style.background = colorArr[i];
+        li[i].onmouseover = function(){
+            for(var j = 0; j<li.length; j++){
+                move(li[j],{'width':100});
+            }
+            move(this,{'width':800});
+        };
+    };
+    ul.onmouseout = function(){
+        for(var j = 0; j<li.length; j++){
+            move(li[j],{'width':240});
+        }
+    };
+
+    function move(element,json){
+        clearInterval(element.timer);
+        element.timer = setInterval(function(){
+        var bool = true;
+            for(var k in json){
+                var a = json[k];    //json[k]是指值，k就是值的名称
+                var b = parseInt(getStyle(element,k));
+                var speed = (a - b) / 10;
+                speed = speed > 0 ? Math.ceil(speed) : Math.floor(speed);
+                if(a !== b){
+                    bool = false;
+                }
+                element.style[k] = b + speed + 'px';
+            }
+            if(bool){
+                clearInterval(element.timer);
+            }
+        },10);
+    }
+    function getStyle(element,json){
+        if(window.getComputedStyle){
+            if(window.getComputedStyle(element,null)[json] === "auto"){      //如果元素的CSS里面没有赋值，那么在IE8及以下会输出auto这个值，直接报错，而IE9及以上会直接跳过这个值，执行其它的。所以在此处我们要把值拉到0，否则会报错。
+                return 0;
+            }else{
+                return window.getComputedStyle(element,null)[json];
+            }
+        }else{
+            if(element.currentStyle[json] === "auto"){      //如果元素的CSS里面没有赋值，那么在IE8及以下会输出auto这个值，直接报错停止运行，而IE9及以上支持第一个判断语句，也会输出auto，那么同样处理把值拉到0，否则每次会直接跳过这个值，执行其它的。所以在此处我们要把值拉到0，否则会报错。
+                return 0;
+            }else{
+                return element.currentStyle[json];
+            }
+        }
+    }
+</script>
+</body>
+</html>

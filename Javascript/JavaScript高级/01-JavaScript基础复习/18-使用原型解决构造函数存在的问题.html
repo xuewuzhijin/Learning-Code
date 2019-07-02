@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+
+</body>
+<script>
+    function Person(name, age, gender) {
+        this.name = name;
+        this.age = age;
+        this.gender = gender;
+        // this.sayHello = function() {
+        //     console.log('你好我是' + this.name);
+        // };
+    }
+    var a = new Person('刘德华', 18, 'male');
+    var b = new Person('张学友', 19, 'male');
+
+
+    //如何使用原型来解决构造函数存在的问题？
+
+    //构造函数的原型对象中的成员，可以被该构造函数创建出来的所有对象访问
+    //而且，所有的对象共享该原型对象
+    //所以，我们可以将构造函数中需要创建的函数，放到原型对象中存储
+    //这样就解决全局变量污染的问题以及代码结构混乱的问题
+
+
+    Person.prototype.sayHello = function() {
+        console.log('你好我是' + this.name);
+    };
+    Person.prototype['sing'] = function() {
+        console.log('一千个伤心的母牛');
+    };
+    a.sayHello();
+    b.sayHello();
+    a.sing();
+    b.sing();
+
+    //
+</script>
+
+</html>

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+
+</body>
+<script>
+    function Person(name, age, gender) {
+        this.name = name;
+        this.age = age;
+        this.gender = gender;
+    }
+
+    //原型的使用方法
+    //  1.利用对象的动态特性给原型对象添加成员
+    //  2.直接替换原型对象 
+
+
+    Person.prototype.sayHello = function() {
+        console.log('Nice to meet you');
+    }
+
+    var a = new Person('张三', 18, 'male');
+    a.sayHello(); //Nice to meet you
+
+    //替换了原型对象
+    Person.prototype = {
+        message: '我替换了原型了'
+    }
+
+    var b = new Person('李四', 19, 'male');
+
+    a.sayHello(); //Nice to meet you
+    // b.sayHello(); //报错
+    console.log(a.message); //undefined
+    console.log(b.message); //我替换了原型
+</script>
+
+</html>

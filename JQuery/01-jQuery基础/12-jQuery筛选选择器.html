@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="../jquery-1.11.1.js"></script>
+    <script>
+        $(document).ready(function(){
+            var JQul = $('ul');
+            var JQli = JQul.find('li');
+            //find(selector),从jQuery对象中的后代中查找
+            JQul.find('li').css('background','pink');
+
+
+            //children(selector),从jQuery对象中的子代中查找
+            //children(selector),selector要是写的话就是从某个元素中设置，要是不写的话，就是所有的子代元素都设置。
+            JQul.children().css('border','1px solid red');                      JQul.children('a').css('border','4px solid red');
+
+
+            //eq(索引值)，从jQuery对象中的子代中查找该索引值的元素，从该元素的leng中的第几个，0开始
+            JQul.children().eq(0).css('background','green');
+
+
+            //next()，从jQuery对象中的子代中查找该索引值的元素，从该元素的leng中的第几个，0开始
+            JQul.children().eq(0).next().css('background','green');
+
+
+            //siblings(selector)，兄弟节点，selector要是写的话就是从某个元素中设置，要是不写的话，就是所有的子代元素都设置。
+            JQul.children().eq(0).next().siblings().css('background','green');
+
+
+            //parent()，父节点，从某个元素中找到他的父节点
+            JQul.children().eq(0).parent().css('background','black');
+            console.log(JQul.children().eq(0).parent());
+
+
+
+
+
+
+
+
+
+
+        });
+    </script>
+</head>
+<body>
+<ul>
+    <li>1</li>
+    <li>2</li>
+    <span>2.1</span>
+    <li>3</li>
+    <li>4</li>
+    <i>4.1</i>
+    <li>5</li>
+    <a href="">5.1</a>
+    <ol>
+        <li>6</li>
+        <li>7</li>
+        <li>8</li>
+        <li>9</li>
+        <li>10</li>
+    </ol>
+</ul>
+</body>
+</html>

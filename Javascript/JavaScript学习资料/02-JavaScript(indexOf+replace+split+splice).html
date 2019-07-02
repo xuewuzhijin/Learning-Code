@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        div{
+            width: 100px;
+            height: 100px;
+            background: black;
+        }
+        .bigbox{
+            width: 300px;
+            height: 300px;
+            border: 1px solid #0075ff;
+        }
+    </style>
+    <script>
+        window.onload = function(){
+
+            //判断低版本IE是否有indexOf方法,并增加到JS原型链中
+            if(!Array.prototype.indexOf){
+                Array.prototype.indexOf = function(value){
+                    var a = 0,
+                        b = this.length;
+                    for(; a<b; a++){
+                        if(this[a] === value){
+                            return a;
+                        }else{
+                            return -1;
+                        };
+                    };
+                };
+            };
+
+            /*
+            *   ------------------------初级版---------------------------
+            *   obj.indexOf('')     返回字符串所在的索引值位置
+            *   obj.split('')     把字符串转换为数组
+            *   obj.replace('a','b')    a是要替换的值，b是要替换的(如果是删除，那么就是‘’)
+            *   obj.splice(a,b,c)       a是数组的索引值，b是要删除的长度，c是要替换的值，如果不替换就是obj.splice(a,b)
+            *   初级版有BUG，若(<div class='aa bb cc a b c'></div>),那么当我要删除a的时候，结果则是(<div class='a bb cc a b c'></div>)
+             */
+
+            var div = document.getElementsByTagName('div')[0];
+            // div.className = div.className.replace('box','bigbox');
+            addClass(div,'aa');
+            // removeClass(div,'bb');
+            // console.log(hasClass(div,'a'));
+
+
+            //新增类名
+            function addClass(ele,clm){
+                if(!hasClass(ele,clm)){
+                    var space = ele.className == '' ? '' : ' ';
+                    ele.className = ele.className + space + clm;
+                }
+            }
+
+            //删除类名
+            function removeClass(ele,clm){
+                if(!hasClass(ele.clm)){
+                    var a = ele.className,  // aa bb cc a b c
+                        b = a.split(' '),   // aa bb cc a b c
+                        c = b.indexOf(clm);
+                    b.splice(c,1);
+                    b = b.join(' ');
+                    ele.className = b;
+                }
+            }
+
+            //判断是否有类名
+            function hasClass(ele,clm){
+                var a = ele.className,  // aa bb cc a b c
+                    b = a.split(' '),   // aa bb cc a b c
+                    c = b.indexOf(clm);
+                if(c !== -1){
+                    return true;
+                }else{
+                    return false;
+                }
+            }
+        }
+    </script>
+</head>
+<body>
+    <div class="aa bb cc a b c"></div>
+</body>
+</html>

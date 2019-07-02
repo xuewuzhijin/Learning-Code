@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<style>
+    *{
+        margin: 0;
+        padding: 0;
+    }
+    .box1{
+        width: 100px;
+        height: 100px;
+        background: black;
+        position: absolute;
+        left: 10px;
+        top: 10px;
+
+    }
+</style>
+<body>
+    <div class="box1" style="left: 10px;"></div>
+</body>
+<script>
+    var box1 = document.getElementsByClassName('box1')[0];
+    console.log("我是offset " + box1.offsetLeft);
+    console.log("我是style " + box1.style.left);
+    /*
+    offsetLeft/Width与style.left/width最大的区别就在于前者可以输出没有定位盒子的距离，也就是输出0，而后者输出的则是一个空字符串。
+    offsetLeft/Width是外链样式表还是行内样式都可以输出，也就是以BODY计算的为基准进行输出。
+    style.left/width只能输出行内样式，外链样式表就算有距离也只是输出一个空字符串。
+
+    offsetLeft/Width输出的信息为number    如console.log输出的信息为 10
+    style.left/width输出的信息为字符串    如console.log输出的信息为 10px
+
+    注意事项：
+    offsetLeft/Width    只能读，不能赋值
+    style.left/width    可以赋值
+
+     */
+</script>
+</html>

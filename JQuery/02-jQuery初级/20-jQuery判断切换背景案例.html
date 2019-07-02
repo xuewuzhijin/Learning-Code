@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        div{width: 100px;
+            height: 100px;
+            background: black;
+            border: 1px solid #0075ff;
+        }
+        .current{
+            background: white;
+        }
+    </style>
+    <script src="../jquery-1.11.1.js"></script>
+    <script>
+        $(window).ready(function() {
+            $('button').eq(0).click(function(){
+                // if($('div').hasClass('current')){
+                //     $('div').removeClass('current');
+                // }else{
+                //     $('div').addClass('current');
+                // }
+
+                //toggleClass   一行代码解决有无类名自动设置
+                $('div').toggleClass('current');
+            });
+        });
+    </script>
+</head>
+<body>
+<button>添加类名</button>
+<div></div>
+</body>
+</html>

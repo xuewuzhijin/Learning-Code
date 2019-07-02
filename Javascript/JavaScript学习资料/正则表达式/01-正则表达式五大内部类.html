@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    console.log('--------------预定义类---------------');
+    /*
+    .                           除了换行和回车
+    \d [0-9]                    包含数字字符就是true否则false
+    \D [^0-9]                   包含非数字字符就是true否则false
+    \s [\t\n\x0b\f\r]           包含空白字符就是true否则false
+    \S [^\t\n\x0b\f\r]          包含非空白字符就是true否则false
+    \w [a-zA-Z_0-9]             包含单词字符就是true否则false
+    \W [^a-zA-Z_0-9]            包含非单词字符就是true否则false
+     */
+
+    console.log('只要我包含字符串或数字我就是' + /./.test('\n\r1'));     //如果只有换行(\n)和回车(\r)字符就false，如果既有换行和回车加其它字符就是true，没有换行和回车其它的都是true
+
+    console.log('只要包含数字的我就是' + /\d/.test('asd123asd'));     //自动把字符串转数字，只要字符串里有数字或者直接是数字就是true，如果没有数字就是false。
+
+    console.log('只要包含非数字的我就是' + /\D/.test('asd123asd'));    //只要包含非数字的就是true，只有数字就是false。
+
+    console.log('只要包含空白字符我就是' + /\s/.test(' 　  1'));   //只要包含空白字符就是true，不包含就是false
+
+    console.log('只要我包含非空白的我就是' + /\S/.test(' 　  a'));  //哪怕有空白字符只要有其它字符就是true，如果只有空白字符就是false
+
+    console.log('只要包含单词或数字我就是' + /\w/.test('1a')); //只要包含单词或数字的其中一个就是true，要是都不包含就是false
+
+    console.log('只要包含除了单词或数字的其它字符我就是' + /\W/.test('1 ')); //只要包含除了单词或数字的其它字符，哪怕有单词和数字都是true，只有单词或数字就是false
+
+
+
+    console.log('--------------简单类---------------');
+    /*
+    /string/        需要完整的包含这些单词就是true
+    /[string]/      只需要包含其中一个就是true
+     */
+
+    console.log('只要完整的包含我我就是' + /string/.test('asdstringasd')); //只要有一串完整的string就是true，无论位置在哪里
+
+    console.log('只要包含其中某一个字母我就是' + /[string]/.test('asa'));  //只要包含其中某一个字母就true，要一个都不包含false
+
+
+
+    console.log('--------------负向类---------------');
+    /*
+    /[^abc]/
+     */
+
+    console.log('只要我不是abc我就是' + /[^abc]/.test('weq'));//如果里面只有a或ab或者abc就是false，也就是只有abc的话就是false，但有abc还有其它的或只有其它的就是true
+
+
+
+    console.log('--------------范围类---------------');
+    /*
+    /[a-z]/     只要是包含字母小写就true
+    /[A-Z]/     只要是包含字母大写就true
+    /[0-9]/     只要是包含数字就true
+     */
+
+    console.log('只要是包含小写字母我就是' + /[a-z]/.test('weqAAA'));
+    console.log('只要是包含大写字母我就是' + /[A-Z]/.test('weqAAA'));
+    console.log('只要是包含数字我就是' + /[0-9]/.test('weq000'));
+
+
+
+    console.log('--------------组合类---------------');
+    /*
+    /[a-zA-Z0-9]/
+     */
+
+    console.log('只要是包含小写或大写字母或者数字我就是' + /[a-zA-Z0-9]/.test('123')); //只要包含小写字母大写字母数字，就是true，一个都不满足的情况下false
+
+
+</script>
+</body>
+</html>

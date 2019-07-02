@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <script>
+        /*
+        *   异常捕获语句
+        *   try catch finally
+        *   语法：
+        * */
+
+        // try{
+        //     // a();
+        //     //可能出现问题的代码
+        //
+        //     //手动抛出异常信息，使用 throw关键字
+        //     throw '你的代码坏了';
+        // }
+        // catch(e){
+        //     console.log(e); //这里的e是错误信息
+        //     //出现异常后的处理代码
+        // }
+
+
+
+
+
+        // function sum(sum1,sum2){
+        //     if(sum1 === undefined || sum2 === undefined){
+        //         throw '坏代码'
+        //     }else{
+        //         return sum1 + sum2;
+        //     }
+        // }
+
+
+
+
+
+        function sum(sum1,sum2){
+            if(sum1 === undefined || sum2 === undefined){
+                throw {
+                    errMsg: '坏代码',
+                    errCode: -1
+                }
+            }else{
+                return sum1 + sum2;
+            }
+        }
+        try{
+            sum(0,);
+        }
+        catch(e){
+            console.log(e.errMsg);
+            console.log(e.errCode);
+        }
+
+
+
+
+        //异常捕获代码的完整写法
+
+        try{
+            //可能出现异常的代码
+        }
+        catch(e){
+            //出现错误后的执行代码
+        }
+        finally{
+            //不管有没有出现异常，这里的代码都会执行
+            //node.js
+            //一般做释放资源的操作
+        }
+    </script>
+</body>
+</html>

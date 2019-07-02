@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv=“X-UA-Compatible” content=“chrome=1″ />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <title>Title</title>
+</head>
+<style>
+    body{
+        text-align: center;
+        line-height: 30px;
+    }
+    #backUp{
+        width: 39px;
+        height: 120px;
+        background: black;
+        position: fixed;
+        bottom: 20px;
+        right: 20px;
+        cursor: pointer;
+        font: bold 20px/24px 'Microsoft YaHei';
+        color: white;
+    }
+</style>
+<body>
+</body>
+<script>
+    var body = document.getElementsByTagName('body')[0];
+    var scrollValue,timer;
+    scrollValue = 0;
+    timer = null;
+    for(i=0;i<102;i++){
+        if(i===101){
+            body.innerHTML = body.innerHTML + '<div id="backUp">我是小火箭</div>';
+        }else{
+            body.innerHTML = body.innerHTML + i + '</br>';
+        }
+    }
+
+    var backUp = document.getElementById('backUp');
+    window.onscroll = function(){
+        /*
+        scrollValue = {
+                "top": window.pageYOffset || document.body.scrollTop || document.documentElement.scrollTop,
+                "left": window.pageXOffset || document.body.scrollLeft || document.documentElement.scrollLeft,
+        };
+        */
+        scrollValue = window.pageYOffset || document.body.scrollTop || document.documentElement.scrollTop;
+        console.log('我是滚动条，我的当前位置是：' + scrollValue + 'px');
+        if(scrollValue > 300){
+            backUp.style.display = 'block';
+        }else{
+            backUp.style.display = 'none';
+        }
+    }
+    backUp.onclick = function (){
+        clearInterval(timer);
+        timer = setInterval(function(){
+            var step =Math.floor((0 - scrollValue) / 10);   //这里向上取整或四舍五入，导致死循环，什么都不用或者向下取整没问题，但是什么都不用的话IE5~IE9和其它浏览器没问题，唯独IE10和IE11在进行到了4.5的位置时死循环了，不知道IE是不是越进化越倒退了。本打算能不消耗电脑性能就不消耗，但是IE10/11还是非常普遍的，所以只好弃，用直接用向下取整了。
+            step = step + scrollValue;
+            if(scrollValue === 0){
+                clearInterval(timer);
+                return;
+            }
+            window.scrollTo(0,step);
+            console.log('我是动画，我距离顶部只有：' + step + 'px');
+        },30);
+    }
+</script>
+</html>

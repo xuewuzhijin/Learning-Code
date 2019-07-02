@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        select{
+            width: 300px;
+            height: 300px;
+            font-size: 18px;
+        }
+    </style>
+    <script src="../jquery-1.11.1.js"></script>
+    <script>
+        $(function(){
+            $('button:eq(0)').click(function(){
+                // $('#sel1>option').appendTo('#sel2');
+                $('#sel2').append($('#sel1>option'));
+            });
+            $('button:eq(1)').click(function(){
+                // $('#sel2>option').appendTo('#sel1');
+                $('#sel1').append($('#sel2>option'));
+            });
+            $('button:eq(2)').click(function(){
+                // $('#sel1>option').appendTo('#sel2');
+                $('#sel2').append($('#sel1>option:selected'));
+            });
+            $('button:eq(3)').click(function(){
+                // $('#sel2>option').appendTo('#sel1');
+                $('#sel1').append($('#sel2>option:selected'));
+            });
+        });
+    </script>
+</head>
+<body>
+<select name="" id="sel1" size="10" multiple>
+    <option value="">香蕉</option>
+    <option value="">苹果</option>
+    <option value="">梨子</option>
+    <option value="">芒果</option>
+    <option value="">葡萄</option>
+    <option value="">橘子</option>
+</select>
+<button>>>></button>
+<button><<<</button>
+<button>></button>
+<button><</button>
+<select name="" id="sel2" size="10" multiple>
+</select>
+</body>
+</html>

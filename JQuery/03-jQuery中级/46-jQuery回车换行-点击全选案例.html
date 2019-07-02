@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        input{
+            width: 500px;
+            height: 50px;
+            margin: 5px 0;
+            font: bolder 35px/50px 'Microsoft YaHei UI Light';
+        }
+    </style>
+    <script src="../../jquery-1.11.1.js"></script>
+    <script>
+        $(function(){
+            //回车换行
+            $('input').on('keyup',function(e){
+                // console.log(e.keyCode);  //输出被按的那个键
+                if(e.keyCode === 13){
+                    $(this).next().next().focus();
+                };
+            });
+
+            //点击全选
+            $('input').on('click',function(){
+                $(this).select();
+            });
+        });
+    </script>
+</head>
+<body>
+<input type="text" value="给我来个全选"><br>
+<input type="text" value="给我来个全选"><br>
+<input type="text" value="给我来个全选"><br>
+<input type="text" value="给我来个全选"><br>
+<input type="text" value="给我来个全选"><br>
+<input type="text" value="给我来个全选"><br>
+<input type="text" value="给我来个全选"><br>
+<input type="text" value="给我来个全选"><br>
+<input type="text" value="给我来个全选"><br>
+<input type="text" value="给我来个全选"><br>
+<input type="text" value="给我来个全选"><br>
+<input type="text" value="给我来个全选"><br>
+</body>
+</html>

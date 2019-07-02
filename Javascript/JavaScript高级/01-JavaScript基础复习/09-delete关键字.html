@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    var obj = {
+        name: '张三',
+        age: 50
+    }
+
+    // console.log(obj.name);  //输出张三
+
+    // delete obj.name;
+
+    // console.log(obj.name);  //输出undefined
+
+    //delete 关键字可以用来删除对象的属性，还有未使用var声明的变量
+    //delete 关键字有返回值，用来表示删除属性是否成功
+    //如果删除的是不存在的属性，返回值为true
+    //如果删除的属性存在原型链当中，返回值为true，但是并未删除
+
+    // var num = 10;
+    // num1 = 100;
+    // delete num1;
+    // console.log(num1);
+
+
+    var num = 10;
+    num1 = 100;
+    //添加var属于全局变量
+    //不添加则属于局部变量，这时可使用window.num1来访问是否存在该值
+    var result = delete num1;
+    console.log(window.num1,result);
+
+    // var a = delete obj.name;
+    // console.log(obj.name,a);
+
+</script>
+</body>
+</html>

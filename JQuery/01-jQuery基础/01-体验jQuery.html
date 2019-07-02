@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="../jQuery-1.8.3.js"></script>
+    <style>
+        div{
+            height: 200px;
+            background: gray;
+            margin: 20px 0;
+            display: none;
+        }
+    </style>
+</head>
+<body>
+<button>Click Me</button>
+<div></div>
+<div></div>
+<div></div>
+<div></div>
+<div></div>
+<script>
+    /*
+    //JS版让div显示并添加内容
+    var btn = document.getElementsByTagName('button')[0];
+    var div = document.getElementsByTagName('div');
+
+    btn.onclick = function(){
+        for(var i=0; i<div.length; i++){
+            div[i].style.display = 'block';
+            div[i].innerHTML = 'Hello World';
+        }
+    }
+     */
+
+    $(document).ready(function(){
+        var JQbtn = $('button');//根据标签名获取元素
+        var JQdiv = $('div');//根据标签名获取元素
+        //绑定事件
+        JQbtn.click(function(){
+            // JQdiv.show(600);    //show(n),n可以写入值可以不写入，写入值相当于加定时器，让DIV在规定时间内把div的所有属性通过缓动动画显示出来。
+            // JQdiv.html('Hello Wolrd');
+            JQdiv.show(600).html('Hello World');//可以简写，这种方法简称链式编程。
+        });
+    })
+</script>
+</body>
+</html>

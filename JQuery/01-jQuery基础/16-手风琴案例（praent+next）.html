@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="../jquery-1.11.1.js"></script>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        ul{
+            list-style-type: none;
+        }
+        .wrap{
+            width: 400px;
+            height: 750px;
+            margin: 100px auto;
+        }
+        .wrap ul li{
+            width: 400px;
+            /*height: 21px;*/
+            margin: 10px 10px;
+            float: left;
+            background: #0075ff;
+            text-align: center;
+        }
+        .wrap ul li div{
+            height: 129px;
+            display: none;
+        }
+    </style>
+    <script>
+        jQuery(window).ready(function(){
+            $('.wrap span').click(function(){
+               // $(this).next().show();
+               //让其它的隐藏
+                //点击span，父亲的兄弟的li孩子的div隐藏
+                // $(this).parent('li').siblings('li').children('div').hide();
+
+                //也可以通过一行代码解决，可用children()和find();
+                // $(this).next().show().parent('li').siblings('li').children('div').hide();
+                $(this).next().show().parent('li').siblings('li').find('div').hide();
+            });
+        });
+    </script>
+</head>
+<body>
+<div class="wrap">
+    <ul>
+        <li>
+            <span>菜单一</span>
+            <div>我是菜单一的</div>
+        </li>
+        <li>
+            <span>菜单二</span>
+            <div>我是菜单二的</div>
+        </li>
+        <li>
+            <span>菜单三</span>
+            <div>我是菜单三的</div>
+        </li>
+        <li>
+            <span>菜单四</span>
+            <div>我是菜单四的</div>
+        </li>
+        <li>
+            <span>菜单五</span>
+            <div>我是菜单五的</div>
+        </li>
+    </ul>
+</div>
+</body>
+</html>

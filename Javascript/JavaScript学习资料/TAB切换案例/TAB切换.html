@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<style>
+    *{
+        margin: 0px;
+        padding: 0px;
+        list-style-type: none;
+    }
+    #notice{
+        width: 500px;
+        height: 190px;
+        margin: 100px auto;
+        border: 1px solid #ccc;
+        overflow: hidden;
+        position: relative;
+    }
+    #notice-tit{
+        background: #ccc;
+    }
+    #notice-tit ul{
+        position: relative;
+        height: 60px;
+    }
+    #notice-tit ul li{
+        width: 100px;
+        height: 60px;
+        text-align: center;
+        line-height: 60px;
+        float: left;
+    }
+    #notice-content{
+        width: 500px;
+    }
+    #notice-content ul{
+        position: absolute;
+        left: 0;
+    }
+    #notice-content ul li{
+        width: 245px;
+        height: 60px;
+        margin: 2.5px;
+        text-align: center;
+        line-height: 60px;
+        float: left;
+    }
+    .current-tit{
+        background: #0075ff;
+        color: white;
+        font-weight: bold;
+    }
+    #notice-content ul{
+        display: none;
+    }
+    #notice-content .current-content{
+        display: block;
+    }
+</style>
+<body>
+    <div id="notice">
+        <div id="notice-tit">
+            <ul>
+                <li class="current-tit">前天</li>
+                <li>昨天</li>
+                <li>今天</li>
+                <li>明天</li>
+                <li>后天</li>
+            </ul>
+        </div>
+        <div id="notice-content">
+            <ul class="current-content">
+                <li>前天的新闻在这里哟</li>
+                <li>前天的新闻在这里哟</li>
+                <li>前天的新闻在这里哟</li>
+                <li>前天的新闻在这里哟</li>
+            </ul>
+            <ul>
+                <li>昨天的新闻在这里哟</li>
+                <li>昨天的新闻在这里哟</li>
+                <li>昨天的新闻在这里哟</li>
+                <li>昨天的新闻在这里哟</li>
+            </ul>
+            <ul>
+                <li>今天的新闻在这里哟</li>
+                <li>今天的新闻在这里哟</li>
+                <li>今天的新闻在这里哟</li>
+                <li>今天的新闻在这里哟</li>
+            </ul>
+            <ul>
+                <li>明天的新闻在这里哟</li>
+                <li>明天的新闻在这里哟</li>
+                <li>明天的新闻在这里哟</li>
+                <li>明天的新闻在这里哟</li>
+            </ul>
+            <ul>
+                <li>后天的新闻在这里哟</li>
+                <li>后天的新闻在这里哟</li>
+                <li>后天的新闻在这里哟</li>
+                <li>后天的新闻在这里哟</li>
+            </ul>
+        </div>
+    </div>
+    <script>
+        var notice,ultit,list,noticeContent;
+        notice = document.getElementById('notice');
+        ultit = notice.children[0].children[0];
+        list = ultit.children;
+        noticeContent = notice.children[1];
+        currentContent = noticeContent.children;
+        function cut(){
+	        for(var i=0;i<list.length;i++){
+	            list[i].index = i;
+	            list[i].onclick = function(){
+	                for(var j=0; j<list.length; j++){
+	                    list[j].className = '';
+	                    currentContent[j].className = '';
+	                }
+	            this.className = 'current-tit';
+	            currentContent[this.index].className = 'current-content';
+	            };
+	        }
+        }
+        notice.addEventListener(onmouseenter,cut(),true);
+    </script>
+</body>
+</html>

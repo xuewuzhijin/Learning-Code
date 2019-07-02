@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="../jquery-1.11.1.js"></script>
+    <script>
+        $(function(){
+            $('button:eq(0)').click(function(){
+                //清空ul里面的节点
+                //方法1： .html();
+                // $('ul').html('');   //node.html('')里面一定要是空字符串，否则没用。
+                //方法2：  .empty()
+                $('ul').empty();
+            });
+            $('button:eq(1)').click(function(){
+                //清空ul这个节点
+                //方法1： .remove()
+                $('ul:eq(0)').remove();
+            });
+            $('button:eq(2)').click(function(){
+                //清空ul里面的第一个节点
+                //方法1： .remove()
+                $('li:eq(0)').remove();
+            });
+        });
+    </script>
+</head>
+<body>
+    <button>清空节点</button>
+    <button>删除节点</button>
+    <button>删除第一个li</button>
+    <ul>
+        <li>我是原生li</li>
+        <li>我是原生li</li>
+        <li>我是原生li</li>
+        <li>我是原生li</li>
+    </ul>
+</body>
+</html>

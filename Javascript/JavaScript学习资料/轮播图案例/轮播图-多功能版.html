@@ -1,0 +1,225 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+<style>
+    *{
+        margin: 0;
+        padding: 0;
+    }
+    #banner{
+        width: 100%;
+        height: 680px;
+        overflow: hidden;
+        position: relative;
+    }
+    #banner ul {
+        width: 100%;
+        height: 680px;
+        position: absolute;
+    }
+    #banner ul li{
+        list-style-type: none;
+        width: 1920px;
+        height: 680px;
+        text-align: center;
+        font: 38px/680px '微软雅黑';
+        float: left;
+    }
+    .prev,.next{
+        height: 40px;
+        width: 40px;
+        background: #ccc;
+        font: 20px/40px '宋体';
+        text-align: center;
+        color: white;
+        position: absolute;
+        cursor: pointer;
+        top: 45%;
+    }
+    .prev{
+        left: 20px;
+    }
+    .next{
+        right: 20px;
+    }
+    .square{
+        position: absolute;
+        bottom: 20px;
+        right: 20px;
+        cursor: pointer;
+    }
+    .square span{
+        display: inline-block;
+        width: 24px;
+        height: 24px;
+        background: #ccc;
+        font: 18px/24px 'Microsoft YaHei Bold';
+        text-align: center;
+        margin: 0 10px;
+    }
+    .square .current{
+        background: #0075ff;
+        color: white;
+    }
+</style>
+<div id="banner">
+    <ul>
+        <li>1</li>
+        <li>2</li>
+        <li>3</li>
+        <li>4</li>
+        <li>5</li>
+    </ul>
+    <div class="prev"><</div>
+    <div class="next">></div>
+    <div class="square"></div>
+</div>
+</body>
+<script>
+    var banner,ul,lis,liWidth,prev,next,square,squareSpan,imgIndex,squareIndex,timer,timer1;
+    banner = document.getElementById('banner');  //获取banner，在开始其实没什么用，但在最后一步（鼠标移入移出时）需要用到它，还有一个好处就是很好的获取它的子节点，方便快捷，文件越小越好，速度也快。
+    ul = banner.children[0];    //获取ul很重要，此轮播图需要用到ul来移动，所以想要轮播，ul必不可少。
+    lis = ul.children.length;      //获取lis也比较重要，在后期需要得到ul元素下的li的length（数量）。
+    liWidth = ul.children[0].offsetWidth;       //获取liWidth也比较重要，我们要得到li的宽度，第一给ul宽度赋值，第二轮播的目标位置需要得到这个数据，这样无论最后li的宽度是否改变，都不影响轮播。
+    prev = banner.children[1];      //prev，全称‘Previous’，意为上一个，前面的，当鼠标点击prev这个DIV的时候回到上一张。
+    next = banner.children[2];      //next，下一个。
+    square = banner.children[3];    //这个在JS写入数据（小方块）的时候会起到作用。
+    squareSpan = square.children;       //这个与lis相同。
+    imgIndex = 0;       //这个是设自定义属性，获得当前图片的已经到了第几张。
+    squareIndex = 0;    //与上面的同理。
+    timer = null;       //动画定时器要用，设为null避免后期在没有设定时器之前就关闭定时器会报错。
+    timer1 = null;      //轮播定时器要用。这一步可申明，可不申明。
+
+    //第一步首先初始化DOM
+    //如果想看到一个详细的过程，可以按顺序把步骤注释掉。
+    window.onload = function(){
+        // ——First——这里我们给ul的子元素最后一个添加一个ul子元素的第一个子元素，也就是第一个li，这个无缝滚动很重要。
+        var node = ul.children[0].cloneNode(true);
+        ul.appendChild(node);
+
+
+        //——Second——然后给ul宽度，用现在的lis，也就是看现在有多少个li标签去乘以liWidth得到总宽度。+1这里需要注意，因申明变量的时候还没有进行First这一步，以此案例，所以lis的值还是5.
+        ul.style.width = (lis+1) * liWidth + 'px';
+
+
+        //——Third——接着给每个li标签输出同样个数的序列号，这里用到for循环。这里的i是等于1并不是等于0，而当1等于5的时候，5小于5结果是False会终止循环，这里给lis+1，所以需要显示1~5（给用户看），而不是0~4（自己看），
+        for(var i=1; i<lis+1; i++){
+            //因为打开页面需要给第一张图片也就是给第一个序列号添加一个‘current’（当前）的意思，所以提前在CSS里面写好就行，JS只管输出。这里用一个if语句；
+            if(i === 1){
+                square.innerHTML = '<span class="current">' + i + '</span>';
+            }else{
+                square.innerHTML = square.innerHTML + '<span>' + i + '</span>';
+            }
+        }
+
+        //——Fourth——然后我们需要给每个序列号绑定一个鼠标移入事件，并让当前鼠标在的那个序列号上面添加一个‘current’，这里我们用for循环遍历。
+        for(var i=0; i<lis; i++){   //一般正常思维，这里是用序列号的个数，而不是lis的这个数，不过数量一定都是相同的，所以我们还是按照越小越好的理念来进行。
+            squareSpan[i].index = i;    //这个是再移动动画封装函数做好之后需要用到的数据。意思就是获取到当前我鼠标是放在第几个小方块上面。
+            squareSpan[i].onmouseover = function(){
+                for(var j=0;j<lis;j++){
+                    squareSpan[j].className = '';//这里我们把所有的小方块的className全部清除掉，然后我们在上一个的循环把当前鼠标的那个小方块加上className=current。
+                }
+            this.className = 'current';
+                imgIndex = squareIndex = this.index;    //这里就是同步的值，想看一眼的可以自己把这句话注释掉再看看那个BUG。
+            move(ul,-this.index * liWidth); //这里的this.index的值是等于i的，i从0开始一直到4，当我把鼠标放在序列号2的时候，i=1,1乘以li的宽度（1920）还是1920，这里的this前面有-，代表负数-1920，（废话，往左不是负数吗？），也就是当我要看第二张的时候，ul的left要移动到-1920的位置。
+            }
+        }
+    }
+
+
+    //============================================================第一个MOVE为匀速动画，第二个MOVE为缓速动画==================start
+
+/*  //这里是匀速动画
+    //第二步我们制作移动的动画，后期会有很多地方会用到，所以我们把他给封装起来。
+    function move(element,target){  //这里两个参数，一个是元素，一个是目标，我们把这个理解一下，‘想要移动是吧，你要移动哪个元素（element）？移动到哪里去（target）’。
+        var speed = element.offsetLeft > target ? -30 : 30;     //这个是速度，也就是要移动多快，可以自行修改，但是它会根据时间来计算，要理解这个，否则修改错误会出错误，虽不会报错。我们理解一下这句话的意思，我们获取元素当前left值是多少，如果是0，那么它大于你要移动的目标位置吗？按照笔者目前屏幕li的宽度是1920，我们假设目标是1920，我们想让li往左边移动，那么x，y轴的话，1920是负数，也就是传进来的目标是-1920，整个意思理解就是我要往左边移动，此时0肯定大于-1920，那么判断结果为true，选第一个值-30，因为往左不可能是右，所以肯定得是负数，所以它的移动方式是0→-30→-60→-90→-120...-1920.
+        clearInterval(timer);   //这里注意一下，使用定时器前首先清除定时器，这避免在使用的时候，多次点击定时器重复开而出现BUG，也就是移动速度会变得比你想象中的更快。
+        timer = setInterval(function(){
+            if(element.offsetLeft === target){  //我们先判断当前的left值等不等于目标值，如果等于就清除定时器，并return一下，避免执行下面的那条命令，这个顺序不可更改，更改的话停不下来就别怪我。
+                clearInterval(timer);
+                return;
+            }
+            element.style.left = element.offsetLeft + speed + 'px';
+        },10);   //速度的话，我们就以0.1秒的时间加一次speed的值。
+    }
+*/
+
+    //这里是缓速动画
+    function move(element,target){
+        clearInterval(element.timer);
+        element.timer = setInterval(function (){
+        var speed = (target - element.offsetLeft) / 10;     //这里注意，与匀速动画不同的是，这个speed要放在定时器里面，因为这个speed的值是不断变化的，所以要放在定时器里面，每执行一次都要变化一次值，如果放在定时器外边，这个值同匀速动画没区别，而下面的speed也起不到作用，也就没有缓速动画的效果。当然，匀速动画的speed也可以放在定时器里面，但是这样也会消耗电脑的性能，应为值一直都是一样，运算一次就够了，运算多次的话，没实际意义。
+            speed = speed > 0 ? Math.ceil(speed) : Math.floor(speed);   //Math.ceil是向上取整的意思，因为目标值减去当前坐标值会产生小数，如目标值是1920，当前值是0，目标（1920）- 当前（0） / 10 = 192，注意，次吃还没到目标位置，定时器不会停，继续计算   目标（1728）- 当前（192） / 10 = 153.6（这里有小数所以值是154），当计算到最后，假设此时当前位置1915，而距离目标位置只有5px的话，计算出来的值全是0.n...算了不说了，说的再多不如自己把这一句注释掉看看结果然后自己心里运算一遍就明白了。
+            if(element.offsetLeft === target){
+                clearInterval(element.timer);
+                return;
+            }
+            element.style.left = element.offsetLeft + speed + 'px';
+        },30);
+    }
+
+
+    //============================================================第一个MOVE为匀速动画，第二个MOVE为缓速动画==================end
+
+
+
+    //第三步，我们来定时，让它自己往左动，并给他封装成一个函数。
+    function autoPlay(){
+        squareIndex++;  //这个是小方块，这里我在JS申明位置给它一个0的值了，代表是number，当autoPlay执行一次，squareIndex就+1。
+        if(squareIndex === lis){    //已知lis的值是5，而squareSpan的值最高是4（0~4），当squareIndex的值等于5的时候，这里到循环了，我们就要把squareIndex的值拉回到0。
+            squareIndex = 0;
+        }
+        for(var i=0; i<lis;i++){
+            squareSpan[i].className = '';
+        }
+        squareSpan[squareIndex].className = 'current';
+
+        //这个if也比较好理解，只要squareIndex的值小于lis（5），就执行true里面的内容，如果大于的话，肯定不能大于，因为没这么多squareSpan，所以让它继续等于0，然后让他自增。
+        //小方块的定时到这里就结束了。
+
+        imgIndex++; //这个是图片的值，我们要把这个值设为当前图片的值。
+        if(imgIndex === lis+1){ //这里要注意，为什么lis要+1，我们在前面初始化的first中加入了一段代码，就是把ul下的第一个li，克隆到ul下最后一个li，所以此时无缝滚动需要用到它，当imgIndex等于6的时候，我们让它的值变为1，为什么不是0，因为我们克隆的那个就是0，已经看了，所以我们直接看1，并且瞬间把ul的left值拉到0的位置。
+            imgIndex = 1;
+            ul.style.left = 0;
+        }
+        move(ul,-imgIndex * liWidth); //这个还是负值，因为是固定往左。
+        //注意一下这里，会出现一个BUG,如果轮播的时候已经轮到了序列号4，那么我把鼠标移入到序列号1的话，图片肯定是会移动到1的位置的，但是过两秒后，他会自增到5，也就是会出现一个很大的跨越，所以我们需要让这个imgIndex以及squareIndex要同步到那个鼠标移入的那个this.index值上，也就是让他们互相等于。看到这里的话，我们就移动到初始化的fourth这一步，如何同步。
+    }
+    timer1 = setInterval(autoPlay,3000);
+
+
+    //进入第四步，通过鼠标点击来切换，并且关闭自动轮播这个定时器。因个人习惯，想把这个步骤写入初始化里面，但为了让大家跟着思路一直走，还是写在这里，我们先添加一个鼠标移入（关闭定时器）移出（开启定时器）事件。
+    banner.onmouseover = function (){
+        clearInterval(timer1);
+    }
+    banner.onmouseout = function (){
+        timer1 = setInterval(autoPlay,3000);
+    }
+    //下面写入点击事件，用来切换上一张还是下一张，next好写一点，先来next。
+    next.onclick = function(){
+        autoPlay();
+        //下一张搞定，就这么简单，原理也很好理解，如果我把鼠标移出banner区域，他会开启定时器，而定时器执行的就是这个封装的函数，所以我鼠标移动进来虽说关闭了定时器，但是我们的手可是一个比定时器好得多的工具，想下就下，不想下就不下。所以点一下就自动下一张。
+    }
+    prev.onclick = function (){
+        imgIndex--;
+        if(imgIndex === -1){
+            ul.style.left = -liWidth * lis + 'px';
+            imgIndex = lis-1;
+        }
+        move(ul,-imgIndex * liWidth);
+
+        squareIndex--;  //这里的小方块也要跟着--，虽然我们用不到它，但如果不减否则会出BUG的。
+        if(squareIndex < 0){
+            squareIndex = lis-1;
+        }
+        for(var i=0; i<lis;i++){
+            squareSpan[i].className = '';
+        }
+        squareSpan[squareIndex].className = 'current';
+    }
+</script>
+</html>

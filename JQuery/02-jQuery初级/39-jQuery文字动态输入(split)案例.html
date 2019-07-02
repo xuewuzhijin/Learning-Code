@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        html,body,.wrap{
+            width: 100%;
+            height: 100%;
+        }
+        .box{
+            width: 800px;
+            height: 400px;
+            margin: 100px auto;
+        }
+        .content{
+            width: 100%;
+            height: 120px;
+            font: bolder 25px/32px 'Microsoft YaHei UI Light';
+            letter-spacing: 3px;
+        }
+        .box input{
+            font: bolder 25px/30px 'Microsoft YaHei UI Light';
+        }
+        .headtext{
+            color: #0075ff;
+        }
+        .word{
+            margin-left: 20px;
+        }
+        #inpContent{
+            width: 680px;
+            padding: 0 10px;
+            height: 60px;
+            letter-spacing: 3px;
+        }
+        #sendBtn{
+            width: 96px;
+            height: 64px;
+            letter-spacing: 3px;
+        }
+        .typeCursor{
+            font-family: 'simsun';
+            animation: flash 0.9s infinite;
+        }
+        @keyframes flash{
+            from{
+                opacity: 1;
+            }
+            to{
+                opacity: 0;
+            }
+        }
+    </style>
+    <script src="../jquery-1.11.1.js"></script>
+    <script>
+        $(window).ready(function(){
+            //要把定时器设为全局变量，否则在字体还没有显示完全就输入字体的话，出现BUG
+            var timer = null;
+
+            //把功能封装为函数，点击SEND的时候，无论字体有没有执行完毕，都清除定时器
+            $('#sendBtn').click(function (){
+                clearInterval(timer);
+                a();
+            });
+
+            function a(){
+                var str = $('#inpContent').val() || '我想大声对你说!';
+                $('#inpContent').val('');
+                //  object.split('')
+                // 里面用空字符串，自动把string里的文字/字母每一个分隔开成为数组，length为n，如果用空格或者其它字符的话，length只为1；
+                var str2 = '';
+                var arr = str.split('');
+                var num = 0;
+                timer = setInterval(function(){
+                    if(num === arr.length){
+                        clearInterval(timer);
+                    }else{
+                        str2 += arr[num];
+                        $('.word').text(str2);
+                        num++;
+                    }
+                },200);
+            }
+            a();
+        });
+    </script>
+</head>
+<body>
+    <div class="wrap">
+        <div class="box">
+            <div class="content">
+                <span class="headtext">I WANT TO SAY:</span><span class="word"></span><span class="typeCursor">|</span>
+            </div>
+            <input type="text" id="inpContent"><input type="button" value="SEND" id="sendBtn">
+        </div>
+    </div>
+</body>
+</html>

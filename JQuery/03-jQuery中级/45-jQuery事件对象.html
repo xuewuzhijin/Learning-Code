@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="../jquery-1.11.1.js"></script>
+    <script>
+        $(function(){
+           $(document).click(function(e){
+
+
+console.log(event.currentTarget);
+//在事件冒泡过程中的当前DOM元素。这个属性总是等于函数的this。
+
+console.log(event.data);
+//当当前正在执行的处理程序绑定时，一个可选的数据对象传递给一个事件方法。
+
+console.log(event.namespace);
+//当事件被触发时此属性包含指定的命名空间。
+
+console.log(event.pageX);
+//鼠标相对于文档的左边缘的位置（左边）。
+
+console.log(event.pageY);
+//鼠标相对于文档的顶部边缘的位置（坐标）。
+
+console.log(event.preventDefault());
+//如果调用这个方法，默认事件行为将不再触发。
+
+console.log(event.relatedTarget);
+//在事件中涉及的其它任何DOM元素。
+
+console.log(event.result);
+//事件被触发的一个事件处理程序的最后返回值，除非值是 undefined。
+
+console.log(event.stopImmediatePropagation());
+//阻止剩余的事件处理函数执行并且防止事件冒泡到DOM树上。
+
+console.log(event.stopPropagation());
+//防止事件冒泡到DOM树上，也就是不触发的任何前辈元素上的事件处理函数。
+
+console.log(event.target);
+//触发事件的DOM元素。
+
+console.log(event.timeStamp);
+//这个属性返回事件触发时距离1970年1月1日的毫秒数。
+
+console.log(event.type);
+//弹出的事件类型。
+
+console.log(event.which);
+//针对键盘和鼠标事件，这个属性能确定你到底按的是哪个键。鼠标(左键：1    中键：2    右键：3)
+//event.which 将 event.keyCode 和 event.charCode 标准化了。推荐用 event.which 来监视键盘输入。更多细节请参阅：https://developer.mozilla.org/en/DOM/event.charCode#Notes
+console.log(event.keyCode);
+//键盘按键代码
+
+
+
+// console.log(event.isDefaultPrevented());
+//根据事件对象中是否调用过 event.preventDefault() 方法,来返回一个布尔值。
+// console.log(event.isImmediatePropagationStopped());
+//根据事件对象中是否调用过 event.stopImmediatePropagation() 方法,来返回一个布尔值。
+// console.log(event.isPropagationStopped());
+//根据事件对象中是否调用过 event.stopPropagation() 方法,来返回一个布尔值。
+
+
+           })
+        });
+    </script>
+</head>
+<body>
+
+</body>
+</html>

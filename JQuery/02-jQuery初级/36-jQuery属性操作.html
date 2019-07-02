@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="../../jquery-1.11.1.js"></script>
+    <script>
+        $(function(){
+            var jqbtn = $('input:eq(0)'),
+                jqinp = $('input:eq(1)'),
+                jqinp1 = $('input:eq(2)');
+            jqbtn.click(function(){
+               // jqinp.title = 111;
+               // console.log(jqinp.title);
+                //写一个是获取属性值
+                jqinp.attr('id');
+                console.log(jqinp.attr('id'));
+
+                //写两个是给属性赋值
+                jqinp.attr('aaa',111);
+                console.log(jqinp.attr('aaa'));
+
+                jqinp.attr('class',111);
+                console.log(jqinp.attr('class'));
+
+                //removeAttr删除写入的属性与值
+                jqinp.removeAttr('aaa');
+
+                //form中的特殊属性，用prop
+                jqinp1.prop('checked',true);
+
+                //下面这种只能一次性，要是手动取消再次点击就没用了
+                // jqinp1.attr('checked',true);
+            });
+        });
+
+    </script>
+</head>
+<body>
+<input type="button" value="click me">
+<input type="text" id="abc">
+<input type="checkbox">
+</body>
+</html>

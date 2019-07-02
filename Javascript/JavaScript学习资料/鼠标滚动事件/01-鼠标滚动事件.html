@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div></div>
+<script>
+    window.onload=function(){
+        var num=0,
+            div=document.querySelector('div');
+        this.onmousewheel=function(){
+            num++;
+            div.innerHTML=num;
+            console.log(div);
+        }
+
+    }
+</script>
+</body>
+</html>

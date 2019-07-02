@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        body{
+            font-size: 18px;
+        }
+        div{
+            border: 1px solid #000;
+        }
+    </style>
+</head>
+<body>
+<div>
+    <pre>
+        in关键字
+        1.最常用的是在for in 循环中
+        2.判断属性是否存在于对象中      语法： 属性名 in 对象
+        3.使用in关键字的时候，属性名需使用引号或双引号
+    </pre>
+</div>
+<script>
+    var obj = {
+        name: '张学友',
+        age:18
+    };
+
+    var arr = [1,2,3,4];    //0-1-2-3
+    //注意：in关键字操作数组的时候，判断的是数组的索引值是否存在，而不是值
+    // console.log(4 in arr);
+    //如何判断数组中是否存在指定的值
+    //1.for循环，如果找到了就输出
+    //2.indexOf，返回值为指定的数值对应的索引
+    console.log(arr.indexOf(9));
+
+
+    //注意，使用in关键字的时候，属性名需要使用引号或双引号
+    // console.log('name' in obj);
+    // for(var k in obj){
+    //     console.log(k);
+    //     console.log(obj[k]);
+    // }
+</script>
+</body>
+</html>

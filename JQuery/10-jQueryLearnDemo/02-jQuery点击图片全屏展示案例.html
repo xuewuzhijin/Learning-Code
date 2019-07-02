@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        html,body,.cover{
+            width: 100%;
+            height: 100%;
+        }
+        .cover{
+            position: absolute;
+            top: 0;
+            z-index:1;
+            background: black;
+            display: none;
+        }
+        .screenimg{
+            border: 8px solid white;
+        }
+        .div{
+            width: 300px;
+            height: 300px;
+            margin: 200px auto;
+        }
+        img{
+            width: 100%;
+            z-index:2;
+        }
+    </style>
+    <script src="../../jquery-1.11.1.js"></script>
+    <script>
+        jQuery(document).ready(function() {
+            var protoWidth = 0,
+                protoHeight = 0;
+            $(document).on('click', function (e) {
+                var $a = $(e.target);   //获取点击目标
+
+                if($a.is('img') && !$a.is('.screenimg')){
+                    bigimg();
+                }else{
+                    normalimg();
+                };
+
+                function bigimg() {
+                    var sw = $('body').width() / 2 || $(window).width() / 2,    //获得浏览器可视区域的宽度
+                        sh = $('body').height() / 2 || $(window).height() / 2,    //获得浏览器可视区域的高度
+                        w = $a.width(),     //获得图片本身宽
+                        h = $a.height(),    //获得图片本身高
+                        sc = $a.width() / $a.height(),   //获得图片的比例
+                        st = $('body').scrollTop() || $(document).scrollTop();   //获取document被卷去的值
+                        t = sh - (900 / sc / 2) + st,  //计算图片在可视区域垂直坐标的位置
+                        l = sw - (900 / 2);    //计算图片在可视区域横向坐标的位置
+                    if (protoWidth === 0) {
+                        protoWidth = w;
+                        protoHeight = h;
+                    };
+                    $('html').height(sh*2).css('overflow','hidden');
+                    $a.css({'position': 'absolute', 'width': 0}).animate({'width': 900,'top': t,'left': l},500).addClass('screenimg');
+                    $('.cover').animate({'top':st},200).fadeIn(300);
+                };
+
+                function normalimg() {
+                    $('html').height('100%').css('overflow','');
+                    $('.screenimg').animate({'width': protoWidth}, 300).css({'position': '','top': '','left': ''}).removeClass('screenimg');
+                    $('.cover').fadeOut(300).animate({'top':0},200);
+                };
+            });
+        });
+    </script>
+</head>
+<body>
+    <div class="div">
+        <img src="../../images/pingguo.jpg" alt="" class="a b">
+    </div>
+    <div class="div">
+        <img src="../../images/pingguo.jpg" alt="" class="a b">
+    </div>
+    <div class="div">
+        <img src="../../images/pingguo.jpg" alt="" class="a b">
+    </div>
+    <div class="div">
+        <img src="../../images/pingguo.jpg" alt="" class="a b">
+    </div>
+    <div class="div">
+        <img src="../../images/pingguo.jpg" alt="" class="a b">
+    </div>
+    <div class="div">
+        <img src="../../images/pingguo.jpg" alt="" class="a b">
+    </div>
+    <div class="cover"></div>
+</body>
+</html>

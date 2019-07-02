@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<ul>
+    <li>我是老li</li>
+    <li>我是老li</li>
+    <li>我是老li</li>
+    <li>我是老li</li>
+</ul>
+<button>增加四个新li</button>
+</body>
+<script>
+    var ul = document.getElementsByTagName('ul')[0];
+    var li = ul.children;
+    var btn = document.getElementsByTagName('button')[0];
+
+    // for(var i=0; i<li.length; i++){
+    //     li[i].onclick = function(){
+    //         alert('我是老li');
+    //     };
+    // };
+
+
+    btn.onclick = function(){
+        for(var i=1; i<4; i++){
+            var newLi = document.createElement('li');
+            var newA = document.createElement('a');
+            newA.href = '#';
+            newA.innerHTML = '我是新增的A';
+            newLi.innerHTML = '我是新增的li';
+            ul.append(newLi);
+            ul.append(newA);
+        };
+    };
+
+    //事件委托在这里！！！！
+
+    ul.onclick = function(e){
+        e = event || window.event;
+        aaa = e.target || e.srcElement;
+        if(aaa.tagName === 'LI' || aaa.tagName === 'A'){
+            //注意点：tagName的标签名需大写，否则既不报错也不运行。
+            if(aaa.innerHTML === '我是老li'){
+                alert('我是老li');
+            }else if(aaa.innerHTML === '我是新增的A'){
+                alert('我是A链接');
+            }else{
+                alert('我是新li');
+            };
+        };
+    };
+
+
+    /*
+    意思：看第一个for循环，当循环换完后，仅针对的只有页面的li才有onclick事件，而在后面btn产生的li，点击这个li则没反应，这时候通过事件委托来进行处理。
+    通过ul点击事件来执行，只要确定这个是UL里面的LI，那么就执行点击事件，后期JSON会用到。
+     */
+</script>
+</html>

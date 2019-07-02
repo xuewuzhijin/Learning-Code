@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        .div{
+            width: 100px;
+            height: 100px;
+            margin: 10px;
+            padding: 10px;
+            border: 1px solid #0075ff;
+        }
+    </style>
+    <script src="../jquery-1.11.1.js"></script>
+    <script>
+        $(document).ready(function(){
+
+            /*
+            *   jQuery获取到的宽度以及高度与元素有没有margin/padding/border没关系
+            *   jQuery   .width()/.height()  填写参数是赋值，不写参数是获取值，填写的参数可带单位(px)也可不带
+             */
+
+            $('button:eq(0)').click(function(){
+                console.log('获取宽度' + $('.div').width());
+            });
+
+
+            $('button:eq(1)').click(function(){
+                console.log('设置宽度' + $('.div').width(300));
+            });
+
+
+            $('button:eq(2)').click(function(){
+                console.log('获取高度' + $('.div').height());
+            });
+
+
+            $('button:eq(3)').click(function(){
+                console.log('设置高度' + $('.div').height(300));
+            });
+        });
+    </script>
+</head>
+<body>
+    <button>获取宽度</button>
+    <button>设置宽度</button>
+    <button>获取高度</button>
+    <button>设置高度</button>
+    <div class="div"></div>
+</body>
+</html>

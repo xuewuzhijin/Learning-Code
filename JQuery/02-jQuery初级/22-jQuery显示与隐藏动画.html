@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        div{
+            width: 100px;
+            height: 100px;
+            margin: 100px;
+            padding: 100px;
+            background: black;
+            display: block;
+        }
+    </style>
+    <script src="../jquery-1.11.1.js"></script>
+    <script>
+        $(window).ready(function(){
+            $('button:eq(0)').click(function(){
+                //显示动画方法1：  show()
+                // $('div').show();  //通过display直接显示
+
+                //显示动画方法2： show(n)   n代表毫秒，1秒等于1000毫秒
+                // $('div').show(2000);  //宽高透明度和display(如果元素有margin或padding也会缓慢加入)匀速显示；
+
+                //显示动画方法3：  show(字符串slow(600ms)/normal(400ms)/fast(200ms))
+                // $('div').show('slow');
+                // $('div').show('normal');
+                // $('div').show('fast');
+
+                //显示动画方法4： show(n,function(){});后面的为回调函数，也就是当动画执行完毕之后会执行这个函数。
+                $('div').show(1000,function(){
+                    alert('执行完毕');
+                })
+            });
+
+
+
+            //隐藏动画
+            $('button:eq(1)').click(function(){
+                //隐藏动画方法1：  hide()
+                // $('div').hide();  //通过display直接隐藏
+
+                //隐藏动画方法2： hide(n)   n代表毫秒，1秒等于1000毫秒
+                // $('div').hide(2000);  //宽高透明度和display(如果元素有margin或padding也会缓慢加入)匀速隐藏；
+
+                //隐藏动画方法3：  hide(字符串slow(600ms)/normal(400ms)/fast(200ms))
+                // $('div').hide('slow');
+                // $('div').hide('normal');
+                // $('div').hide('fast');
+
+                //隐藏动画方法4： hide(n,function(){});后面的为回调函数，也就是当动画执行完毕之后会执行这个函数。
+                $('div').hide(1000,function(){
+                    alert('执行完毕');
+                })
+            });
+
+            //显示隐藏来回切换
+            $('button:eq(2)').click(function(){
+                //同样可以在里面添加毫秒值或者回调函数，方法同样有slow，normal，fast。
+                $('div').toggle('fast',function(){
+                    alert('执行完毕');
+                });
+            })
+        })
+    </script>
+</head>
+<body>
+<button>显示</button>
+<button>隐藏</button>
+<button>切换</button>
+<div></div>
+</body>
+</html>

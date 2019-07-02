@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        .box{
+            width: 300px;
+            height: 300px;
+            margin: 200px auto;
+            position: relative;
+            /*border: 1px solid #000;*/
+        }
+        .box .div{
+            width: 100%;
+            height: 30px;
+            background: #0075ff;
+            position: absolute;
+            transition: all .5s;
+            transform-origin: left;
+            border-radius: 15px;
+        }
+        .box .div:nth-child(1){
+            top: 0;
+        }
+        .box .div:nth-child(2){
+            top: 135px;
+            left: 0;
+            width: 50%;
+        }
+        .box .div:nth-child(3){
+            top: 135px;
+            right: 0;
+            width: 50%;
+        }
+        .box .div:nth-child(4){
+            top: 270px;
+        }
+        .box .at{
+            top: -15px !important;
+            width: 424.3px;
+            transform: rotateZ(45deg);
+        }
+        .box .al{
+            width: 0 !important;
+        }
+        .box .ar{
+            width: 0 !important;
+        }
+        .box .ab{
+            top: 285px !important;
+            width: 424.3px;
+            transform: rotateZ(-45deg);
+        }
+    </style>
+</head>
+<body>
+    <div class="box">
+        <div class="div"></div>
+        <div class="div"></div>
+        <div class="div"></div>
+        <div class="div"></div>
+    </div>
+</body>
+<script src="../../jquery-1.11.1.js"></script>
+<script>
+    $(function(){
+       $('.box').on('click',function(){
+           var i = 0,
+               divlength = $('.box>div').length;
+           for(; i<divlength; i++){
+               if(i === 0){
+                   $('.box>div').eq(i).toggleClass('at');
+               }else if(i === 1){
+                   $('.box>div').eq(i).toggleClass('al');
+               }else if(i === 2){
+                   $('.box>div').eq(i).toggleClass('ar');
+               }else if(i === 3){
+                   $('.box>div').eq(i).toggleClass('ab');
+               }
+           }
+       });
+    });
+</script>
+</html>

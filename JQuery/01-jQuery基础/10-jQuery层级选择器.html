@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="../jquery-1.11.1.js"></script>
+    <script>
+        $(document).ready(function(){
+            var JQulli = $('ul li');    //代表ul下的所有li，后代li
+            var JQolli = $('ul>li');    //代表ul下的li，子代li
+            JQulli.css({'width':100,'height':100});
+            JQolli.css('background','pink')
+        })
+    </script>
+</head>
+<body>
+    <ul>
+        <li>1</li>
+        <li>2</li>
+        <li>3</li>
+        <li>4</li>
+        <li>5</li>
+        <ol>
+            <li>1</li>
+            <li>2</li>
+            <li>3</li>
+            <li>4</li>
+            <li>5</li>
+        </ol>
+    </ul>
+</body>
+</html>

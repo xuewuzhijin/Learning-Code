@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        .div{
+            width: 20px;
+            height: 20px;
+            background: #0075ff;
+            /*filter: alpha(opacity=20);*/
+            opacity: 0;
+            position: absolute;
+            top: 30px;
+            left: 0;
+        }
+    </style>
+</head>
+<body>
+<button>Click Me</button>
+<div class="div"></div>
+<script>
+    var btn = document.getElementsByTagName('button')[0],
+        div = document.getElementsByTagName('div')[0],
+        json = {'width':200,'height':200,'top':200,'left':200,'opacity':100},
+        timer = null;
+
+    btn.onclick = function(){
+        animate(div,json);
+    }
+
+    function animate(element,json){
+        clearInterval(element.timer);
+        element.timer = setInterval(function(){
+        var bool = true;
+            for(var k in json){
+                var a = parseInt(json[k]);
+                var b;
+                if(k === 'opacity'){
+                    b = getStyle(element,k)*100;
+                }else{
+                    b = parseInt(getStyle(element,k)) || 0;
+                }
+                var c = (a - b) / 10;
+                c = c > 0 ? Math.ceil(c) : Math.floor(c);
+                if(a !== b){
+                    bool = false;
+                };
+                if(k === 'opacity'){
+                    element.style[k] = (b + c)/100;
+                    element.style.filter = 'alpha(opacity=' + b / 10 + c + ')';
+                }else if(k === 'zIndex'){
+                    element.style['zIndex'] = json[k];
+                }else{
+                    element.style[k] = b + c + 'px';
+                }
+                console.log(1);
+            };
+            if(bool){
+                clearInterval(element.timer);
+            };
+        },15);
+    };
+
+    function getStyle(element,propertyName){
+        if(window.getComputedStyle){
+                return window.getComputedStyle(element,null)[propertyName];
+        }else{
+                return element.currentStyle[propertyName];
+        };
+    };
+</script>
+</body>
+</html>

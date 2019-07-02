@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        .box{
+            width: 100%;
+            height: 600px;
+            position: relative;
+        }
+        .box ul li{
+            text-align: center;
+            list-style-type: none;
+            position: absolute;
+        }
+        .box ul li:nth-child(1){
+            background: #999;
+            /*width: 550px;*/
+            /*height: 280px;*/
+            /*top: 160px;*/
+            /*left: 0;*/
+            /*z-index: 1;*/
+        }
+        .box ul li:nth-child(2){
+            background: #777;
+            /*width: 850px;*/
+            /*height: 432px;*/
+            /*top: 84px;*/
+            /*left: 150px;*/
+            /*z-index: 2;*/
+        }
+        .box ul li:nth-child(3){
+            background: #555;
+            /*width: 1180px;*/
+            /*height: 600px;*/
+            /*top: 0;*/
+            /*left: 376.5px;*/
+            /*z-index: 3;*/
+        }
+        .box ul li:nth-child(4){
+            background: #333;
+            /*width: 850px;*/
+            /*height: 432px;*/
+            /*top: 84px;*/
+            /*right: 150px;*/
+            /*z-index: 2;*/
+        }
+        .box ul li:nth-child(5){
+            background: #222;
+            /*width: 550px;*/
+            /*height: 280px;*/
+            /*top: 160px;*/
+            /*right: 0;*/
+            /*z-index: 1;*/
+        }
+        .prev,.next{
+            width: 200px;
+            height: 200px;
+            background: rgba(0,0,0,1);
+            font: bold 55px/200px simsun;
+            position: absolute;
+            top: calc(50% - 100px);
+            text-align: center;
+            z-index: 4;
+            color: white;
+        }
+        .prev{
+            left: 50px;
+        }
+        .next{
+            right: 50px;
+        }
+        .cutbox{
+            filter: alpha(opacity=0);
+            opacity: 1;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div class="box">
+        <ul>
+            <li>1</li>
+            <li>2</li>
+            <li>3</li>
+            <li>4</li>
+            <li>5</li>
+        </ul>
+        <div class="cutbox">
+            <div class="prev"><</div>
+            <div class="next">></div>
+        </div>
+    </div>
+    <script>
+        var box = document.getElementsByTagName('div')[0];
+        var list = box.children[0].children;
+        var cutbox = box.children[1];
+        var cut = cutbox.children;
+        var flag = true;
+        var json = [
+                {
+                    'width': 550,
+                    'height': 280,
+                    'top': 160,
+                    'left': 0,
+                    'zIndex': 1
+                },
+                {
+                    'width': 850,
+                    'height': 432,
+                    'top': 84,
+                    'left': 150,
+                    'zIndex': 2,
+                    'opacity': 80
+                },
+                {
+                    'width': 1180,
+                    'height': 600,
+                    'top': 0,
+                    'left': 376,
+                    'zIndex': 3
+                },
+                {
+                    'width': 850,
+                    'height': 432,
+                    'top': 84,
+                    'right': 150,
+                    'zIndex': 2,
+                    'opacity': 80
+                },
+                {
+                    'width': 550,
+                    'height': 280,
+                    'top': 160,
+                    'right': 0,
+                    'zIndex': 1
+                }
+            ];
+
+        // if(screen.width < 1920){
+        //     for(var i=0; i<json.length; i++){
+        //         for(var k in json[i]){
+        //             if(k !== 'zIndex' && k !== 'opacity' && k !== 'left'){
+        //                 json[i][k] = json[i][k] / 2;
+        //             }
+        //         }
+        //     }
+        // }
+        //根据屏幕分辨率调整数组的数据，让元素兼容
+
+        for(var k in cut){
+            cut[k].onclick = function(){
+                if(this.className === 'prev'){
+                    if(flag){
+                        flag = false;
+                        move(true);
+                    };
+                }else{
+                    if(flag){
+                        flag = false;
+                        move(false);
+                    };
+                };
+                window.getSelection ? window.getSelection().removeAllRanges() : document.selection.empty();
+            }
+        }
+
+
+        function move(bool){
+            if(bool !== undefined){
+                if(bool){
+                    // json.push(); //在最后添加
+                    // json.pop();//删除最后一位
+                    // json.unshift();//在最前面添加
+                    // json.shift();//删除第一位
+                    var a = json.pop();
+                    json.unshift(a);
+                }else{
+                    var a = json.shift();
+                    json.push(a);
+                };
+            };
+            for(var i=0; i<list.length; i++){
+                animate(list[i],{
+                    'width':json[i].width,
+                    'height':json[i].height,
+                    'top':json[i].top,
+                    'left':json[i].left,
+                    'right':json[i].right,
+                    'zIndex':json[i].zIndex,
+                    'opacity':json[i].opacity
+                },function(){
+                    flag = true;
+                    console.log('我执行完了');
+                });
+            };
+        };
+        move();
+
+        box.onmouseenter = function(){
+            animate(cutbox,{'opacity': 100});
+            console.log('鼠标进来了');
+        };
+        box.onmouseleave = function(){
+            animate(cutbox,{'opacity': 0});
+            console.log('鼠标出去了');
+        }
+
+        //缓动动画
+        function animate(element,json,fn){
+            clearInterval(element.timer);
+            element.timer = setInterval(function(){
+                var bool = true;
+                for(var k in json){
+                    var a = json[k];
+                    if(a === undefined){
+                        element.style[k] = '';
+                        continue;
+                    };
+                    if(k === 'opacity'){
+                        var b = getStyle(element,k) * 100;  //注意这里不用parseInt，因为获取的就是number，否则不好计算小数。
+                    }else{
+                        b = parseInt(getStyle(element,k)) || 0;
+                    };
+                    var c = (a - b) / 10;
+                    c = c > 0 ? Math.ceil(c) : Math.floor(c);
+                    var d = b + c;
+                    if(k === 'opacity'){
+                        element.style[k] = d / 100;
+                        // element.style.filter = 'alpha(opacity='+ d +')';
+                    }else if(k === 'zIndex'){
+                        element.style.zIndex = json[k];
+                    }else{
+                        element.style[k] = d + 'px';
+                    };
+                    if(a !== b){
+                        bool = false;
+                    };
+                };
+                if(bool){
+                    clearInterval(element.timer);
+                    if(fn){
+                        fn();
+                    };
+                };
+            },20);
+        };
+
+        //获取元素属性值
+        function getStyle(element,propertyName){
+            if(window.getComputedStyle){
+                return window.getComputedStyle(element,null)[propertyName];
+            }else{
+                return element.currentStyle[propertyName];
+            };
+        };
+
+    </script>
+</body>
+</html>

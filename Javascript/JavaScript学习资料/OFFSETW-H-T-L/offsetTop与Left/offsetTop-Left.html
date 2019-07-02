@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<style>
+    *{
+        margin: 0;
+        padding: 0;
+    }
+    .box{
+        width: 500px;
+        height: 500px;
+        padding: 10px;
+        background: black;
+        position: relative;
+    }
+    .box1{
+        width: 100px;
+        height: 100px;
+        background: gray;
+        position: absolute;
+        padding: 10px;
+        margin: 10px;
+        border: 20px solid red;
+        top: 20px;
+        left: 20px;
+    }
+</style>
+<body>
+    <div class="box">我是BOX</div>
+    <div class="box1">我是BOX1</div>
+</body>
+<script>
+    var box1 = document.getElementsByClassName('box1')[0];
+    alert("我是上的距离" + box1.offsetTop + "px");
+    alert("我是左的距离" + box1.offsetLeft + "px");
+
+    /*
+    offsetLeft / offsetTop
+    输出两者带有定位距离，他们的距离 = top/left + margin；
+     */
+</script>
+</html>

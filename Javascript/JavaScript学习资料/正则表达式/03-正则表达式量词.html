@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    console.log('------------------量词------------------');
+    /*
+    (多个字母，重复最后一个)
+    *   （0,）   （贪婪） 重复零次或更多 （>=0）
+    +   （1,）   （懒惰） 重复一次或更多次（>=1）
+    ？  （0,1）   （占有） 重复零次或一次（0||1） 要么有，要么没有
+    {}  重复多少次的意思，可以有多个，如：您的银行卡密码只能是6位 {6}
+    {n} n次  （x=n）
+    {n,}    重复n次或更多 （x>=n）
+    {n,m}   重复出现的次数比n多但比m少 （n<=x<=m）
+
+     */
+
+    // a的个数>=0
+    // console.log(/^a*$/.test(''));   //true
+    // console.log(/^a*$/.test('a'));   //true
+    // console.log(/^a*$/.test('aa'));   //true
+    // console.log(/^a*$/.test('aaa'));   //true
+    // console.log(/^a*$/.test('aaaa'));   //true
+    // console.log(/^a*$/.test('ab'));   //false
+    // console.log(/^a*$/.test('A'));   //false
+    // //要不你一个都没有，要不你就得全是a，大写都不行。
+
+
+
+    // // a的个数>=1
+    // console.log(/^a+$/.test(''));   //false
+    // console.log(/^a+$/.test('a'));   //true
+    // console.log(/^a+$/.test('aa'));   //true
+    // console.log(/^a+$/.test('aaa'));   //true
+    // console.log(/^a+$/.test('aaaa'));   //true
+    // console.log(/^a+$/.test('ab'));   //false
+    // console.log(/^a+$/.test('A'));   //false
+    // //要不你只有一个，要不你就得全是a，大写都不行。
+
+
+
+    // // a的个数要么0要么1{1,4}
+    // console.log(/^a?$/.test(''));   //true
+    // console.log(/^a?$/.test('a'));   //true
+    // console.log(/^a?$/.test('aa'));   //false
+    // console.log(/^a?$/.test('aaa'));   //false
+    // console.log(/^a?$/.test('aaaa'));   //false
+    // console.log(/^a?$/.test('ab'));   //false
+    // console.log(/^a?$/.test('A'));   //false
+    // //要不你一个都没有，要不你只有一个，大写都不行。
+
+
+
+    // // a的个数 {n}/{n,}/{n,m}
+    // console.log(/^a{1}$/.test(''));   //false   代表a必须1次
+    // console.log(/^a{1,}$/.test('a'));   //true  代表a必须1次但可以重复n次
+    // console.log(/^a{1,4}$/.test('aaaa'));   //true    代表a必须1次，但只可以重复4次及以下
+    // console.log(/^a{0}$/.test('a'));   //false    代表a不能出现
+    // console.log(/^a{0,}$/.test('aaaa'));   //true   代表a重复出现的次数比0多
+    // console.log(/^a{0,4}$/.test('ab'));   //false   重复出现的次数比0多但比4少
+
+
+
+    //  ()  括号提高优先级运算
+    // x|y  只要完整包含x或完整包含y的就true
+    console.log(/(abc)|(xyz)/.test('a'));   //false
+    console.log(/(abc)|(xyz)/.test('ab'));   //false
+    console.log(/(abc)|(xyz)/.test('abc')); //true
+    console.log(/(abc)|(xyz)/.test('abcd')); //true
+    console.log(/(abc)|(xyz)/.test('ax'));   //false
+    console.log(/(abc)|(xyz)/.test('abxy'));   //false
+    console.log(/(abc)|(xyz)/.test('abcxyz')); //true
+    console.log(/(abc)|(xyz)/.test('zyxcba'));   //false
+    console.log(/(abc)|(xyz)/.test('qwe'));   //false
+
+
+</script>
+</body>
+</html>

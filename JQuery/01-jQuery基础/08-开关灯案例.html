@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="../jquery-1.11.1.js"></script>
+    <script>
+        $(function(){
+           var inputArr = document.getElementsByTagName('input');
+           var body = $('body');    //在调用的时候body后面要索引值body[0];
+           $(inputArr[0]).click(function(){
+               body[0].style.background = 'black';
+           });
+            inputArr[1].onclick = function(){
+                body.get(0).style.background = 'white';
+            }
+        });
+    </script>
+    <style>
+        div,html,body{
+            width: 100%;
+            height: 100%;
+        }
+        div{
+            margin: 200px auto;
+            width: 300px;
+        }
+        div img{
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+<input type="button" value="on">
+<input type="button" value="off">
+<div><img src="../images/pingguo.jpg" alt=""></div>
+</body>
+</html>

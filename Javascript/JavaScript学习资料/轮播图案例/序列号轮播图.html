@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<style>
+    *{
+        margin: 0;
+        padding: 0;
+    }
+    .banner{
+        width: 100%;
+        height: 680px;
+        overflow: hidden;
+        position: relative;
+    }
+    ul{
+        width: 100%;
+        list-style-type: none;
+        position: absolute;
+    }
+    .banner ul li{
+        width: 1920px;
+        height: 680px;
+        line-height: 680px;
+        text-align: center;
+        float: left;
+    }
+    .banner ul li:nth-child(1){
+        background: #ccc;
+    }
+    .banner ul li:nth-child(2){
+        background: #888;
+    }
+    .banner ul li:nth-child(3){
+        background: #666;
+    }
+    .banner ul li:nth-child(4){
+        background: #444;
+    }
+    .banner ul li:nth-child(5){
+        background: #222;
+    }
+    .square{
+        position: absolute;
+        right: 0;
+        bottom: 10px;
+        cursor: pointer;
+    }
+    .square span{
+        display: inline-block;
+        width: 30px;
+        height: 30px;
+        background: gray;
+        text-align: center;
+        line-height: 30px;
+        margin: 10px;
+    }
+    .square .current{
+        background: #0075ff;
+        color: white;
+    }
+</style>
+<body>
+<div class="banner">
+    <ul>
+        <li>1</li>
+        <li>2</li>
+        <li>3</li>
+        <li>4</li>
+        <li>5</li>
+    </ul>
+    <div class="square">
+        <span class="current">1</span>
+        <span>2</span>
+        <span>3</span>
+        <span>4</span>
+        <span>5</span>
+    </div>
+</div>
+</body>
+<script>
+    var banner,ul,liWidth,square,spanArr,timer;
+    banner = document.getElementsByClassName('banner')[0];
+    ul = banner.children[0];
+    liWidth = banner.children[0].children[0].offsetWidth;
+    square = banner.children[1];
+    spanArr = banner.children[1].children;
+    ul.style.width = liWidth * ul.children.length + 'px';
+
+
+    for(var i=0; i<spanArr.length; i++){
+        spanArr[i].index = i;
+        spanArr[i].onmouseover = function(){
+            for(var j=0; j<spanArr.length; j++){
+                spanArr[j].className = '';
+            }
+            this.className = 'current';
+            move(ul,-this.index * liWidth);
+            console.log(-this.index * liWidth)
+        }
+    }
+    //以i循环为遍历所有square下的span元素，并给每个元素绑定一个鼠标移入事件，当鼠标移入其中一个后执行j循环，遍历所有square下的span元素，并把ClassName清空，当这个循环完成后执行当前鼠标移入的事件，this也就是当前鼠标移入的元素，并给这个元素添加一个ClassName。执行顺序就是，先把所有的ClassName清空，再给鼠标上的那个元素添加一个ClassName。
+
+
+    function move(element,target){
+        clearInterval(timer);
+        //使用定时器前首先清除定时器，避免出现移动速度过快的BUG。
+        var speed = (element.offsetLeft >= target)? -20:20;
+        //举例：当前位置是0，目标是500，0小于500吗，结果为true，选择-10，从0移动到500也就是ul要往左边移动，此时为负值。当当前位置是500，目标位置是0,500小于0吗？结果为false，选择10，从500到0也就是ul要往右边移动，此时为正值。
+        timer = setInterval(function(){
+            if(element.offsetLeft === target){
+                clearInterval(timer);
+                return;
+            }
+            element.style.left = element.offsetLeft + speed + 'px';
+        },0.1);
+
+    }
+</script>
+</html>

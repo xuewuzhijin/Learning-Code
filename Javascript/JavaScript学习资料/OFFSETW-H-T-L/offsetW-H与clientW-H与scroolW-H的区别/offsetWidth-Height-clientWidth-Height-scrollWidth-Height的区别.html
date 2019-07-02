@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<style>
+    *{
+        margin: 0;
+        padding: 0;
+    }
+    .div{
+        width: 100px;
+        height: 100px;
+        padding: 10px;
+        margin: 10px;
+        border: 1px solid black;
+        background: #0075ff;
+    }
+</style>
+<body>
+    <!--
+    offsetWidth:        元素宽度+padding+border
+
+    offsetHeight:       元素高度+padding+border
+
+    offsetTop:          元素的TOP值 + margin    //当元素没有position属性Top值时，用这个可以查出当前元素距离页面顶部的距离
+
+    offsetLeft:         元素的LEFT值 + margin   //当元素没有position属性Left值时，用这个可以查出当前元素距离页面左部的距离
+    -->
+
+    <!--
+    clientWidth:        元素宽度+padding
+
+    clientHeight:       元素高度+padding
+
+    clientTop:          只有元素的border-top值
+
+    clientLeft:         只有元素的border-left值
+    -->
+
+    <!--
+    scrollWidth:        元素宽度+padding
+
+    scrollLeft:         元素高度+padding
+
+    scrollTop:          这个只有计算页面Y轴被卷去的值
+    兼容调用 scrollTopValue = document.body.scrollTop || document.documentElement.scrollTop;
+
+    scrollLeft:         这个只有计算页面X轴被卷去的值
+    兼容调用 scrollLeftValue = document.body.scrollLeft || document.documentElement.scrollLeft;
+    -->
+    <div class="div">1231231231</div>
+    <div class="div">1231231231</div>
+    <script>
+        var div = document.getElementsByTagName('div')[1];
+        // console.log(div.offsetWidth);
+        // console.log(div.offsetHeight);
+        // console.log(div.offsetTop);
+        // console.log(div.offsetLeft);
+
+        // console.log(div.clientWidth);
+        // console.log(div.clientHeight);
+        // console.log(div.clientTop);
+        // console.log(div.clientLeft);
+
+        // console.log(div.scrollWidth);
+        // console.log(div.scrollHeight);
+        // console.log(div.scrollTop);
+        // console.log(div.scrollLeft);
+    </script>
+</body>
+</html>

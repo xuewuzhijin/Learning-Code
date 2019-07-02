@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        div{
+            width: 100px;
+            height: 100px;
+            margin: 100px;
+            padding: 100px;
+            background: black;
+            display: none;
+        }
+    </style>
+    <script src="../jquery-1.11.1.js"></script>
+    <script>
+        $(window).ready(function() {
+            //宽高透明度和display(如果元素有margin或padding也会缓慢加入)匀速滑入或滑出；
+
+
+            //通过display来控制动画高度滑入
+            $('button:eq(0)').click(function () {
+                $('div').slideDown(2000); //通过毫秒控制显示的速度
+            });
+
+
+            // 通过display来控制动画高度滑出
+            $('button:eq(1)').click(function () {
+                $('div').slideUp(2000); //通过毫秒控制显示的速度
+            });
+
+            // 通过display来控制动画高度滑入或滑出
+            $('button:eq(2)').click(function () {
+                // $('div').stop();
+                //stop(parameter,parameter);
+                //第一个参数表示后续动画是否要执行
+                //（true：后续动画不执行；false：后续动画会执行）
+                //第二个参数表示当前动画是否执行完
+                //（true：立即执行完当前动画；false：立即停止当前动画）
+                // $('div').stop(true,true);
+                // $('div').stop(false,true);
+                $('div').stop(false,false);
+            });
+        });
+    </script>
+</head>
+<body>
+<button>滑入</button>
+<button>滑出</button>
+<button>停止</button>
+<div></div>
+</body>
+</html>

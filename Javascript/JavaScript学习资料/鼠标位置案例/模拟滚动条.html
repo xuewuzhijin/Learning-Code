@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<style>
+    *{
+        margin: 0px;
+        padding: 0px;
+    }
+    #box{
+        width: 500px;
+        height: 500px;
+        position: relative;
+        margin: 100px auto;
+    }
+    #content{
+        width: 500px;
+        height: 500px;
+        overflow: hidden;
+    }
+    #content ul{
+        position: relative;
+    }
+    #content ul li{
+        list-style-type: none;
+        width: 100%;
+        height: 150px;
+        text-align: center;
+        line-height: 150px;
+        color: black;
+    }
+    li:nth-child(1){
+        background: #ccc;
+    }
+    li:nth-child(2){
+        background: #f2f2f2;
+    }
+    li:nth-child(3){
+        background: #d4d4d4;
+    }
+    li:nth-child(4){
+        background: #CCD4D1;
+    }
+    li:nth-child(5){
+        background: #999;
+    }
+    li:nth-child(6){
+        background: #888;
+    }
+    li:nth-child(7){
+        background: #777;
+    }
+    li:nth-child(8){
+        background: #666;
+    }
+    li:nth-child(9){
+        background: #555;
+    }
+    li:nth-child(10){
+        background: #444;
+    }
+    li:nth-child(11){
+        background: #333;
+    }
+    li:nth-child(12){
+        background: #222;
+    }
+    li:nth-child(13){
+        background: #111;
+    }
+    li:nth-child(14){
+        background: #000;
+    }
+    #scroll{
+        width: 10px;
+        height: 500px;
+        background: #ccc;
+        position: absolute;
+        top: 0;
+        right: 0;
+    }
+    #bar{
+        width: 100%;
+        height: 80px;
+        background: #0075ff;
+        position: absolute;
+        top: 0;
+        right: 0;
+    }
+</style>
+<script>
+    window.onload = function () {
+        var box = document.getElementById('box'),
+            ul = content.children[0],
+            scroll = box.children[1],
+            bar = scroll.children[0];
+
+/*
+* 首先把HTML以及CSS布置完成后，给鼠标添加一个onmousedown事件
+* 在首次点击的时候，获取可视区域的Y坐标的值，这样在移动的时候再次用可视区域的值减去首次获取的值等于0，然后赋值给滚动条的TOP，至于为什么在首次点击的时候还要减去滚动条的TOP值，是二次以上移动滚动条不至于滚动条乱串。
+* 为什么不是bar.onmousemove,而是document.onmousemove,而是因为当鼠标移动过快导致鼠标在不在滚动条的范围内而导致移动不了
+* 在移动的时候我们用可视区域的值减去第一次获取的值，等于滚动条从它原本位置开始移动。
+* 然后判断滚动条，让滚动条不出界，如果滚动条的TOP值小于0，我们就让滚动条的TOP值一直是0，要是大于（scroll.offsetHeight - bar.offsetHeight）的高度我们就让他一直在这个高度内。
+*
+* 讲重点！如何让滚动条的值移动的时候等于内容相应的值
+*
+* 公式： -滚动条高度 * （内容盒子 - 包装盒子） / （包装盒子 - 滚动条） + ‘px’
+*
+* 这个语句要放在判断语句的后面，如果top值要是大于（scroll.offsetHeight - bar.offsetHeight）的高度或者小于0的高度那么会直接影响内容盒子的TOP值。
+*
+* window.getSelection ? window.getSelection().removeAllRanges() : document.selection.empty(); 这句是用来在移动时候会默认选中文字，严重影响滑动交互，所以在“滑动事件内”添加这个语句。
+*
+* 解绑，因为是在移动的时候会松开鼠标左键，所以这个事件放在移动事件内，但是，这个没关系，你放在哪里都行，都可以，不过为了不影响其它函数的运行，最好放里面。
+*
+* */
+
+        bar.onmousedown = function (e) {
+            e = event || window.event;
+            firstY = e.clientY - bar.offsetTop;
+            document.onmousemove = function (e) {
+                e = event || window.event;
+                bar.style.top = e.clientY - firstY + "px";
+                if (bar.offsetTop < 0) {
+                    bar.style.top = 0 + 'px';
+                } else if (bar.offsetTop > scroll.offsetHeight - bar.offsetHeight) {
+                    bar.style.top = scroll.offsetHeight - bar.offsetHeight + 'px';
+                }
+                ul.style.top = -bar.offsetTop * (ul.offsetHeight - box.offsetHeight) / (scroll.offsetHeight - bar.offsetHeight) + 'px';
+
+                window.getSelection ? window.getSelection().removeAllRanges() : document.selection.empty();
+                document.onmouseup = function () {
+                    document.onmousemove = null;
+                }
+            }
+        }
+    }
+</script>
+<body>
+<div id="box">
+    <div id="content">
+        <ul>
+            <li>1</li>
+            <li>2</li>
+            <li>3</li>
+            <li>4</li>
+            <li>5</li>
+            <li>6</li>
+            <li>7</li>
+            <li>8</li>
+            <li>9</li>
+            <li>10</li>
+            <li>11</li>
+            <li>12</li>
+            <li>13</li>
+            <li>14</li>
+        </ul>
+    </div>
+    <div id="scroll">
+        <div id="bar"></div>
+    </div>
+</div>
+</body>
+</html>

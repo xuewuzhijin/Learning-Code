@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="../jquery-1.11.1.js"></script>
+    <script>
+        //原生JS入口函数。页面上所有内容加载完毕会执行。
+        //这里是图片以及文档全加载完毕才执行
+        // window.onload = function(){
+        //     alert(1);
+        // }
+
+        // //jQuery入口函数    1.文档加载完毕，图片没加载就执行
+        // $(document).ready(function(){
+        //     alert(1);
+        // });
+        //
+        // //jQuery入口函数    2.文档加载完毕，图片没加载就执行
+        // $(function(){
+        //     alert(1);
+        // });
+        //
+        // //jQuery入口函数    3.文档以及图片加载完毕就执行
+        // $(window).ready(function(){
+        //     alert(1);
+        // });
+
+        //经过测试，所有入口函数都是一样的，全都是新打开的页面都是黑屏然后没有图片就alert出来了。
+    </script>
+    <style>
+        img{
+            width: 100px;
+            height: 100px;
+            border: 1px solid revert;
+        }
+    </style>
+</head>
+<body>
+<img src="../images/pingguo.jpg">
+</body>
+</html>

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        body{
+            font-size: 18px;
+        }
+        div{
+            border: 1px solid #000;
+        }
+    </style>
+</head>
+<body>
+    <div>
+        <pre>
+            值类型：    在内存中直接存储数据本身的就是值类型
+            var str = '哈喽';
+            var str1 = str;
+
+            str = '你好';
+            console.log(str1);  //哈喽
+
+
+            值类型的赋值
+            直接将储存的数据复制一份进行赋值，两份数据在内存中是完全独立的。
+        </pre>
+        <pre>
+            引用类型：   在内存中储存的是数据地址，数据单独的存在于内存中，就是引用类型
+            var a = {
+            name:'张三',
+            age:18
+            }
+
+            var b = a;
+
+            a.name = '李四';
+            a.age = '16';
+            console.log(b.name,b.age); //李四16
+        </pre>
+    </div>
+</body>
+</html>

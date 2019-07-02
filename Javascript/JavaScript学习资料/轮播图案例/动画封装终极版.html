@@ -1,0 +1,97 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<style>
+    *{
+        margin: 0;
+        padding: 0;
+    }
+    .box1{
+        width: 100%;
+        height: 300px;
+        background: black;
+        position: relative;
+    }
+    .box2{
+        width: 100px;
+        height: 100px;
+        background: white;
+        position: absolute;
+        top: 20px;
+    }
+</style>
+<body>
+    <button>Action → 200</button>
+    <button>Action → 400</button>
+    <div class="box1">
+        <div class="box2"></div>
+    </div>
+</body>
+<script>
+    var btn,box1,timer1;
+    btn = document.getElementsByTagName('button');
+    box2 = document.getElementsByClassName('box2')[0];
+    timer1 = null;
+
+    /*
+    //动画初级版
+    btn[0].onclick = function (){
+        timer1 = setInterval(function (){
+           box2.style.left = box2.offsetLeft + 10 + "px";
+           if(box2.offsetLeft >= 200) clearInterval(timer1);
+        },30)
+    }
+
+    btn[1].onclick = function (){
+        timer2 = setInterval(function (){
+            box2.style.left = box2.offsetLeft + 10 + "px";
+            if(box2.offsetLeft >= 400) clearInterval(timer2);
+        },30)
+    }
+    */
+
+    /*
+    //动画封装BUG版
+    btn[0].onclick = function (){
+        fengzhuang(200);
+    }
+    btn[1].onclick = function (){
+        fengzhuang(400);
+    }
+    function fengzhuang(target){
+            timer1 = setInterval(function (){
+                box2.style.left = box2.offsetLeft + 10 + "px";
+                if(box2.offsetLeft >= target) clearInterval(timer1);
+            },30)
+    }
+    */
+
+
+    //动画封装终极版
+    btn[0].onclick = function (){
+        fengzhuang(200);
+    };
+    btn[1].onclick = function (){
+        fengzhuang(400);
+    };
+    function fengzhuang(target){
+        clearInterval(timer1);
+        var speed = (box2.offsetLeft >= target)? -10:10;
+        //解决多次快速重复点击DIV移动速度过快的问题，首先需给定时器名称申明变量，否则报错。
+        timer1 = setInterval(function (){
+            if(box2.offsetLeft === target) {
+                clearInterval(timer1);
+                return;
+            };
+            box2.style.left = box2.offsetLeft + speed + "px";
+
+        },10)
+    }
+
+</script>
+</html>

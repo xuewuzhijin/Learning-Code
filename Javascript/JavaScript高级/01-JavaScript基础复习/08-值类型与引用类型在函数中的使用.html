@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    var num = 10;   //实参
+    function changenum(num){    //形参
+        //这里的形参相当于声明了一个局部变量
+        //var num = 10;
+        num = 100;
+        console.log('我是局部' + num);
+    }
+    changenum(num);
+    console.log('我是全局' + num);
+
+
+    var obj = {
+        name: '宅男'
+    }
+
+    function jinhua(property){
+        property.name = '高富帅';
+    }
+
+
+//  实参： 就是函数调用的时候，实际传入的参数
+//  形参： 函数声明的时候，用来占位的变量名，没有具体的数值
+//  在函数调用时，会默认的将实参赋值给形参
+</script>
+</body>
+</html>

@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="../jquery-1.11.1.js"></script>
+    <script>
+        jQuery(document).ready(function(){
+            var JQdiv0 = $('#div');
+            var JQdiv1 = $('.div');
+            var JQdiv2 = $('div');
+
+            JQdiv0.css('width',100);
+            JQdiv0.css({'height': 100,'margin':10,'background': '#0075ff'});
+        })
+    </script>
+</head>
+<body>
+<div id="div"></div>
+<div id="div"></div>
+<div class="div"></div>
+<div class="div"></div>
+<div></div>
+<div></div>
+</body>
+</html>

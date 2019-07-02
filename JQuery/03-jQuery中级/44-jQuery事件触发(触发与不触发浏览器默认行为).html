@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="../jquery-1.11.1.js"></script>
+    <script>
+        $(window).ready(function(){
+            // $(document).on('click mouseenter',function(){
+            //     alert('页面被点击了');
+            // })
+
+            //事件触发1(触发浏览器的默认行为)
+            // $(document).click();
+            // $(document).mouseenter();
+
+            //事件触发2(触发浏览器的默认行为)
+            // $(document).trigger('click');
+            // $(document).trigger('mouseenter');
+
+            //事件触发3(不触发浏览器的默认行为)
+            // $(document).triggerHandler('click');
+            // $(document).triggerHandler('mouseenter');
+
+
+/*======================了解触发/不触发浏览器默认行为=======================*/
+
+            $('input').on('focus',function(){
+                alert('我获取了焦点');
+            });
+
+            //事件触发2.1(触发浏览器的默认行为)(执行程序，触动事件)
+            // $(document).click(function(){
+            //    $('input').trigger('focus');
+            // });
+
+            //事件触发3.1(不触发浏览器的默认行为)(只执行程序，不触动事件)
+            // $(document).click(function(){
+            //     $('input').triggerHandler('focus');
+            // });
+
+/*======================了解触发/不触发浏览器默认行为=======================*/
+
+            /*
+            *
+            *   意指：
+            *   当我开启事件触发2.1的时候，点击文档会触发获得焦点事件并且执行alert
+            *   当我关闭2.1开启3.1的时候，点击文档只执行alert，并不触发获得焦点事件。
+            *   在这里，焦点事件就是浏览器默认行为
+            *
+             */
+        });
+    </script>
+</head>
+<body>
+<input type="text">
+</body>
+</html>

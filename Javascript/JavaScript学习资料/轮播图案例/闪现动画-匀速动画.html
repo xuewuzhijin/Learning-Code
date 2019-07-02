@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<style>
+    *{
+        margin: 0;
+        padding: 0;
+    }
+    .box1{
+        width: 100px;
+        height: 100px;
+        background: black;
+        position: absolute;
+    }
+</style>
+<body>
+    <button>Action</button>
+    <div class="box1"></div>
+</body>
+<script>
+    var btn,box1;
+    btn = document.getElementsByTagName('button')[0];
+    box1 = document.getElementsByClassName('box1')[0];
+
+/*
+    //闪现动画
+    btn.onclick = function (){
+        box1.style.left = box1.offsetLeft + 10 + "px";
+    }
+*/
+
+/*
+    //匀速动画
+    btn.onclick = function (){
+        setInterval(function(){
+            box1.style.left = box1.offsetLeft + 10 + "px";
+        },30);
+
+    }
+*/
+
+</script>
+</html>

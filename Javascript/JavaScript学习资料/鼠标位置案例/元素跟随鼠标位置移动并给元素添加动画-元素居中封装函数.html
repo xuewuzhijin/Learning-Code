@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<style>
+    *{
+        margin: 0;
+        padding: 0;
+    }
+    html,body,{
+        width: 100%;
+        height: 100%;
+    }
+    .nav{
+        width: 800px;
+        height: 80px;
+        background: black;
+        margin: 100px auto;
+        color: white;
+        position: relative;
+        border-radius: 20px;
+        overflow: hidden;
+    }
+    ul{
+        width: 100%;
+        list-style-type: none;
+    }
+    li{
+        width: 100px;
+        height: 80px;
+        line-height: 80px;
+        text-align: center;
+        float: left;
+        position: relative;
+        z-index: 1;
+        cursor: pointer;
+    }
+    .move{
+        width: 100px;
+        height: 80px;
+        background: #0075ff;
+        position: absolute;
+        border-radius: 20px;
+        left: 0;
+    }
+    .bigbox{
+        width: 400px;
+        height: 400px;
+        background: black;
+        position: absolute;
+        top: 350px;
+        left: 350px;
+    }
+    .smallbox{
+        width: 40px;
+        height: 200px;
+        position: absolute;
+        background: white;
+    }
+</style>
+<body>
+<div class="nav">
+    <ul>
+        <li>1-2-3-4-5</li>
+        <li>2-3-4-5-6</li>
+        <li>3-4-5-6-7</li>
+        <li>4-5-6-7-8</li>
+        <li>5-6-7-8-9</li>
+        <li>6-7-8-9-0</li>
+        <li>7-8-9-0-1</li>
+        <li>8-9-0-1-2</li>
+        <div class="move"></div>
+    </ul>
+</div>
+<div style="width: 100%; height: 1px; position: absolute; top: 50%; background: #0075ff; z-index: 9;"></div>
+<div class="bigbox">
+    <div class="smallbox">
+
+    </div>
+</div>
+</body>
+<script>
+    var nav,ul,li,current;
+    nav = document.getElementsByClassName('nav')[0];
+    ul = nav.children[0];
+    li = ul.children;
+    move1 = ul.lastElementChild;
+    current = 0;
+    for(var i=0; i<li.length-1;i++){
+        li[i].index = i;
+        li[i].onmouseover = function(){
+            move(move1,this.index * li[0].offsetWidth);
+        }
+        li[i].onclick = function(){
+            current = this.index * li[0].offsetWidth;
+        }
+        li[i].onmouseout = function(){
+            move(move1,current);
+        }
+    }
+
+    //这里是缓速动画
+    function move(element,target){
+        clearInterval(element.timer);
+        element.timer = setInterval(function (){
+            var speed = (target - element.offsetLeft) / 10;     //这里注意，与匀速动画不同的是，这个speed要放在定时器里面，因为这个speed的值是不断变化的，所以要放在定时器里面，每执行一次都要变化一次值，如果放在定时器外边，这个值同匀速动画没区别，而下面的speed也起不到作用，也就没有缓速动画的效果。当然，匀速动画的speed也可以放在定时器里面，但是这样也会消耗电脑的性能，应为值一直都是一样，运算一次就够了，运算多次的话，没实际意义。
+            speed = speed > 0 ? Math.ceil(speed) : Math.floor(speed);   //Math.ceil是向上取整的意思，因为目标值减去当前坐标值会产生小数，如目标值是1920，当前值是0，目标（1920）- 当前（0） / 10 = 192，注意，次吃还没到目标位置，定时器不会停，继续计算   目标（1728）- 当前（192） / 10 = 153.6（这里有小数所以值是154），当计算到最后，假设此时当前位置1915，而距离目标位置只有5px的话，计算出来的值全是0.n...算了不说了，说的再多不如自己把这一句注释掉看看结果然后自己心里运算一遍就明白了。
+            if(element.offsetLeft === target){
+                clearInterval(element.timer);
+                return;
+            }
+            element.style.left = element.offsetLeft + speed + 'px';
+        },30);
+    }
+
+    var bigbox = document.getElementsByClassName('bigbox')[0];
+    var smallbox = bigbox.children[0];
+    CenterView(bigbox,smallbox);
+
+    function CenterView(element,changeElement){
+        //element是作为对比的函数，changeElement是需要改变位置的元素。
+        //原理是用对比的元素/2等于中间值，需要改变的元素同样/2等于它的中间值，然后把对比的函数减去需要改变的函数，等于绝对中间值。
+        element.timer = setInterval(function() {    //定时器的作用就是要判断三次，不可能在其它地方执行两次函数，所以让定时器去定时判断，此处在定时器名称前使用element，作用当多出需要用到此函数时，不至于关闭定时器。
+            if (changeElement.offsetLeft === 0) {
+                changeElement.style.left = element.offsetWidth / 2 - changeElement.offsetWidth / 2 + 'px';
+            }else if(changeElement.offsetTop === 0){
+                changeElement.style.top = element.offsetHeight / 2 - changeElement.offsetHeight / 2 + 'px';
+            } else {
+                clearInterval(element.timer);
+            }
+        },10);
+        }
+
+</script>
+</html>

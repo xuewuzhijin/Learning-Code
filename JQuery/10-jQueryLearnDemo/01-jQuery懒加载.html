@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        .div{
+            height: 2000px;
+        }
+    </style>
+    <script src="../../jquery-1.11.1.js"></script>
+    <script>
+            jQuery(window).load(function(e){
+
+                var imglength = $('.ljz').length;
+                //现在有个BUG，也不知道算不算BUG，就是当页面滚动条已经出现在中部或者最底部，如果是中部，那么之前的图片会一次性显示出来，同样会占用大量的流量影响加载速度。
+                //有一个问题不是很明白，如果是刷新的话，那么相当于之前加载的图片是有缓存的，如果有缓存的话，是没必要再次进行这段代码
+                //明天研究！！！
+
+
+                $(document).scroll(function(){
+                   var a = $('.ljz').length;
+                   for(var i=0; i<a; i++){
+                       if(isClient($('.ljz').eq(i))){
+                           $('.ljz').eq(i).attr('src',$('.ljz').eq(i).attr('data-src'));
+                       };
+                   };
+                   // if($('.ljz:src').length)
+                });
+
+                function isClient(element){
+                    var a = $(window).height() + $(document).scrollTop();     //当前屏幕的高加上屏幕被卷去的值等于可视区域
+                    var b = element.offset().top;   //元素距离顶部的高
+                    if(a >= b){
+                        return true;
+                    }else{
+                        return false;
+                    };
+                };
+            });
+    </script>
+</head>
+<body>
+    <div class="div"></div>
+    <img class="ljz" data-src="../../images/pingguo.jpg">
+    <div class="div"></div>
+    <img class="ljz" data-src="../../images/pingguo.jpg">
+    <div class="div"></div>
+    <img class="ljz" data-src="../../images/pingguo.jpg">
+    <div class="div"></div>
+    <img class="ljz" data-src="../../images/pingguo.jpg">
+    <div class="div"></div>
+    <img class="ljz" data-src="../../images/pingguo.jpg">
+    <div class="div"></div>
+    <img class="ljz" data-src="../../images/pingguo.jpg">
+    <div class="div"></div>
+    <img class="ljz" data-src="../../images/pingguo.jpg">
+    <div class="div"></div>
+    <img class="ljz" data-src="../../images/pingguo.jpg">
+    <div class="div"></div>
+    <img class="ljz" data-src="../../images/pingguo.jpg">
+    <div class="div"></div>
+    <img class="ljz" data-src="../../images/pingguo.jpg">
+    <div class="div"></div>
+    <img class="ljz" data-src="../../images/pingguo.jpg">
+    <div class="div"></div>
+    <img class="ljz" data-src="../../images/pingguo.jpg">
+</body>
+</html>

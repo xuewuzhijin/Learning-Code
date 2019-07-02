@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        div{
+            width: 100px;
+            height: 100px;
+            margin: 30px;
+            background: #0075ff;
+        }
+    </style>
+    <script src="../jquery-1.11.1.js"></script>
+    <script>
+        $(function(){
+            // //绑定事件
+            // $(document).click(function(){
+            //     alert(1);
+            // })
+            // $(document).mouseenter(function(){
+            //     alert(2);
+            // })
+            //
+            // $(document).bind('click mouseenter',function(){
+            //         alert(1);
+            // });
+            // $(document).bind('click mouseenter',function(){
+            //         alert(2);
+            // });
+            //
+            // //解绑事件
+            // $(document).unbind('click');
+            // $(document).unbind('mouseenter');
+
+
+            //绑定事件
+            // $(document).delegate('div','click mouseenter',fn);
+            // $(document).delegate('div','click mouseenter',fn1);
+            // function fn(){
+            //     alert(1);
+            // }
+            // function fn1(){
+            //     alert(2);
+            // }
+
+            //解绑事件
+            // $(document).undelegate('div','click mouseenter');  //解绑所有，所有函数都不执行
+            // $(document).undelegate('div','click mouseenter',fn); //解绑单个，如果有其它的就执行其它的，后面仅限一个fn函数。
+            // $(document).undelegate('div','click mouseenter',fn1);
+
+
+            //事件绑定
+            $('div').on('click mouseenter',function(){
+                alert(1);
+            })
+            //解绑事件
+            $('div').off('click mouseenter');
+
+
+            // $('.div1').on('click mouseenter','div',{'name':'张三'},function(event){
+            //     alert(event.data.name);
+            // });
+            //解绑事件
+            $(document).off('click mouseenter','div');
+
+            /*
+            *
+            * 用什么方式绑定的函数，就用什么方式解绑函数
+            * bind绑定    unbind解绑
+            * delegate绑定    undelegate解绑
+            * on绑定  off解绑
+            * on绑定与解绑需注意，如果是父系盒子为子系盒子绑定事件，那么解绑就需要通过父系盒子来给子系盒子解绑，反之如果是直接给子系盒子绑定事件，那么解绑就直接用子系盒子来解绑。
+            *
+            * 如果只是click事件，那么以上方法都可以解绑
+            *
+             */
+        });
+    </script>
+</head>
+<body>
+<div class="div"></div>
+<div class="div1"></div>
+</body>
+</html>

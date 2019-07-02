@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="../jquery-1.11.1.js"></script>
+    <script>
+        //入口函数
+        jQuery(document).ready(function() {
+            var box = document.getElementById('box');
+            var cbox = document.getElementsByClassName('box');
+            var div = document.getElementsByTagName('div');
+
+            var JQbox = $('#box');
+            var JQcbox = $('.box');
+            var JQdiv = $('div');
+
+            console.log(box);
+            console.log(JQbox);
+            console.log('------------------------');
+            console.log(cbox);
+            console.log(JQcbox);
+            console.log('------------------------');
+            console.log(div);
+            console.log(JQdiv);
+
+            //jQuery转换为JS对象，但JS这个对象相当于继承了jQuery的特性
+            var box = $('#box');
+            var cbox = $('.box');
+            var div = $('div');
+
+            console.log(box);
+            console.log(JQbox);
+            console.log('------------------------');
+            console.log(cbox);
+            console.log(JQcbox);
+            console.log('------------------------');
+            console.log(div);
+            console.log(JQdiv);
+            div.css({'width': 100,'height': 100,'border': '1px solid red'});
+            cbox.css({'background': 'blue'});
+            box.css({'background': 'yellow'});
+
+            //如果需要用JS方法来设置属性，需用以下方法来转换
+            JQdiv[0].style.background = 'pink';
+            JQdiv.get(4).style.background = 'gray';
+
+
+            //1.js对象转换成jQuery对象。    $(JS对象)
+            //2.jQuery对象转换成JS对象。    1.jQuery对象[索引值]   2.jQuery.get(索引值)
+
+        });
+
+
+
+
+    </script>
+</head>
+<body>
+    <div></div>
+    <div class="box"></div>
+    <div id="box"></div>
+    <div class="box"></div>
+    <div></div>
+</body>
+</html>

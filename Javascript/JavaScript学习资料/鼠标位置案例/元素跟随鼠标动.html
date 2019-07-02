@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<style>
+    *{
+        margin: 0;
+        padding: 0;
+    }
+    #box{
+        width: 80px;
+        height: 80px;
+        background: #ccc;
+        position: absolute;
+        top: 0;
+    }
+</style>
+<body>
+<div id="box">我要跟着鼠标走</div>
+</body>
+<script>
+    var box = document.getElementById('box');
+    document.onmousemove = function(event){
+        event = event || window.event;
+        box.style.top = event.pageY - box.offsetHeight/2 + 'px';
+        box.style.left = event.pageX - box.offsetWidth/2 + 'px';
+    }
+</script>
+</html>

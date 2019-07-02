@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="../jquery-1.11.1.js"></script>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        ul{
+            list-style-type: none;
+        }
+        .wrap{
+            width: 880px;
+            height: 340px;
+            margin: 100px auto;
+        }
+        .wrap ul li{
+            width: 200px;
+            height: 150px;
+            margin: 10px 10px;
+            float: left;
+            background: red;
+        }
+        .wrap ul li img{
+            width: 100%;
+        }
+    </style>
+    <script>
+        jQuery(window).ready(function(){
+           $('.wrap').find('li').mouseenter(function(){
+               $(this).css('opacity',1).siblings('li').css('opacity',0.5);
+           })
+            $('.wrap').mouseleave(function(){
+                $(this).children().children('li').css('opacity',1);
+                $('.wrap li').css('opacity',1);
+            })
+        });
+    </script>
+</head>
+<body>
+<div class="wrap">
+    <ul>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+    </ul>
+</div>
+</body>
+</html>

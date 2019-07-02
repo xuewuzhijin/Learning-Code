@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="../jquery-1.11.1.js"></script>
+    <script>
+        $(function(){
+            $('button').click(function(){
+                //创建一个新的jQuery对象li
+                var JQNewLi1 = $('<li>我是jQuery创建出来的li，用的是append()方法</li>');
+                var JQNewLi2 = $('<li>我是jQuery创建出来的li，用的是appendTo()方法</li>');
+                var JQNewLi3 = $('<li>我是jQuery创建出来的li，用的是prepend()方法</li>');
+                var JQNewLi4 = $('<li>我是jQuery创建出来的li，用的是prependTo()方法</li>');
+                var JQNewLi5 = $('<li>我是jQuery创建出来的li，用的是after()方法</li>');
+                var JQNewLi6 = $('<li>我是jQuery创建出来的li，用的是before()方法</li>');
+
+                //append(); 在盒子的最末尾添加一个元素
+                $('ul').append(JQNewLi1);
+
+                //appengTo(); 在盒子的最末尾添加一个元素
+                JQNewLi2.appendTo($('ul'));
+
+                //prepend(); 在元素最前面添加一个元素
+                $('ul').prepend(JQNewLi3);
+
+                //prependTo(); 在元素最前面添加一个元素
+                JQNewLi4.prependTo($('ul'));
+
+                /*
+                * after()以及before()会在所有li的前面或后面添加新的元素
+                * 如果原生li有5个，那么使用after之后，会产生10个li
+                * before()原理与上相同
+                * */
+                //after();
+                $('li').after(JQNewLi5);
+                //before();
+                $('li').before(JQNewLi6);
+            });
+        });
+    </script>
+</head>
+<body>
+    <button>添加一个li</button>
+    <ul>
+        <li>我是原生li</li>
+    </ul>
+</body>
+</html>

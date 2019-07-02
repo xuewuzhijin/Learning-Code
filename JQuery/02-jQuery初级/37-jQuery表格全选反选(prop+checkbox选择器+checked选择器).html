@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        .box{
+            width: 500px;
+            height: 500px;
+            margin: 200px auto;
+            overflow: hidden;
+        }
+        table{
+            border-collapse: collapse;
+            width: 500px;
+            overflow: paged-x;
+        }
+        table thead{
+            background: #0075ff;
+        }
+        tbody tr{
+            width: 500px;
+            height: 40px;
+            text-align: center;
+            background: #ccc;
+        }
+        .del,.delAll{
+            cursor: pointer;
+        }
+    </style>
+    <script src="../jquery-1.11.1.js"></script>
+    <script>
+        $(document).ready(function(){
+            //鼠标进入tr，这一行背景变白色
+            $('tbody tr').mouseenter(function(){
+                $(this).css('background','white').siblings('tr').css('background','#ccc');
+            });
+
+            //tbody中的checkbox状态跟随thead中的checked状态
+            $('thead>tr>th>input').click(function(){
+                $('tbody>tr>td>input:checkbox').prop('checked',$(this).prop('checked'));
+            });
+
+            //只有tbody中的checkbox被选中，thead中的chickbox才被选中
+            $('tbody>tr input').click(function(){
+                //判断，只要被选中的length=所有checkbox的length，那么thead中的input才设置为选中状态
+                if($('tbody>tr input:checkbox').length === $('tbody>tr input:checked').length){
+                    $('thead>tr input').prop('checked',true);
+                }else{
+                    $('thead>tr input').prop('checked',false);
+                }
+            });
+
+            //点击.del就删除当前行的tr
+            $('.del').click(function(){
+                if(delConfirm()){
+                    $(this).parents('tr').remove();
+                };
+            });
+
+            //点击.delAll删除所有被选中的
+            $('.delAll').click(function(){
+                if(delConfirm()){
+                    //删除被选中input的爷爷节点
+                    $('tbody>tr input:checked').parents('tr').remove();
+                    //删除后把thead中的input选中状态更改为未选中状态
+                    $('thead>tr input').prop('checked',false);
+                }
+            });
+
+            //弹出框提示是否删除数据
+            function delConfirm(){
+                var a = confirm('删除数据将不可恢复，确定继续吗?');
+                return a;
+            };
+        });
+        
+        
+    </script>
+</head>
+<body>
+    <div class="box">
+        <table>
+            <thead>
+                <tr>
+                    <th><input type="checkbox"></th>
+                    <th>姓名</th>
+                    <th>年龄</th>
+                    <th>身高</th>
+                    <th><span class="delAll">删除</span></th>
+                </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td><input type="checkbox"></td>
+                <td>张三</td>
+                <td>18</td>
+                <td>170</td>
+                <td><span class="del">删除</span></td>
+            </tr>
+            <tr>
+                <td><input type="checkbox"></td>
+                <td>李四</td>
+                <td>19</td>
+                <td>175</td>
+                <td><span class="del">删除</span></td>
+            </tr>
+            <tr>
+                <td><input type="checkbox"></td>
+                <td>王五</td>
+                <td>20</td>
+                <td>180</td>
+                <td><span class="del">删除</span></td>
+            </tr>
+            <tr>
+                <td><input type="checkbox"></td>
+                <td>赵六</td>
+                <td>21</td>
+                <td>185</td>
+                <td><span class="del">删除</span></td>
+            </tr>
+            <tr>
+                <td><input type="checkbox"></td>
+                <td>孙七</td>
+                <td>22</td>
+                <td>190</td>
+                <td><span class="del">删除</span></td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>

@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        ul{
+            list-style-type: none;
+            width: 300px;
+            height: 300px;
+            margin: 200px auto;
+        }
+        ul li{
+            font: bolder 35px/35px 'simsun';
+            color: #0075ff;
+            float: left;
+            margin: 0 5px;
+            cursor: pointer;
+        }
+        .div{
+            width: 100%;
+            height: 300px;
+        }
+    </style>
+    <script src="jquery-1.11.1.js"></script>
+    <script>
+        jQuery(document).ready(function(){
+            var starsnone = '☆';
+            var stars = '★';
+            $('.ul li').on('mouseenter',function(){
+                //end()     当我引用this的时候，第一个this指向li，而当我后面使用prevAll的时候，this就失效了，而end()就是返回事件源
+                //prevAll('参数')     这个就是指前面所有的，参数可写可不写，不写就是this前面的节点(兄弟)全部都设置，写了就是this前面指定的节点设置
+                //nextAll('参数')     这个就是指后面所有的，参数可写可不写，不写就是this后面的节点(兄弟)全部都设置，写了就是this后面指定的节点设置
+                $(this).text(stars).prevAll('li').text(stars).end().nextAll('li').text(starsnone).end().on('click',function(){
+                    $(this).attr('class','current').prevAll('li').removeAttr('class','current').end().nextAll('li').removeAttr('class','current');
+                });
+            });
+            $('.ul li').on('mouseleave',function(){
+                $('.ul li.current').prevAll('li').text(stars).end().nextAll('li').text(starsnone);
+            })
+
+        });
+    </script>
+</head>
+<body>
+    <div class="div">
+        <ul class="ul">
+            <li>☆</li>
+            <li>☆</li>
+            <li>☆</li>
+            <li>☆</li>
+            <li>☆</li>
+        </ul>
+    </div>
+</body>
+</html>

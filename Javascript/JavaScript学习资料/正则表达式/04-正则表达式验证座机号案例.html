@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        body{
+            padding-top: 50px;
+        }
+        .span{
+            color: red;
+        }
+    </style>
+</head>
+<body>
+<div class="box">
+    <div>请输入座机：<input type="texe"></div>
+    <div>请输入姓名：<input type="texe"></div>
+    <span class="span">请输入...</span>
+</div>
+<script>
+    var inp = document.getElementsByTagName('input')[0];
+    var inp1 = document.getElementsByTagName('input')[1];
+    var span = document.getElementsByTagName('span')[0];
+    inp.onblur = function(){
+        var reg0 = /^0\d{3}\-5\d{6}$/;    //测试了一下，-符号前加不加\都一样,结尾加不加$也一样，不报错，正常使用。 意思就是以0开头，后边\d{3}可以输入三个数字，\-座机中间有扛，前头使用反斜杠，然后以5开头,\d{6}，后面输入6个数字，$结束。  0734-5555555
+        var reg1 = /^0\d{2}\-8\d{7}$/;      //010-88888888，原理同上
+        var reg = /(^0\d{3}\-5\d{6}$)|(^0\d{2}\-8\d{7}$)/;
+        if(reg.test(inp.value)){
+            span.style.color = 'green';
+            span.innerHTML = '恭喜您，输入正确';
+        }else{
+            span.style.color = 'red';
+            span.innerHTML = '您输入的号码有误，请输入有效的电话号码';
+        };
+    }
+    inp1.onblur = function(){
+        var regchinese = /^[\u4e00-\u9fa5]{2,4}$/;
+        if(regchinese.test(inp1.value)){
+            span.style.color = 'green';
+            span.innerHTML = '恭喜您，输入正确';
+        }else{
+            span.style.color = 'red';
+            span.innerHTML = '您输入的姓名有误，请输入有效的名字';
+        }
+    }
+</script>
+</body>
+</html>

@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+
+</body>
+<script>
+    window.onload = function() {
+        var obj = {};
+        var obj1 = {
+            name: '张学友',
+            age: 18,
+            sayHello: function(a) {
+                console.log('大家好，我是' + obj1.name + '---' + a);
+            }
+        };
+        obj1.sayHello('我是obj1本身的');
+
+
+        //  A:封装
+        //  a：把一些属性和方法装到另一个对象里
+
+
+        //  B:继承
+        //  a:一个对象没有一些方法和属性，而另一个对象有。
+        //  b:把另一个对象的属性和方法拿过来自己用，这就是继承
+
+
+        //那么obj也想使用sayHello方法怎么处理？
+
+        //1.第一种方法
+        // obj = obj1;
+        // obj.sayHello('我是obj的第一种方法');
+
+        //2.第二种方法   混入式继承 for  in
+        for (var k in obj1) {
+            obj[k] = obj1[k];
+        }
+        obj.sayHello('我是obj的第二种方法');
+
+        //  C:多态
+        //  a：多态是在强类型语言中比较常用，JavaScript中没有相应的体现
+        //  b：Animal    父类
+        //     Dog      子类
+        //     Cat      子类
+        //  c：
+        //     Animal an = new Animal();
+        //     Dog dog = new Dog();
+        //     Animal an = new Dog();
+        //     使用父类的变量接收子类的对象
+        //     使用多态来隐藏不同
+    }
+</script>
+
+</html>

@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+<style>
+    *{
+        margin: 0;
+        padding: 0;
+    }
+    button{
+        margin: 20px;
+    }
+    .div{
+        width: 100px;
+        height: 100px;
+        background: #0075ff;
+        position: absolute;
+        top: 40px;
+        /*left: 0;*/
+        margin: 20px;
+    }
+</style>
+</head>
+<body>
+<button>滚到400</button>
+<div class="div"></div>
+<script>
+    var btn = document.getElementsByTagName('button')[0],
+        div = document.getElementsByTagName('div')[0];
+    btn.onclick = function(){
+        var json = {"top":200,"left":200,"width":400,"height":400};
+        var json1 = {"top":40,"left":0,"width":100,"height":100};
+        // alert(getStyle(div,'left'));
+        move(div,json,json1);
+        // for(var i in json){
+        // console.log(i + json[i]);
+        // }
+    };
+
+    function move(element,json,json1){
+        clearInterval(element.timer);
+        element.timer = setInterval(function(){
+            for(var k in json){
+                var a = json[k];    //json[k]是指值，k就是值的名称
+                var b = parseInt(getStyle(element,k));
+                var speed = (a - b) / 10;
+                speed = speed > 0 ? Math.ceil(speed) : Math.floor(speed);
+                var bool = true;
+                    if(a !== b){
+                        bool = false;
+                    };
+                element.style[k] = b + speed + 'px';
+                console.log(1);
+            };
+            if(bool){
+                clearInterval(element.timer);
+                if(json1){
+                    move(div,json1);
+                }
+            };
+        },15);
+    };
+
+    /*
+    原理：
+    定时器每执行一次，for in循环要执行4次，当循环执行完毕之后再进行一次if判断bool是否等于true，否的话定时器继续执行....一直到当元素的top200的时候减去json的top200，等于0/10还是等于0，他们就一直当前值去赋值，虽然说top值到了，但是其它的json还没到（没执行完毕），只要其它的没有执行完毕，bool就一直是false，当其它的执行完毕后，就不存在false了，最后判断bool为true，停止定时器。
+
+    注意事项：
+    停止定时器的判断语句要写在for in 循环的外面，因为如果第一个到了，直接为true，可其它还没到，定时器就停止了。
+     */
+
+    // function getStyle(element,json){
+    //     if(element.style[json]){                                  //首先获取内联样式省去其它判断，因为JS输出就是内联样式。
+    //         return element.style[json];
+    //     }else if(element.currentStyle){                                 //IE
+    //         return element.currentStyle[json];
+    //     }else if(document.defaultView && document.defaultView.getComputedStyle){//DOM
+    //         json = json.replace(/([A-Z])/g,'-$1').toLowerCase();
+    //         var s = document.defaultView.getComputedStyle(element,null);
+    //         return s&&s.getPropertyValue(json);
+    //     }else{                                                       //other,for example, Safari
+    //         return null;
+    //     };
+    // };
+
+    function getStyle(element,json){
+        if(window.getComputedStyle){
+            if(window.getComputedStyle(element,null)[json] === "auto"){      //如果元素的CSS里面没有赋值，那么在IE8及以下会输出auto这个值，直接报错，而IE9及以上会直接跳过这个值，执行其它的。所以在此处我们要把值拉到0，否则会报错。
+                return 0;
+            }else{
+                return window.getComputedStyle(element,null)[json];
+            };
+        }else{
+            if(element.currentStyle[json] === "auto"){      //如果元素的CSS里面没有赋值，那么在IE8及以下会输出auto这个值，直接报错停止运行，而IE9及以上支持第一个判断语句，也会输出auto，那么同样处理把值拉到0，否则每次会直接跳过这个值，执行其它的。所以在此处我们要把值拉到0，否则会报错。
+                return 0;
+            }else{
+                return element.currentStyle[json];
+            };
+        };
+    };
+</script>
+</body>
+</html>

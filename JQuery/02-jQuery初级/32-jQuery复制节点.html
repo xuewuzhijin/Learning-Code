@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="../jquery-1.11.1.js"></script>
+    <script>
+        $(function(){
+            $('button:eq(0)').click(function(){
+                //复制节点：     clone();
+                // var newUl = $('.box ul').clone();    //复制ul一个节点
+                // $('.box').append(newUl);
+
+                var newUl = $('ul>li').clone(); //复制ul下的li的所有节点，如果添加eq(n)的话，那么就是添加某个li的节点
+                $('ul').append(newUl);
+            });
+        });
+    </script>
+</head>
+<body>
+    <button>复制节点</button>
+    <div class="box">
+        <ul>
+            <li>我是原生li</li>
+            <li>我是原生li</li>
+            <li>我是原生li</li>
+            <li>我是原生li</li>
+        </ul>
+    </div>
+</body>
+</html>

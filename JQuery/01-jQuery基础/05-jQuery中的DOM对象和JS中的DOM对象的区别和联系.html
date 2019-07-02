@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="../jquery-1.11.1.js"></script>
+    <script>
+        //入口函数
+        jQuery(document).ready(function(){
+            var box = document.getElementById('box');
+            var cbox = document.getElementsByClassName('box');
+            var div = document.getElementsByTagName('div');
+
+            var JQbox = $('#box');
+            var JQcbox = $('.box');
+            var JQdiv = $('div');
+
+            console.log(box);
+            console.log(JQbox);
+            console.log('------------------------');
+            console.log(cbox);
+            console.log(JQcbox);
+            console.log('------------------------');
+            console.log(div);
+            console.log(JQdiv);
+
+
+
+        //原生JS中没有css();
+        // div.css('width: 100px; height: 100px; background: red; margin: 10px; 0');
+
+        //jQuery中有css();
+        JQdiv.css({'width': 100, 'height': 100,'background': 'red','margin': 10});  //jQuery中设置属性需要用json才可以赋值，不需要加px;
+        });
+    </script>
+</head>
+<body>
+    <div></div>
+    <div class="box"></div>
+    <div id="box"></div>
+    <div class="box"></div>
+    <div></div>
+</body>
+</html>

@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<style>
+    *{
+        margin: 0;
+        padding: 0;
+    }
+    .box1{
+        width: 500px;
+        height: 500px;
+        background: black;
+    }
+    .box2{
+        width: 100px;
+        height: 100px;
+        background: gray;
+        position: absolute;
+    }
+    .box3{
+         width: 100px;
+         height: 100px;
+         background: red;
+     }
+</style>
+<body>
+    <div class="box1">
+        <div class="box2">
+            <div class="box3"></div>
+        </div>
+    </div>
+</body>
+<script>
+    var box3 = document.getElementsByClassName('box3')[0];
+    console.log(box3.offsetParent);
+
+    /*
+    如果所有节点都没有定位，那么输出的信息为<body></body>标签内的内容。
+    如果节点有定位，那么只输出一个距离对象最近的节点信息。
+     */
+</script>
+</html>

@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+
+</body>
+<script>
+    //如何创建一个对象
+    //1.对象字面量{key:value,key:value...}
+    //只能创建一次对象，复用性较差，如果要创建多个对象，代码冗余度太高
+    // var obj={
+    //     name:'演员',
+    //     singer: '薛之谦',
+    //     type:'流行'
+    // };
+    // var obj1={
+    //     name:'饿狼传说',
+    //     singer: '张学友',
+    //     type:'经典'
+    // };
+
+    //2.使用内置构造函数
+    // var obj = new Object();
+    // obj.name = '一千个伤心的母牛';
+    // obj.singer = '张学友';
+    // obj.type = '经典';
+    // obj.sing = function(){
+    //     console.log('一千个伤心的母牛');
+    // };
+
+    // var obj1 = new Object();
+    // obj.name = '饿狼传说';
+    // obj.singer = '张学友';
+    // obj.type = '经典';
+    // obj.sing = function(){
+    //     console.log('饿狼传说');
+    // };
+
+    //3.封装简单的工厂函数
+    // function createSong(songName, singerName) {
+    //     var o = new Object();
+    //     o.name = songName;
+    //     o.singer = singerName;
+    //     o.type = '经典';
+    //     o.sing = function() {
+    //         console.log('一千个伤心的母牛');
+    //     };
+    //     return o;
+    // };
+    // var obj = createSong('演员', '薛之谦');
+    // console.log(obj.name, obj.singer);
+
+    // var obj1 = createSong('一千个伤心的母牛', '张学友');
+    // console.log(obj1.name, obj1.singer);
+</script>
+
+</html>

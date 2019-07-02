@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<style>
+    body{
+        text-align: center;
+        line-height: 30px;
+    }
+    #backUp{
+        width: 39px;
+        height: 120px;
+        background: black;
+        position: fixed;
+        bottom: 20px;
+        right: 20px;
+        cursor: pointer;
+        font: bold 20px/24px 'Microsoft YaHei';
+        color: white;
+    }
+    .floatDiv1,.floatDiv2{
+        width: 120px;
+        height: 400px;
+        position: absolute;
+        background: black;
+        top: 20px;
+    }
+    .floatDiv1{
+        left: 20px;
+    }
+    .floatDiv2{
+        right: 20px;
+    }
+</style>
+<body>
+<div class="floatDiv1"></div>
+<div class="floatDiv2"></div>
+<script>
+    var body = document.getElementsByTagName('body')[0];
+    var floatDiv1 = document.getElementsByClassName('floatDiv1')[0];
+    var floatDiv2 = document.getElementsByClassName('floatDiv2')[0];
+    var scrollTopValue = 0;
+    var timer = null;
+    for(var i=0; i<=100; i++){
+        document.write('<p>' + i + '</p>');
+    };
+
+    window.onscroll = function(){
+        scrollTopValue = window.pageYOffset || document.body.scrollTop || document.documentElement.scrollTop;
+        move(floatDiv1,scrollTopValue + 20);
+        move(floatDiv2,scrollTopValue + 20);
+        //解释一下为什么要加20，这个值是DOM渲染之后获取到的广告初始值，在这个案例里面我是直接加20，方便一些，但可以通过申明变量去加这个值，只是需要在DOM加载时把这个初始值保存到变量当中，后面不管移动到哪个画面，始终能让广告与浏览器顶部保持一个相同的距离。为什么不在移动动画下面加这个值，每个浏览器滚动的值都不一样，如果在移动动画这里加初始值会导致广告与浏览器的距离越来越远，一直重复加了这个值，可以用下面的语句了解一下，当鼠标滚动一个，页面执行了多少次的输出差不多就明白了。
+        console.log('浏览器当前值是' + scrollTopValue);  //用来查看不同浏览器当前值是多少
+    };
+
+    function move(element,target){
+        clearInterval(element.timer);
+        element.timer = setInterval(function(){
+            var speed = (target - element.offsetTop) / 10;
+            speed = speed > 0 ? Math.ceil(speed) : Math.floor(speed);
+            if(element.offsetTop === target){
+                clearInterval(element.timer);
+                return;
+            }
+            element.style.top = element.offsetTop + speed + 'px';
+            console.log(floatDiv1.style.top);
+        },20);
+    }
+</script>
+</body>
+</html>

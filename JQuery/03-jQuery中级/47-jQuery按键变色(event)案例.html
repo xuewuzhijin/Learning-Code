@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        .wrap{
+            width: 100%;
+            height: 400px;
+        }
+        .div{
+            width: 300px;
+            height: 300px;
+            margin: 50px auto;
+            text-align: center;
+            background: #ccc;
+        }
+    </style>
+    <script src="./jquery-1.11.1.js"></script>
+    <script>
+        $(function(){
+           $(document).on('keyup',function(e){
+               switch(e.keyCode){
+                   case 71:
+                       $('.div').css('background','gray').find('.span').text(e.keyCode);
+                       break;
+                   case 66:
+                       $('.div').css('background','blue').find('.span').text(e.keyCode);
+                       break;
+                   case 89:
+                       $('.div').css('background','yellow').find('.span').text(e.keyCode);
+                       break;
+                   case 80:
+                       $('.div').css('background','pink').find('.span').text(e.keyCode);
+                       break;
+                   case 82:
+                       $('.div').css('background','red').find('.span').text(e.keyCode);
+                       break;
+                   case 83:
+                       $('.div').css('background','skyblue').find('.span').text(e.keyCode);
+                       break;
+                   default:
+                       alert('输入的值系统暂未设定');
+               }
+           });
+        });
+    </script>
+</head>
+<body>
+    <div class="wrap">
+        <div class="div">按键值为：<span class="span"></span></div>
+    </div>
+</body>
+</html>

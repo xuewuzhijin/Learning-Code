@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="../jquery-1.11.1.js"></script>
+    <script>
+        console.log($); //不加载jQuery库的情况下输出$ is not defined
+        console.log(jQuery);//不加载jQuery库的情况下输出jQuery is not defined
+        console.log($ === jQuery);//不加载jQuery库的情况下输出$ is not defined
+
+        //加载jQuery前两者输出一个function，后者输出true；
+        //$() === jQuery()
+    </script>
+</head>
+<body>
+
+</body>
+</html>

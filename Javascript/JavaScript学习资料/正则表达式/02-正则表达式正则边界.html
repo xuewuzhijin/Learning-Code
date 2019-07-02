@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    console.log('------------------正则边界------------------');
+    /*
+    1. ^ 开始
+    2. $ 结束
+    3. ^ 在[]里面代表非
+     */
+    console.log(/^abc$/.test('abc'));   //true
+    console.log(/^abc$/.test('a'));     //fasle
+    console.log(/^abc$/.test('ab'));    //fasle
+    console.log(/^abc$/.test('ac'));    //fasle
+    console.log(/^abc$/.test('abcd'));  //false
+    console.log(/^abc$/.test('A'));     //fasle
+    console.log(/^abc$/.test('AB'));    //fasle
+    console.log(/^abc$/.test('AC'));    //fasle
+    console.log(/^abc$/.test('ABC'));  //false
+    //多了不行，少了不行，换了大写更不行，必须只能是小写abc
+</script>
+</body>
+</html>

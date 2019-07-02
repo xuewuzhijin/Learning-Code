@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<style>
+    *{
+        margin: 0px;
+        padding: 0px;
+    }
+    html,body,.Content{
+        widht: 100%;
+        height: 100%;
+    }
+    .header{
+        widht: 100%;
+        height: 40px;
+        background: #ccc;
+        position: relative;
+        top: 0;
+    }
+    .header span{
+        display: inline-block;
+        width: 55px;
+        height: 30px;
+        border: 1px solid black;
+        line-height: 30px;
+        text-align: center;
+        margin: 4px 10px;
+        float: right;
+        cursor: pointer;
+    }
+    .Content{
+        background: rgba(0,0,0,.5);
+        position: relative;
+        display: none;
+    }
+    .signinContent{
+        width: 300px;
+        height: 300px;
+        background: white;
+        position: absolute;
+        top: 35%;
+        left: 40%;
+    }
+</style>
+<body>
+<div class="header">
+    <span class="sign in">登录</span>
+    <span class="sign up">注册</span>
+</div>
+<div class="Content">
+    <div class="signinContent" id="signinContent"></div>
+</div>
+</body>
+<script>
+    var signin = document.getElementsByTagName('span')[0];
+    var content = document.getElementsByTagName('div')[1];
+    signin.onclick = function(e){
+        e = event || window.event;
+        if(e && e.stopPropagation){
+            e.stopPropagation();
+        }else{
+            e.cancelBubble = true;
+        };
+        content.style.display = 'block';
+    };
+    document.onclick = function(e){
+        e = event || window.event;
+        var aaa = e.target ? e.target : e.srcElement;
+        if(aaa.id !== 'signinContent'){
+            content.style.display = 'none';
+        };
+    };
+
+/*
+    原理：正常情况下，signin点击之后执行冒泡顺序，先执行signin语句，后执行document语句，也就是我点击注册后先显示，但马上会执行document语句，也就会隐藏。
+    但添加取消冒泡事件后，也就是我点击了signin就不会影响document的事件了，执行顺序就是显示，不隐藏。
+    var aaa = e.target ? e.target : e.srcElement;
+    var aaa = e.target || e.srcElement;
+    e.target支持火狐与谷歌，e.srcElement支持IE678;
+    这个是获取当前鼠标是在文档上哪个元素上点击的，target就会传回这个元素，我们把这个元素给一个变量，只要这个元素没有ID或者ID不是等于signinContent这个DIV，那么就把就这框给隐藏掉，相当于就是点击任何位置隐藏。
+*/
+</script>
+</html>

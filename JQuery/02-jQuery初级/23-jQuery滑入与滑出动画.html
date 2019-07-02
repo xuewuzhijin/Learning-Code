@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        div{
+            width: 100px;
+            height: 100px;
+            margin: 100px;
+            padding: 100px;
+            background: black;
+            display: none;
+        }
+    </style>
+    <script src="../jquery-1.11.1.js"></script>
+    <script>
+        $(window).ready(function(){
+            //宽高透明度和display(如果元素有margin或padding也会缓慢加入)匀速滑入或滑出；
+
+
+            //通过display来控制动画高度滑入
+            $('button:eq(0)').click(function(){
+                // $('div').slideDown(5000); //通过毫秒控制显示的速度
+                // $('div').slideDown('slow');   //slow 600ms
+                // $('div').slideDown('normal'); //normal 400ms
+                // $('div').slideDown('fast');   //fast 200ms
+
+                //回调函数，当动画执行完毕后，执行里面的function(){}
+                $('div').slideDown(1000,function(){alert('执行完毕');});
+            });
+
+
+            // 通过display来控制动画高度滑出
+            $('button:eq(1)').click(function(){
+                // $('div').slideUp(5000); //通过毫秒控制显示的速度
+                // $('div').slideUp('slow');   //slow 600ms
+                // $('div').slideUp('normal'); //normal 400ms
+                // $('div').slideUp('fast');   //fast 200ms
+
+                //回调函数，当动画执行完毕后，执行里面的function(){}
+                $('div').slideUp(1000,function(){alert('执行完毕');});
+            });
+
+
+            // 通过display来控制动画高度滑入或滑出
+            $('button:eq(2)').click(function(){
+                //回调函数，当动画执行完毕后，执行里面的function(){}
+                $('div').slideToggle(1000,function(){alert('执行完毕');});
+            });
+        })
+    </script>
+</head>
+<body>
+<button>滑入</button>
+<button>滑出</button>
+<button>切换</button>
+<div></div>
+</body>
+</html>

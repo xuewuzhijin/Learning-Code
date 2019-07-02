@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="../jquery-1.11.1.js"></script>
+    <script>
+        $(window).ready(function(){
+            $('.menufirst>li').mouseenter(function(){
+                // this.children[0].style.display = 'block';
+                $(this).children('ul').stop().slideDown();
+            });
+
+
+            $('.menufirst>li').mouseleave(function(){
+                // this.children[0].style.display = 'block';
+                $(this).children('ul').stop().slideUp();
+            });
+        });
+    </script>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        html.body{
+            width: 100%;
+            height: 100%;
+        }
+        .container{
+            width: 800px;
+            height: 500px;
+            margin: 100px auto;
+        }
+        ul{
+            list-style-type: none;
+        }
+        .menufirst{
+            width: 800px;
+            height: 60px;
+            cursor: pointer;
+        }
+        .menufirst li{
+            width: 266.6px;
+            height: 60px;
+            float: left;
+            background: #0075ff;
+            color: white;
+            line-height: 60px;
+            text-align: center;
+        }
+        .menufirst li ul{
+            display: none;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <ul class="menufirst">
+        <li>
+            菜单一
+            <ul>
+                <li>菜单一</li>
+                <li>菜单二</li>
+                <li>菜单三</li>
+            </ul>
+        </li>
+        <li>
+            菜单二
+            <ul>
+                <li>菜单一</li>
+                <li>菜单二</li>
+                <li>菜单三</li>
+            </ul>
+        </li>
+        <li>
+            菜单三
+            <ul>
+                <li>菜单一</li>
+                <li>菜单二</li>
+                <li>菜单三</li>
+            </ul>
+        </li>
+    </ul>
+</div>
+</body>
+</html>

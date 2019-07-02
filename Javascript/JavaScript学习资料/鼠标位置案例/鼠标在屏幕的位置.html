@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<style>
+    *{
+        margin: 0px;
+        padding: 0px;
+    }
+    body{
+        height: 2000px;
+    }
+    #box{
+        width: 500px;
+        height: 300px;
+        margin: 100px auto;
+        position: absolute;
+        top: 23%;
+        left: 36%;
+        border: 1px solid #ccc;
+        background: white;
+    }
+    span.tit{
+        position: relative;
+        top: 0;
+        display: inline-block;
+        background: #ccc;
+        width: 100%;
+        height: 60px;
+        line-height: 60px;
+        text-align: center;
+        font-weight: bolder;
+    }
+    #box p{
+        line-height: 30px;
+    }
+    .x{
+        width: 99%;
+        height: 2px;
+        font: bold 25px/25px 'simsun';
+        background: #0075ff;
+        position: fixed;
+        top: 50%;
+        z-index: -1;
+    }
+    .x span{
+        position: fixed;
+        right: 0;
+        top: 48.8%;
+        color: #0075ff;
+    }
+    .x p{
+        position: absolute;
+        font: bold 55px/55px; 'Microsoft YaHei';
+        top: 48%;
+        right: 5%;
+    }
+    .y span{
+        position: fixed;
+        left: 49.7%;
+        top: 0;
+        transform:rotate(90deg);
+        -ms-transform:rotate(90deg); /* Internet Explorer */
+        -moz-transform:rotate(90deg); /* Firefox */
+        -webkit-transform:rotate(90deg); /* Safari 和 Chrome */
+        -o-transform:rotate(90deg); /* Opera */
+        color: #0075ff;
+    }
+    .y p{
+        position: absolute;
+        font: bold 55px/55px; 'Microsoft YaHei';
+        top: 5%;
+        right: 48%;
+    }
+    .y{
+        width: 2px;
+        height: 99%;
+        font: bold 25px/25px 'simsun';
+        background: #0075ff;
+        position: fixed;
+        left: 50%;
+        top: 2%;
+        z-index: -1;
+    }
+</style>
+<body>
+<div id="box">
+    <span class="tit">测试鼠标在屏幕中的位置</span>
+    <p><span>鼠标在页面X轴的：</span><span></span><span>PX</span></p>
+    <p><span>鼠标在页面Y轴的：</span><span></span><span>PX</span></p>
+    <p><span>鼠标在屏幕X轴的：</span><span></span><span>PX</span></p>
+    <p><span>鼠标在屏幕Y轴的：</span><span></span><span>PX</span></p>
+    <p><span>鼠标在可视区域X轴的：</span><span></span><span>PX</span></p>
+    <p><span>鼠标在可视区域Y轴的：</span><span></span><span>PX</span></p>
+    <p><span>鼠标在盒子区域X轴的：</span><span></span><span>PX</span></p>
+    <p><span>鼠标在盒子区域Y轴的：</span><span></span><span>PX</span></p>
+</div>
+<div class="x">
+    <span>></span>
+    <p>我是X轴</p>
+</div>
+<div class="y">
+    <span><</span>
+    <p>我是Y轴</p>
+</div>
+</body>
+<script>
+    var box,pagex,pagey,screenx,screeny,clientx,clienty,scrolltop,scrollleft;
+    box = document.getElementById('box');
+    pagex = box.children[1].children[1];
+    pagey = box.children[2].children[1];
+    screenx = box.children[3].children[1];
+    screeny = box.children[4].children[1];
+    clientx = box.children[5].children[1];
+    clienty = box.children[6].children[1];
+    boxx = box.children[7].children[1];
+    boxy = box.children[8].children[1];
+    scrolltop = 0;
+    scrollleft = 0;
+    window.onscroll = function(){
+        scrolltop = document.body.scrollTop || document.documentElement.scrollTop;
+        scrollleft = document.body.scrollLeft || document.documentElement.scrollLeft;
+//        console.log(scrolltop);
+    }
+    document.onmousemove = function(event){
+        event = event || window.event;
+
+//        pagex.innerHTML = event.pageX;
+//        pagey.innerHTML = event.pageY;
+        //页面的Y值和X值不兼容IE5-8，所以使用浏览器被卷去的值+可视区域的值等于页面的值。
+        pagex.innerHTML = scrollleft + event.clientX;
+        pagey.innerHTML = scrolltop + event.clientY;
+        //上面是获取鼠标在页面中的位置
+
+        screenx.innerHTML = event.screenX;
+        screeny.innerHTML = event.screenY;
+        //上面是获取鼠标在屏幕中的位置
+
+        clientx.innerHTML = event.clientX;
+        clienty.innerHTML = event.clientY;
+        //上面是获取鼠标在可视区域的位置，也就是鼠标在整个DOM中的位置。
+
+        if(event.clientY - box.offsetTop > 300 || event.clientY - box.offsetTop < 0 || event.clientX - box.offsetLeft > 502 || event.clientX - box.offsetLeft < 0){
+            boxx.innerHTML = '鼠标在盒子X值范围外';
+            boxy.innerHTML = '鼠标在盒子X值范围外';
+        }else{
+            boxy.innerHTML = event.clientY - box.offsetTop;
+            boxx.innerHTML = event.clientX - box.offsetLeft;
+        };
+
+        //获取鼠标在盒子中的位置原理是用可视区域的X/Y值-元素的TOP值，等于鼠标在盒子中的值。举例，盒子距离浏览器顶部与左边各有100px，我们用可视区域的X值（event.clientX）减去元素的left（element.offsetLeft）等于鼠标当前在盒子中是多少的位置。如果我的鼠标在可视区域X的值是100，减去元素的left值100，等于0，而这个盒子就从这个0开始的，Y值同理，这个比较难消化，需多次实战！
+
+
+        console.log(box.offsetTop);
+//        console.log(box.offsetLeft);
+    }
+</script>
+</html>
