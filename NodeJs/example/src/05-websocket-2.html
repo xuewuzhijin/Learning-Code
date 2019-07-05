@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <script>
+    // 浏览器自带 WebSocket ，所以直接new，但这种方式比较复杂
+    let ws = new WebSocket('ws://localhost:8080');
+
+    // 连接成功
+    ws.onopen = function() {
+      let customer = prompt("你知道已经连接成功了吗", "知道了");
+      ws.send(`客户${customer ? customer : '不知道'}已经连接了`);
+      alert("数据发送中...");
+    };
+    ws.onmessage = function(e) {
+      var received_msg = e.data;
+      alert("数据已接收...");
+    };
+    ws.onclose = function() {
+      alert("连接已关闭..."); 
+    };
+    ws.onerror = function() {};
+  </script>
+</head>
+<body>
+  
+</body>
+</html>

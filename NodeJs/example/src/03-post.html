@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <style>
+    form{ width: 500px; height: 300px; color: #17233d; background-color: #f8f8f9; padding: 25px; margin: 100px auto; }
+    form input[type='text']{ width: 450px; border: none; padding: 15px; margin: 15px 0; outline: none; }
+    button{ padding: 8px 24px; margin: 0 auto; color: #fff; background-color: #2d8cf0; border-color: #2d8cf0;outline: 0;vertical-align: middle; display: block;}
+  </style>
+</head>
+<body>
+  <form action="http://localhost:8080" method="POST">
+    <label for="user">用户名</label>
+    <input type="text" id="user" name="username" value="123456">
+    <br/>
+    <label for="password">密　码</label>
+    <input type="text" id="password" name="password" value="123456">
+    <br/>
+    <button type="submit">提交</button>
+  </form>
+</body>
+</html>

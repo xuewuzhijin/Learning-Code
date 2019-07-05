@@ -1,0 +1,39 @@
+{
+  "name": "example",
+  "version": "1.0.0",
+  "description": "",
+  "main": "01-http.js",
+  "dependencies": {},
+  "devDependencies": {
+    "_depd@1.1.2@depd": "^1.1.2",
+    "_fd-slicer@1.1.0@fd-slicer": "^1.1.0",
+    "_multiparty@4.2.1@multiparty": "^4.2.1",
+    "_http-errors@1.7.3@http-errors": "^1.7.3",
+    "_random-bytes@1.0.0@random-bytes": "^1.0.0",
+    "_safe-buffer@5.1.2@safe-buffer": "^5.1.2",
+    "_setprototypeof@1.1.1@setprototypeof": "^1.1.1",
+    "_pend@1.2.0@pend": "^1.2.0",
+    "_statuses@1.5.0@statuses": "^1.5.0",
+    "_inherits@2.0.4@inherits": "^2.0.4",
+    "_uid-safe@2.1.5@uid-safe": "^2.1.5",
+    "_toidentifier@1.0.0@toidentifier": "^1.0.0",
+    "depd": "^1.1.2",
+    "fd-slicer": "^1.1.0",
+    "http-errors": "^1.7.3",
+    "inherits": "^2.0.4",
+    "multiparty": "^4.2.1",
+    "pend": "^1.2.0",
+    "setprototypeof": "^1.1.1",
+    "safe-buffer": "^5.1.2",
+    "random-bytes": "^1.0.0",
+    "statuses": "^1.5.0",
+    "toidentifier": "^1.0.0",
+    "uid-safe": "^2.1.5"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}

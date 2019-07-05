@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <!-- 这是要访问WebSocket提供的框架，有后段的WebSocket监听用户访问的地址是否是带有socket.io/socket.io.js
+      如果是（本列使用NODEJS），返回它自带的客户端JS -->
+  <script src="http://localhost:8080/socket.io/socket.io.js"></script>
+  <script>
+    let sock = io.connect('ws://localhost:8080');
+    // sock.emit
+    // sock.on
+    // 向服务器端发送一个test数据
+    sock.emit('test', 100, 100);
+
+    // 接收从服务器发来的test1数据
+    sock.on('test1', data => {
+      console.log(data);
+    })
+  </script>
+</head>
+<body>
+  
+</body>
+</html>
