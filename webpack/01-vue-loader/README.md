@@ -1,6 +1,43 @@
 # 流程细节
 
+```Js
+const path = require('path')
+const { VueLoaderPlugin } = require('vue-loader')
+
+module.exports = {
+    mode: 'development',
+    entry: path.join(__dirname, 'src/main.js'),
+    output: {
+        path: path.join(__dirname, './'),
+        filename: '[name]d.js'
+    },
+    module: {
+        rules: [
+            // 处理 .vue 结尾的文件
+            {
+                test: /\.vue$/,
+                use: [ 'vue-loader' ]
+            },
+            // 处理通过 vue-style-loader 出来的 css 文件
+            {
+                test: /\.css$/,
+                use: [
+                    'vue-style-loader',
+                    'css-loader'
+                ]
+            }
+        ]
+    },
+    plugins: [
+        // 使用 vue-loader 必须要的插件
+        // https://vue-loader.vuejs.org/zh/guide/#%E6%89%8B%E5%8A%A8%E8%AE%BE%E7%BD%AE
+        new VueLoaderPlugin()
+    ]
+}
+```
+
 ```json
+  // webpack.config.js
   "devDependencies": {
     "css-loader": "^3.0.0",
     "vue": "^2.6.10",
