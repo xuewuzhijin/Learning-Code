@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>Document</title>
+	<style>
+		article {
+			width: 300px;
+			height: 300px;
+			display: grid;
+			/* grid-template-columns: repeat(3, auto); */
+			/* grid-template-columns: repeat(3, auto); */
+			grid-template-columns: repeat(1, 1fr);
+			grid-template-columns: repeat(3, 1fr);
+      /* auto 与 1fr 是等价的 */
+		}
+
+		article div {
+      background-color: #0075ff;
+      border: solid 1px black;
+    }
+
+	</style>
+</head>
+
+<body>
+  <p>这里如果是9个DIV，那么根据父元素300*300的话，每个占比 100 * 100</p>
+  <p>虽然在上方我定义了3行与3列，但对等的超出了定义的话，超出的DIV元素也将在父元素定义的300*300中等比例展开</p>
+  <p>如果父元素不定义300*300，那么宽度默认百分百，高度根据内容自动撑开，！！！一行的高度等于一行中最高的格子高度</p>
+	<article>
+		<div>1</div>
+		<div>2</div>
+		<div>3</div>
+		<div>4</div>
+		<div>5</div>
+		<div>6</div>
+		<div>7</div>
+		<div>8</div>
+		<div>9</div>
+		<div>10</div>
+    <div>11</div>
+    <div>12</div>
+    <div>13</div>
+    <div>14</div>
+    <div>15</div>
+    <div>16</div>
+    <div>17</div>
+    <div>18</div>
+    <div>19</div>
+    <div>20</div>
+    <div>21</div>
+	</article>
+</body>
+
+</html>

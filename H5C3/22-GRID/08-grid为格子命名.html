@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>Document</title>
+	<style>
+		article {
+			width: 300px;
+			height: 300px;
+			border: black solid 1px;
+			display: grid;
+		}
+
+		article div {
+			background-color: #0075ff;
+			border: black solid 1px;
+		}
+
+		#g1, #g2 {
+      /* 第一种命名方式 */
+			/* grid-template-rows: [r1s] 100px [r1e r2s] 100px [r2e r3s] 100px [r3e];
+			grid-template-columns: [c1s] 100px [c1e c2s] 100px [c2e c3s] 100px [c3e]; */
+      
+      /* 第二种命名方式 */
+      grid-template-rows: repeat( 3, [r-s] 1fr [r-e]);
+      grid-template-columns: repeat( 3, [c-s] 1fr [c-e]);
+		}
+
+		#g1>div {
+      /* 使用第一种命名方式 */
+      grid-row-start: r1e;
+      grid-row-end: r2e;/* 这里可以是 r2s */
+      grid-column-start: c1e;
+      grid-column-end: c2e;/* 这里可以是 c2s */
+      /* 因为线条的重叠，所以没区别 */
+    }
+
+    /* 占满最后一行 */
+		#g2>div {
+      /* 使用第二种命名方式 */
+      grid-row-start: r-s 3;
+      grid-row-end: r-e 3;/* 这里可以 4 */
+      grid-column-start: c-s 1;
+      grid-column-end: c-s 4;/* 这里可以 c-e 3 */
+    }
+		/* 
+    
+      ——————
+      |    |
+      ——————
+
+      现在你所看到的视图里有9个格子，如上所示，每个格子有4条线，
+      若两个盒子放在一行上，那么第一个盒子的右边线条与第二个盒子的左边线条就重叠了，
+      但依旧可以认为这两个格子有4条竖线， css 中的 [] 有两个名字的就是重叠线的名字
+      名字可以随你定，abcdefg...都行
+     */
+
+	</style>
+</head>
+
+<body>
+	<article id="g1">
+		<div>DIV</div>
+  </article>
+  <p>占满最后一行</p>
+	<article id="g2">
+		<div>DIV</div>
+	</article>
+</body>
+
+</html>

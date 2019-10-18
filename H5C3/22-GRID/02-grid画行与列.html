@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>Document</title>
+	<style>
+		article {
+			width: 300px;
+			height: 300px;
+			border: black solid 1px;
+			display: grid;
+			/* 这里3个100px表示有3行，每一行100px高度 */
+			/* grid-template-rows: 100px 100px 100px; */
+			/* 对等的这里是3列每列是100px宽度 */
+			/* grid-template-columns: 100px 100px 100px; */
+
+      /* 如果说父元素定义了宽和高，那么除了用 px 来表示以外，常见的%，em，rem也可以用来表示 */
+      /* grid-template-rows: 33.33% 33.33% 33.33%;
+      grid-template-columns: 33.33% 33.33% 33.33%; */
+      
+      grid-template-rows: 2.65cm 2.65cm 2.65cm;
+      grid-template-columns: 2.65cm 2.65cm 2.65cm;
+		}
+
+		article div {
+			background-color: #0075ff;
+			border: black solid 1px;
+		}
+
+		/* 格子1样式 */
+		#g1 div {
+			width: 50px;
+			height: 50px;
+		}
+
+	</style>
+</head>
+
+<body>
+	<p>当前基础格子</p>
+	<article>
+		<div>1</div>
+		<div>2</div>
+		<div>3</div>
+		<div>4</div>
+		<div>5</div>
+		<div>6</div>
+		<div>7</div>
+		<div>8</div>
+		<div>9</div>
+	</article>
+  <p>当前格子ID g1，在基础格子上扩展</p>
+  <p>如果父元素定义了高度，而子元素也定义了高度，那么格子还是按照父元素的比例排放，而子元素根据自身定义的高度排放，但也依旧保持着格子的排放顺序</p>
+  <p>也就是说，如果子元素不定义宽高，那么就自动撑满格子</p>
+	<article id="g1">
+		<div>1</div>
+		<div>2</div>
+		<div>3</div>
+		<div>4</div>
+		<div>5</div>
+		<div>6</div>
+		<div>7</div>
+		<div>8</div>
+		<div>9</div>
+  </article>
+</body>
+
+</html>

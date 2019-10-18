@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>Document</title>
+	<style>
+		article {
+			width: 300px;
+			height: 500px;
+			border: black solid 1px;
+			display: grid;
+		}
+
+		article div {
+			background-color: #0075ff;
+			border: black solid 1px;
+		}
+
+		#g1 {
+      /* 现在父元素定义了500px的高，而这里我们定义了2行，每行最小50px，最大100px */
+      /* 也就是说我们规定了这6个子元素最高100px，最低50px */
+      /* 那么如果父元素高于这个高度，那么子元素最高也就100px */
+      /* 如果父元素小于这个高度，子元素最低50px，除非设置overflow:hidden, 那么还是会显示 */
+      grid-template-rows: repeat(2, minmax(50px, 100px));
+      grid-template-columns: repeat(3, auto);
+		}
+
+	</style>
+</head>
+
+<body>
+	<article id="g1">
+		<div>1</div>
+		<div>2</div>
+		<div>3</div>
+		<div>4</div>
+		<div>5</div>
+		<div>6</div>
+	</article>
+</body>
+
+</html>

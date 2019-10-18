@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>Document</title>
+	<style>
+		article {
+			width: 300px;
+			height: 300px;
+			border: black solid 1px;
+			display: grid;
+		}
+
+		article div {
+			background-color: #0075ff;
+			border: black solid 1px;
+		}
+
+		#g1 {
+			/* 这里的 repeat 表示重复做，参数1 表示重复3 ！！！次！！！，参数2 表示每行100px */
+			grid-template-rows: repeat(3, 100px);
+			/* 类似于上 */
+			grid-template-columns: repeat(3, 100px);
+		}
+
+		#g2 {
+			/* 这里的意思是重复2次 100px 与 50px，这里一个单位代表一行，2个单位就两行了，然后重复两次就4行，一行 100px 一行 50px 一行 100px 一行50px */
+			/* 要注意一下，100px 与 50px 之间不需要加逗号～～～ */
+			grid-template-rows: repeat(2, 100px 50px);
+			grid-template-columns: repeat(3, 100px);
+		}
+
+	</style>
+</head>
+
+<body>
+	<article id="g1">
+		<div>1</div>
+		<div>2</div>
+		<div>3</div>
+		<div>4</div>
+		<div>5</div>
+		<div>6</div>
+		<div>7</div>
+		<div>8</div>
+		<div>9</div>
+	</article>
+	<p>---分割线---</p>
+	<article id="g2">
+		<div>1</div>
+		<div>2</div>
+		<div>3</div>
+		<div>4</div>
+		<div>5</div>
+		<div>6</div>
+		<div>7</div>
+		<div>8</div>
+		<div>9</div>
+		<div>10</div>
+		<div>11</div>
+		<div>12</div>
+	</article>
+</body>
+
+</html>

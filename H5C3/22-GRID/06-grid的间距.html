@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>Document</title>
+	<style>
+		article {
+			width: 300px;
+			height: 300px;
+			border: black solid 1px;
+			display: grid;
+		}
+
+		article div {
+			background-color: #0075ff;
+			border: black solid 1px;
+		}
+
+		#g1 {
+			grid-template-rows: repeat(3, 100px);
+			grid-template-columns: repeat(3, 100px);
+      /* 列与列之间间距为10px */
+      /* column-gap: 10px; */
+
+      /* 行与行之间的间距为10px */
+      /* row-gap: 10px; */
+
+      /* 行间距为10px 列间距为20px */
+      gap: 10px 20px;
+
+      /* 以下被弃用 */
+      /* 表示行间距为 10px 列间距为 20px，如果只写一个10px表示行列都是10px */
+      /* grid-gap: 10px 20px; */
+      /* 表示列间距为10px */
+      /* grid-column-gap: 10px; */
+      /* grid-row-gap: 10px; */
+		}
+
+	</style>
+</head>
+
+<body>
+	<article id="g1">
+		<div>1</div>
+		<div>2</div>
+		<div>3</div>
+		<div>4</div>
+		<div>5</div>
+		<div>6</div>
+		<div>7</div>
+		<div>8</div>
+		<div>9</div>
+	</article>
+</body>
+
+</html>

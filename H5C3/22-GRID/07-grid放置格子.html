@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>Document</title>
+	<style>
+		article {
+			width: 300px;
+			height: 300px;
+			border: black solid 1px;
+			display: grid;
+			grid-template-rows: repeat(3, 1fr);
+			grid-template-columns: repeat(3, 1fr);
+		}
+
+		article div {
+			background-color: #0075ff;
+			border: black solid 1px;
+		}
+
+    /* 中间位置 */
+		#g1>div {
+      grid-row-start: 2;
+      grid-row-end: 3;
+      grid-column-start: 2;
+      grid-column-end: 3;
+		}
+
+    /* 占满第一行 */
+		#g2>div {
+      grid-row-start: 1;
+      grid-row-end: 1;
+      grid-column-start: 1;
+      grid-column-end: 4;
+		}
+
+    /* 占满第一列 */
+		#g3>div {
+      grid-row-start: 1;
+      grid-row-end: 4;
+      grid-column-start: 1;
+      grid-column-end: 1;
+		}
+
+    /* 占满第二行的第二与第三列 */
+		#g4>div {
+      grid-row-start: 2;
+      grid-row-end: 3;
+      grid-column-start: 2;
+      grid-column-end: 4;
+		}
+
+    /* 占满全部 */
+		#g5>div {
+      /* 这么理解，article 是九宫格，我要把 div 从第一行拉到第四行，然后把 div 从第一列拉到第四列，这样就占满了 */
+      /* 打开开发者工具，鼠标放到article元素上，你就看到了九宫格 */
+      grid-row-start: 1;
+      grid-row-end: 4;
+      grid-column-start: 1;
+      grid-column-end: 4;
+		}
+
+    /* ...根据需求定义不同的位置，但其中需要注意，可以把格子绘制成正方形，长方形，但不能是其它图形 */
+
+    /* 
+
+    怎么看行与列，下面的图对应本次的例子
+    行 ---- 这种线条的从上往下第一根开始数
+    列 |||| 这种竖线的从左往右第一根开始数
+    
+    col 1  row 1
+    col 1 |-----|-----|-----|
+    col 1 \     |     |     |
+    col 1 \     |     |     |
+    col 1 \row 2|     |     |
+    col 1 |-----|-----|-----|
+    col 1 \     |     |     |
+    col 1 \     |     |     |
+    col 1 \row 3|     |     |
+    col 1 |-----|-----|-----|
+    col 1 \     |     |     |
+    col 1 \     |     |     |
+    col 1 \row 4|     |     |
+    col 1 -------------------
+
+     */
+
+	</style>
+</head>
+
+<body>
+  <p>打开开发者工具，将鼠标移动到article id g1 上，你将看到有9个格子</p>
+  <p>现在处于初始状态</p>
+	<article>
+		<div>DIV</div>
+  </article>
+  <p>将这个div放置到article的中间位置</p>
+	<article id="g1">
+		<div>DIV</div>
+	</article>
+  <p>将这个div撑满第一行</p>
+	<article id="g2">
+		<div>DIV</div>
+	</article>
+  <p>将这个div撑满第一列</p>
+	<article id="g3">
+		<div>DIV</div>
+	</article>
+  <p>将这个div撑满第二行的第二与第三列</p>
+	<article id="g4">
+		<div>DIV</div>
+	</article>
+  <p>占满全部</p>
+	<article id="g5">
+		<div>DIV</div>
+	</article>
+</body>
+
+</html>

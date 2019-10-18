@@ -1,7 +1,7 @@
 const path = require('path')
 const htmlWebpackPlugin = require('html-webpack-plugin')
 const miniCss = require('mini-css-extract-plugin')
-const { vueLoader } = require('vue-loader')
+const { VueLoaderPlugin } = require('vue-loader')
 
 module.exports = {
   entry: path.join(__dirname, 'src/main.js'),
@@ -9,9 +9,11 @@ module.exports = {
     path: path.join(__dirname, 'dist'),
     filename: '[name].js'
   },
+  resolve: {
+    extensions: ['.js', '.jsx']
+  },
   module: {
-    rules: [
-      {
+    rules: [{
         test: /\.vue$/,
         loader: 'vue-loader',
         options: {
@@ -54,17 +56,27 @@ module.exports = {
       },
       {
         test: /\.(sa|sc)ss$/,
-        use: [
-          'vue-style-loader',
-          miniCss.loader,
-          'css-loader',
-          'sass-loader'
-        ]
+        use: [ 'sass-loader' ]
       },
       {
         test: /\.less$/,
         use: 'less-loader'
       }
     ]
-  }
+  },
+  plugins: [
+    new VueLoaderPlugin(),
+    new miniCss({
+      moduleFilename: ({ name}) => `${name.replace('/js/', '/css/')}.css`
+    }),
+    new htmlWebpackPlugin({
+      title: '03-vue-loader-advanced',
+      template: path.join(__dirname, '03-vue-loader-advanced-template.html'),
+      filename: 'index-output.html',
+      minify: {
+          collapseWhitespace: true,
+          removeComments: true
+      }
+    })
+  ]
 }

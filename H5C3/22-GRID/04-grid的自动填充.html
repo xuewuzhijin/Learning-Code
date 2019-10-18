@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>Document</title>
+	<style>
+		article {
+			width: 300px;
+			height: 400px;
+			border: black solid 1px;
+			display: grid;
+		}
+
+		article div {
+			background-color: #0075ff;
+			border: black solid 1px;
+		}
+
+		#g1 {
+      /* 自动填充，表示你不确定有多少行，但你规定了每行的高度及每列的宽度，那么自动填充 */
+			grid-template-rows: repeat(auto-fill, 100px);
+			grid-template-columns: repeat(auto-fill, 100px);
+		}
+
+    #g2 {
+      /* 这里效果等同于 g1 （仅仅是效果） */
+      /* 这里表示绘制4行，每行根据父元素的高度等比例排放 */
+      grid-template-rows: repeat(4, 1fr);
+      /* 以上类似 */
+      grid-template-columns: repeat(3, 1fr);
+    }
+
+    #g3 {
+      /* 按比例来绘制格子 */
+      /* 这里表示绘制3行，根据父元素的高度第一行占1份，第二行占2份，第三行占1份 */
+      grid-template-rows: 1fr 2fr 1fr;
+      /* 同样，第一列占1份，第二列占2份，第三列占1份 */
+      grid-template-columns: 1fr 2fr 1fr;
+    }
+
+	</style>
+</head>
+
+<body>
+	<article id="g1">
+		<div>1</div>
+		<div>2</div>
+		<div>3</div>
+		<div>4</div>
+		<div>5</div>
+		<div>6</div>
+		<div>7</div>
+		<div>8</div>
+    <div>9</div>
+    <div>10</div>
+    <div>11</div>
+    <div>12</div>
+	</article>
+	<p>---分割线---</p>
+	<article id="g2">
+		<div>1</div>
+		<div>2</div>
+		<div>3</div>
+		<div>4</div>
+		<div>5</div>
+		<div>6</div>
+		<div>7</div>
+		<div>8</div>
+		<div>9</div>
+		<div>10</div>
+		<div>11</div>
+		<div>12</div>
+	</article>
+	<p>---分割线---</p>
+	<article id="g3">
+		<div>1</div>
+		<div>2</div>
+		<div>3</div>
+		<div>4</div>
+		<div>5</div>
+		<div>6</div>
+		<div>7</div>
+		<div>8</div>
+		<div>9</div>
+	</article>
+</body>
+
+</html>

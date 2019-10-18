@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>Document</title>
+	<style>
+		article {
+			width: 300px;
+			height: 300px;
+			border: black solid 1px;
+			display: grid;
+		}
+
+		article div {
+			background-color: #0075ff;
+			border: black solid 1px;
+		}
+
+		#g1,
+		#g2,
+		#g3,
+		#g4,
+		#g5 {
+			grid-template-rows: repeat(3, 1fr);
+			grid-template-columns: repeat(3, 1fr);
+		}
+
+		/* 占满第一列 */
+		#g1>div {
+			/* 因为默认就是在第一行以及第一列，所以直接横跨到第3行 */
+			grid-row-start: span 3;
+		}
+
+		/* 只占满第二列 */
+		#g2>div {
+			/* 上面的保持不变，只需要移动列的位置 */
+			grid-column-start: 2;
+			grid-row-start: span 3;
+		}
+
+		/* 占满第一行 */
+		#g3>div {
+			grid-column-start: span 3;
+		}
+
+		/* 只占满第二行 */
+		#g4>div {
+			grid-row-start: 2;
+			grid-column-start: span 3;
+		}
+
+		/* 占满最后一行，从第二列开始 */
+		#g5>div {
+			grid-row-start: 3;
+			grid-column-start: 2;
+			grid-column-end: span 2;
+		}
+
+	</style>
+</head>
+
+<body>
+	<p>占满第一列</p>
+	<article id="g1">
+		<div>1</div>
+	</article>
+	<p>只占满第二列</p>
+	<article id="g2">
+		<div>1</div>
+	</article>
+	<p>占满第一行</p>
+	<article id="g3">
+		<div>1</div>
+	</article>
+	<p>只占满第二行</p>
+	<article id="g4">
+		<div>1</div>
+	</article>
+	<p>占满第一行</p>
+	<article id="g5">
+		<div>1</div>
+	</article>
+</body>
+
+</html>

@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>Document</title>
+	<style>
+		article {
+			width: 300px;
+			height: 300px;
+			border: black solid 1px;
+			display: grid;
+		}
+
+		article div {
+			background-color: #0075ff;
+			border: black solid 1px;
+		}
+
+		#g1,
+		#g2,
+		#g3,
+		#g4,
+		#g5 {
+			grid-template-rows: repeat(3, 1fr);
+			grid-template-columns: repeat(3, 1fr);
+		}
+
+		/* 占满第一行 */
+		#g1>div {
+			grid-row: 2 / 3;
+			grid-column: 1 / 4;
+		}
+
+		/* 只占满第二行 */
+		#g2>div {
+			grid-row: 2 / 3;
+			grid-column: 1 / 4;
+		}
+
+		/* 占满第一列 */
+		#g3>div {
+			grid-row: 1 / 4;
+		}
+
+		/* 只占满第二列 */
+		#g4>div {
+			grid-column: 2 / 3;
+			grid-row: 1 / 4;
+		}
+
+		/* 最后一行的中间 */
+		#g5>div {
+			grid-column: 2 / 3;
+			grid-row: 3 / 4;
+		}
+
+	</style>
+</head>
+
+<body>
+	<p>占满第一行</p>
+	<article id="g1">
+		<div>1</div>
+	</article>
+	<p>只占满第二行</p>
+	<article id="g2">
+		<div>1</div>
+	</article>
+	<p>占满第一列</p>
+	<article id="g3">
+		<div>1</div>
+	</article>
+	<p>只占满第二列</p>
+	<article id="g4">
+		<div>1</div>
+	</article>
+	<p>最后一行的中间</p>
+	<article id="g5">
+		<div>1</div>
+	</article>
+</body>
+
+</html>
