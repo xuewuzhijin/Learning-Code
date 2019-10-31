@@ -2,11 +2,12 @@
 
 ## 目录
 
- * [SSH/CONFIG](#SSH/CONFIG)
- * [GIT/SSH](#GIT/SSH)
+ * [SSH-CONFIG](#SSH-CONFIG)
+ * [GIT-SSH](#GIT-SSH)
+ * [GIT-IGNORE](#GIT-IGNORE)
 
 
-### SSH/CONFIG
+### SSH-CONFIG
 
 程序员日常生活中如果和 git 打交道，难免碰到一台电脑多个 git 账户，比如有公司的，自己的，当你使用公司的 git 账户下载，那么 git ssh 匹配你默认的 ssh 私钥（公司），但如果你下载自己账户仓库中的代码，此时如果依旧匹配公司的 ssh 私钥，那么显然会提示你
 > Please make sure you have the correct access rights and the repository exists.
@@ -44,7 +45,7 @@ Host git_two
     IdentitiesOnly yes
 ```
 
-> 如果没有设置 GITHUB 公私钥请看目录2或者点击这里 -> [GIT/SSH](#GIT/SSH)
+> 如果没有设置 GITHUB 公私钥请看目录2或者点击这里 -> [GIT-SSH](#GIT-SSH)
 
 通常在克隆 git 仓库时，使用的方式不外乎两种，例如：
 1. git clone https://github.com/xuewuzhijin/Learning-Code.git
@@ -84,7 +85,7 @@ git remote set-url --add origin 你要改之后的项目地址
 git remote set-url --delete origin 你之前的该项目地址
 ```
 
-### GIT/SSH
+### GIT-SSH
 
 配置公钥私钥的主要作用就是当你账户下面的 repositories 包含多个 私有 repo 时，一个私钥都可以下载所有的，但前提是需要在 github 上添加上你创建的公钥私钥里面的公钥，流程：
 
@@ -165,8 +166,53 @@ $ ssh-add ~/.ssh/id_rsa
 ```bash
 # 假设刚刚创建的私钥是这个名字 id_rsa.pub（默认情况下是这个名字）
 cat ~/.ssh/id_rsa.pub
-# 他会返回一串下面的字符串，把他返回的这串字符全部复制，粘贴到页面里的 key 中
+# 它会返回一串下面的字符串，把返回的字符全部复制，粘贴到页面里的 key 中
 # ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAACAQDY/O9haUDI+5X8GuwIGHrKMjCYbsh59fDxCtlevl+jXxijSdZvRaAHOo3MfDuSa0j1P5NibOvp4Gqxgs+tvDL8eG4skrjsPZv3vYUVeJuZOS7YSTYuS0ELEEA6IVELWEoSArb6W3ZTMsMbatMggsqSFvKBpnJ2PB84K/Bcsr+WhGg3yOiv7qPiQRGJ5StsFVk0N+Ga4r3IVN41p9UmavCaYvbdal1Zibh9aDfvjBgIpfu9Fyqn+gGTXfvtvWUgkRCBe8V2zuhdHruswOHuU535eLBXBcectr4zm9H85eOrFi8ITA8SnflHDBTK0/SmrXW52oSZYxcluEBegWyl6Sc1PYHPqC09A74RDi49eNYmyyjQCRPiAbMwVEOvtgBGZJwkpRiEdlaADz25NgSt2s3qocpW8qp0l/Ga4r3IVN41p9UmavCaYvbdal1Zibh9aDfvjBgIpfu9Fyqn+8fosIssF54zQThzteEgnHdXnWXgv/m6dkDYUEiWS2qNmFeYk2gt4k/gGTXfvtvWUgkRCBe8V2zuhdHruswOHuU535eLBXBcectr4zm9H85eOrFi8ITA8SnflHDBTnrEuB0uxhavHSV9kIpJtdeTZRcmGysveB4N+cTaXusKWY/ZQFswLF6r71zsy4mX3A2I/gJRtipk4W9w== xxx@xxx.xx
 ```
 
 点击 `Add SSH key` 完成设置
+
+
+
+
+
+
+
+### GIT-IGNORE
+
+在项目中，可能会碰到一些无法被忽略的文件，比如说当前项目被推送到了线上仓库，而突然看到了N个不想上传的文件，并且你想怎么忽略都忽略不了，莫名的怀疑网上写的都是些过时的、错误的、或者怀疑自己漏掉了。
+
+造成这结果的根本原因是你第一次提交（commit）的时候，该文件没有被忽略，而之后你想再次忽略它，git 的内部机制就是不会去忽略已追踪的文件，所以这个你不想看到的文件就一直在上面，造成了一种（就喜欢你看到我又干不掉我的样子）
+
+
+```bash
+# 这一步清除本地所有已追踪的文件
+git rm -r --cached .
+# 再把所有未追踪的全部添加(这一步会重新过滤掉在 .gitignore 中忽略的文件)
+git add .
+# 更新 .gitignore 文件
+git commit -m "update .gitignore"
+
+# 这一步不会把这个提交信息更新到未变更的文件夹上，但前提是除了修改 .gitignore 文件外，其它文件在你上一次 git push 后没有更改过
+
+# 简单粗暴接地气的说，就是你要执行这一步，首先你要全部提交更新，接着再执行这里的第一步，否则除了被你修改的 .gitignore 之外，其它被修改的文件也会有 update .gitignore 标记
+```
+
+Q: 那么有没有一种命令就是这个文件被我忽略了，但是这个版本又想让它上传的命令?
+
+A: **有**
+
+```bash
+# 强制添加到暂存库，意思就是，原本 main.js 被我忽略掉了，现在我不想忽略它，那么强制把 main.js 加进去
+git add -f main.js
+```
+
+附送一个比较鸡肋的命令，但有时候你找不到原因还有挺有用的，比如说，根目录有一个 index.js 文件， 根目录的 app 下也有个 index.js，但你的 .gitignore 中有一条这样的规则 `index.js` 造成的结果就是，所有的 index.js 都被忽略，但要怎么看是哪里写错了？
+
+```bash
+git check-ignore -v index.js
+# or
+git check-ignore -v app/index.js
+# 它会返回下面的规则，告诉你在根目录下的 .gitignore 中的第六行中忽略了该文件的规则 
+# .gitignore:6:index.js  index.js
+```
