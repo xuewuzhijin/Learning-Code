@@ -1,5 +1,10 @@
 .DS_Store
 .ide
+
+
+yarn.lock
 package-lock.json
+
+
 dist/
 node_modules/
