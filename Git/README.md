@@ -63,7 +63,7 @@ Host git_two
 git clone git@github.com:xuewuzhijin/Learning-Code.git
 
 #修改后
-git clone git@bill:xuewuzhijin/Learning-Code.git
+git clone git@git_one:xuewuzhijin/Learning-Code.git
 ```
 
 **如果在克隆后修改地址**
@@ -75,7 +75,7 @@ vim .git/config
 # [remote "origin"]
 #         fetch = +refs/heads/*:refs/remotes/origin/*
 #               下面这行改一改就行
-#         url = git@bill:xuewuzhijin/Learning-Code.git
+#         url = git@git_one:xuewuzhijin/Learning-Code.git
 # [branch "master"]
 #         remote = origin
 #         merge = refs/heads/master
@@ -91,9 +91,12 @@ git remote set-url --delete origin 你之前的该项目地址
 
 登录你的 github 账户并把鼠标移动到（右上角）你的头像上方点击出现下拉框，点击 `Settings -> personal settings[SSH and GPG keys] -> New SSH key`
 
-![settings](./images/settings.png)
+<center>
 
+![settings](./images/settings.png)
 ![settings](./images/personalSettings.png)
+
+</center>
 
 
 GITHUB 也提供了一个创建公私钥 文档，你可以前往官网查看如何创建，懒得跑就接着往下看，反正我也是照搬 ------我是一张飞机票------> [generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent](https://help.github.com/en/github/authenticating-to-github/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent)
@@ -148,7 +151,12 @@ $ ssh-add ~/.ssh/id_rsa
 ```
 3. 将 SSH 密钥添加到 GitHub 帐户。
 
+<center>
+
 ![settings](./images/newSSHKey.png)
+
+</center>
+
 
 </details>
 
@@ -158,10 +166,15 @@ $ ssh-add ~/.ssh/id_rsa
 
 1. 点击 New SSH Key，进入到如下页面
 
+<center>
+
 ![new ssh key](./images/newSSHKey.png)
+
 ![new ssh key](./images/addSSHKey.png)
 
-2. `Title` 你给的名字，名字自定，用于区别你添加的这个公钥是位于哪台电脑或是用来干嘛的，`Key` 是你刚刚创建的公钥，**(.pub后缀的)**
+</center>
+
+2. `Title` 你要给的名字，名字自定，用于区别你添加的这个公钥是位于哪台电脑或是用来干嘛的，`Key` 是你刚刚创建的公钥，**(.pub后缀的)**
 
 ```bash
 # 假设刚刚创建的私钥是这个名字 id_rsa.pub（默认情况下是这个名字）
