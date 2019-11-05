@@ -1,6 +1,6 @@
 # Webpack 插件
 
-`webpack` 插件的使用其实很好理解，根据官网给定的 [配置](#https://www.webpackjs.com/configuration/) 结构，从结构上就很容易理解并进行拆分，例如：
+`webpack` 插件的使用其实很好理解，根据官网给定的 [配置](https://www.webpackjs.com/configuration/) 结构，从结构上就很容易理解并进行拆分，例如：
 
 ```JavaScript
 module.exports = {
@@ -19,7 +19,7 @@ module.exports = {
 
 ## Example
 
-这里使用一款常见的插件进行演示 [html-webpack-plugin](#https://github.com/jantimon/html-webpack-plugin) 
+这里使用一款常见的插件进行演示 [html-webpack-plugin](https://github.com/jantimon/html-webpack-plugin) 
 
 ```bash
 # 1.首先构建项目目录
