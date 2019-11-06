@@ -4,6 +4,7 @@
 
  * [正向预查](#正向预查)
  * [负向预查](#负向预查)
+ * [捕获匹配](#捕获匹配)
  * [正负预查相同点](#正负预查相同点)
  * [有趣的经典题](#有趣的经典题)
 
@@ -127,13 +128,35 @@ str = "gitRepositories"
 console.log(reg.exec(str))
 // null
 
-// ...就写这么多了，写的有点索然无味
 ```
-
 
 ### 正负预查相同点
 
 > 他们的相同点就是非捕获，非捕获的意思很好理解，也就是这两种组合后面的表达式 (?=) (?!) 只匹配不捕获，上面两个 case 只会输出两种值，第一个是 `git`， 第二个是 `null`，要么匹配成功，要么匹配失败
+
+### 捕获匹配
+
+不捕获是因为不需要这个值，但如果需要这个值，那么就需要换一种方式来写
+
+```JavaScript
+var str = "gitRe";
+
+// 非捕获
+var res = /git(?=Re)/.exec(str);
+console.log(res);
+// ["git", index: 0, input: "gitRe", groups: undefined]
+
+console.log( str.match(/git(?=Re)/) )
+// ["git", index: 0, input: "gitRe", groups: undefined]
+
+// 捕获
+var res1 = /git(?:=Re)/.exec(str);
+console.log(res1);
+// ["gitRe", index: 0, input: "gitRe", groups: undefined]
+
+console.log( str.match(/git(?:Re)/) )
+// ["gitRe", index: 0, input: "gitRe", groups: undefined]
+```
 
 
 ### 有趣的经典题
