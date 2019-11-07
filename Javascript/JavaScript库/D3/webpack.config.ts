@@ -6,11 +6,24 @@ const config: webpack.Configuration = {
   mode: "development",
   entry: "./index.ts",
   devtool: "source-map",
+  context: __dirname,
 
   output: {
     path: path.resolve(__dirname, "dist"),
     filename: "[name].js",
     publicPath: "/"
+  },
+
+  resolve: {
+    extensions: [ ".ts", ".js", ".json", "*" ],
+    alias: {
+      "@Js": "./JavaScript/",
+      "@Css": "./css/"
+    }
+  },
+
+  externals: {
+    d3: "d3"
   },
 
   module: {
@@ -28,18 +41,6 @@ const config: webpack.Configuration = {
     ]
   },
 
-  resolve: {
-    extensions: [ ".ts", ".js", ".json", "*" ],
-    alias: {
-      "@js": "./JavaScript",
-      "@css": "./css"
-    }
-  },
-
-  externals: {
-    d3: "d3"
-  },
-
   plugins: [
     new webpack.HotModuleReplacementPlugin(),
     new webpack.NamedModulesPlugin(),
@@ -49,6 +50,13 @@ const config: webpack.Configuration = {
       template: "index.html"
     })
   ],
+
+  cache: true,
+
+  watchOptions: {
+    aggregateTimeout: 500,
+    ignored: /node_modules/
+  },
 
   stats: {
     warningsFilter: /Entrypoint/,
