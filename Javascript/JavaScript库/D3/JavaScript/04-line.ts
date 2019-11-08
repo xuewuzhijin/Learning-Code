@@ -1,11 +1,13 @@
 import "../css/line.styl";
 import * as d3 from "d3";
 
-const margin  = { top: 20, right: 20, bottom: 20, left: 20 },
-      width   = 500 - margin.left - margin.right,
-      height  = 500 - margin.top - margin.bottom,
+const margin  = { top: 20, right: 20, bottom: 30, left: 30 },
+      width   = 500,
+      height  = 500,
+
+      // 下面数据由 d3.randomUniform(10, 120) 随机生成的数据
       dataset = [
-        {y: 115.89242908312738}, {y: 60.43395966803058},
+        {y: 15.89242908312738}, {y: 60.43395966803058},
         {y: 87.14523104506478}, {y: 66.63068927930414},
         {y: 42.42917892598266}, {y: 114.13423234639482},
         {y: 67.98874497817218}, {y: 32.444038222246135},
@@ -16,46 +18,69 @@ const margin  = { top: 20, right: 20, bottom: 20, left: 20 },
         {y: 21.73372987939664}, {y: 43.21633764785365},
         {y: 35.7660375937277}, {y: 112.59256116240333}],
       pointer = dataset.length,
-      xScale  = d3.scaleLinear()
-        .domain([0, pointer])
-        .range([0, width]),
-      yScale  = d3.scaleLinear()
-        .domain([0, d3.max( dataset.map( d => d.y ))])
-        .range([height, 0]);
 
+      // XY轴的比例映射
+      xScale  = d3.scaleLinear()
+        // 比例尺的数值范围，0 到 数据总长度（20），因从 0 开始，所以要减去1，如果需要从 1 开始，那么需要在第4/6步 （x,cx） 都加1
+        .domain([0, pointer - 1])
+        // 比例尺的宽度，这个宽度映射到 svg，根据总宽度等比例缩放，前提是需要减去在svg上添加g的margin值
+        .range([0, width - margin.left - margin.right]),
+      yScale  = d3.scaleLinear()
+        // 比例尺的数值范围，当不确定数值的最大值是多少时，通过d3.max获取最大值来解决它
+        .domain([0, d3.max( dataset.map( d => d.y ))])
+        // 比例尺的高度
+        .range([height - margin.top - margin.bottom, 0]);
+
+/* 1. 添加 svg */
 const svg = d3.select("#app")
 .append("svg")
   .attr("width", width)
   .attr("height", height)
-  .style("background", "pink")
 .append("g")
   .attr("transform", `translate(${margin.left},${margin.top})`);
 
-/* 添加 X 轴坐标 */
+/* 2. 添加 X 轴坐标 */
 svg.append("g")
-  .attr("class", "x axis")
-  .attr("transform", `translate(0, ${height})`)
-.call(d3.axisBottom(xScale))
+  .attr("transform", `translate(0, ${height - margin.top - margin.bottom})`)
+.call(d3.axisBottom(xScale).ticks(pointer))
 
-/* 添加 Y 轴坐标 */
+/* 3. 添加 Y 轴坐标 */
 svg.append("g")
-  .attr("class", "y axis")
 .call(d3.axisLeft(yScale))
 
-/* 添加线的路径生成器 */
+/* 4. 添加线的路径生成器 */
 const line = d3.line()
 .x( (d,i) => xScale(i))
 .y( (d: any) => yScale(d.y))
+// 下面表示线的折角处以什么形式展现
 .curve(d3.curveLinear)
+// .curve(d3.curveNatural)
+// .curve(d3.curveCatmullRom)
+// .curve(d3.curveCardinal)
+// .curve(d3.curveBundle)
+// .curve(d3.curveBasis)
+// ...
 
 
-/* 添加路径 */
+/* 5. 添加路径 */
 svg.append("path")
 .datum(dataset)
   .attr("class", "line")
-  .attr("d", line as any)
+  .attr("d", line as any);
 
-/* 添加点 */
+/**
+ * data 与 datum 的区别
+ * 相同点：都会在元素节点上创建一个__data__属性
+ * 
+ * data：假设 body 中有 5 个div，此时我 d3.selectAll("div").data([1,2,3,4])，
+ * 那么数组中的1会绑定在第一个div上，2会绑定在第2个div上...如果div的数量大于数组的长度，那么那个div就不会有__data__属性，
+ * 也就是说，当值为 undefined 或 null 时，也不会有这个属性
+ * 
+ * datum：假设 body 中有 5 个div，此时我 d3.selectAll("div").datum([1,2,3,4])，
+ * 那么每个div都会绑定这个数组，绑定的是整个数组，而不是数组中的某一个
+ * */
+
+/* 6. 添加点 */
 svg.selectAll(".dot")
   .data(dataset)
 .enter()
