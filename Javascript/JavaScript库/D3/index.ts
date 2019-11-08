@@ -8,4 +8,9 @@
 // import "@Js/03-pie";
 
 /* 折线图 */
-import "@Js/04-line";
+// import "@Js/04-line";
+
+/* 力导向图 */
+// import "@Js/05-force-direction";
+
+import "./homework/shelves";
