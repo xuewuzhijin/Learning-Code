@@ -35,6 +35,272 @@ export default [
           sku: "",
           name: "",
           customer: "",
+          stock: 0,
+          capacity: Math.floor(Math.random() * 300),
+          s_code: ""
+        },
+        {
+          sku: "",
+          name: "",
+          customer: "",
+          stock: Math.floor(Math.random() * 300),
+          capacity: Math.floor(Math.random() * 300),
+          s_code: ""
+        },
+        {
+          sku: "",
+          name: "",
+          customer: "",
+          stock: Math.floor(Math.random() * 300),
+          capacity: Math.floor(Math.random() * 300),
+          s_code: ""
+        },
+        {
+          sku: "",
+          name: "",
+          customer: "",
+          stock: Math.floor(Math.random() * 300),
+          capacity: Math.floor(Math.random() * 300),
+          s_code: ""
+        },
+        {
+          sku: "",
+          name: "",
+          customer: "",
+          stock: Math.floor(Math.random() * 300),
+          capacity: Math.floor(Math.random() * 300),
+          s_code: ""
+        },
+        {
+          sku: "",
+          name: "",
+          customer: "",
+          stock: Math.floor(Math.random() * 300),
+          capacity: Math.floor(Math.random() * 300),
+          s_code: ""
+        },
+        {
+          sku: "",
+          name: "",
+          customer: "",
+          stock: Math.floor(Math.random() * 300),
+          capacity: Math.floor(Math.random() * 300),
+          s_code: ""
+        },
+        {
+          sku: "",
+          name: "",
+          customer: "",
+          stock: Math.floor(Math.random() * 300),
+          capacity: Math.floor(Math.random() * 300),
+          s_code: ""
+        },
+        {
+          sku: "",
+          name: "",
+          customer: "",
+          stock: Math.floor(Math.random() * 300),
+          capacity: Math.floor(Math.random() * 300),
+          s_code: ""
+        },
+        {
+          sku: "",
+          name: "",
+          customer: "",
+          stock: Math.floor(Math.random() * 300),
+          capacity: Math.floor(Math.random() * 300),
+          s_code: ""
+        },
+        {
+          sku: "",
+          name: "",
+          customer: "",
+          stock: Math.floor(Math.random() * 300),
+          capacity: Math.floor(Math.random() * 300),
+          s_code: ""
+        },
+        {
+          sku: "",
+          name: "",
+          customer: "",
+          stock: Math.floor(Math.random() * 300),
+          capacity: Math.floor(Math.random() * 300),
+          s_code: ""
+        },
+        {
+          sku: "",
+          name: "",
+          customer: "",
+          stock: Math.floor(Math.random() * 300),
+          capacity: Math.floor(Math.random() * 300),
+          s_code: ""
+        },
+        {
+          sku: "",
+          name: "",
+          customer: "",
+          stock: 0,
+          capacity: Math.floor(Math.random() * 300),
+          s_code: ""
+        },
+        {
+          sku: "",
+          name: "",
+          customer: "",
+          stock: Math.floor(Math.random() * 300),
+          capacity: Math.floor(Math.random() * 300),
+          s_code: ""
+        },
+        {
+          sku: "",
+          name: "",
+          customer: "",
+          stock: Math.floor(Math.random() * 300),
+          capacity: Math.floor(Math.random() * 300),
+          s_code: ""
+        },
+        {
+          sku: "",
+          name: "",
+          customer: "",
+          stock: Math.floor(Math.random() * 300),
+          capacity: Math.floor(Math.random() * 300),
+          s_code: ""
+        },
+        {
+          sku: "",
+          name: "",
+          customer: "",
+          stock: Math.floor(Math.random() * 300),
+          capacity: Math.floor(Math.random() * 300),
+          s_code: ""
+        },
+        {
+          sku: "",
+          name: "",
+          customer: "",
+          stock: Math.floor(Math.random() * 300),
+          capacity: Math.floor(Math.random() * 300),
+          s_code: ""
+        },
+        {
+          sku: "",
+          name: "",
+          customer: "",
+          stock: Math.floor(Math.random() * 300),
+          capacity: Math.floor(Math.random() * 300),
+          s_code: ""
+        },
+        {
+          sku: "",
+          name: "",
+          customer: "",
+          stock: Math.floor(Math.random() * 300),
+          capacity: Math.floor(Math.random() * 300),
+          s_code: ""
+        },
+        {
+          sku: "",
+          name: "",
+          customer: "",
+          stock: Math.floor(Math.random() * 300),
+          capacity: Math.floor(Math.random() * 300),
+          s_code: ""
+        },
+        {
+          sku: "",
+          name: "",
+          customer: "",
+          stock: Math.floor(Math.random() * 300),
+          capacity: Math.floor(Math.random() * 300),
+          s_code: ""
+        },
+        {
+          sku: "",
+          name: "",
+          customer: "",
+          stock: 0,
+          capacity: Math.floor(Math.random() * 300),
+          s_code: ""
+        },
+        {
+          sku: "",
+          name: "",
+          customer: "",
+          stock: Math.floor(Math.random() * 300),
+          capacity: Math.floor(Math.random() * 300),
+          s_code: ""
+        },
+        {
+          sku: "",
+          name: "",
+          customer: "",
+          stock: Math.floor(Math.random() * 300),
+          capacity: Math.floor(Math.random() * 300),
+          s_code: ""
+        },
+        {
+          sku: "",
+          name: "",
+          customer: "",
+          stock: Math.floor(Math.random() * 300),
+          capacity: Math.floor(Math.random() * 300),
+          s_code: ""
+        },
+        {
+          sku: "",
+          name: "",
+          customer: "",
+          stock: 0,
+          capacity: Math.floor(Math.random() * 300),
+          s_code: ""
+        },
+        {
+          sku: "",
+          name: "",
+          customer: "",
+          stock: Math.floor(Math.random() * 300),
+          capacity: Math.floor(Math.random() * 300),
+          s_code: ""
+        },
+        {
+          sku: "",
+          name: "",
+          customer: "",
+          stock: Math.floor(Math.random() * 300),
+          capacity: Math.floor(Math.random() * 300),
+          s_code: ""
+        }
+      ],
+      [
+        {
+          sku: "",
+          name: "",
+          customer: "",
+          stock: Math.floor(Math.random() * 300),
+          capacity: Math.floor(Math.random() * 300),
+          s_code: ""
+        },
+        {
+          sku: "",
+          name: "",
+          customer: "",
+          stock: Math.floor(Math.random() * 300),
+          capacity: Math.floor(Math.random() * 300),
+          s_code: ""
+        },
+        {
+          sku: "",
+          name: "",
+          customer: "",
+          stock: Math.floor(Math.random() * 300),
+          capacity: Math.floor(Math.random() * 300),
+          s_code: ""
+        },
+        {
+          sku: "",
+          name: "",
+          customer: "",
           stock: Math.floor(Math.random() * 300),
           capacity: Math.floor(Math.random() * 300),
           s_code: ""
