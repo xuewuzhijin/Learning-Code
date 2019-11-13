@@ -11,7 +11,7 @@
 // import "@Js/04-line";
 
 /* 力导向图 */
-// import "@Js/05-force-direction";
+import "@Js/05-force-direction";
 
 /* 作业题：公司项目中遇到的 */
-import "./homework/shelves";
+// import "./homework/shelves";
