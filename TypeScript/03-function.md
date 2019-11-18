@@ -16,10 +16,10 @@ Note：
 2. 没有返回值的函数定义 `[ any, void ]`
 
 ```typescript
-function fn():Number { return 1+1; };
-function fn():String { return 1+'1'; };
-function fn():Boolean { return false; };
-function fn():Array { return [1, 2, 3]; };
+function fn():number { return 1+1; };
+function fn():string { return 1+'1'; };
+function fn():boolean { return false; };
+function fn():array { return [1, 2, 3]; };
 function fn():any { return {name: 'bill', age: 18}; };
 // ...
 
@@ -34,7 +34,7 @@ Note：
 1. 有返回值的函数定义，以下类型的函数必须要有返回值
 
 ```typescript
-function fn( num1:Number, num2?:Number ):Number
+function fn( num1:number, num2?:number ):number
 {
     return num1 + (num2 ? num2 : 0);
 }
@@ -47,7 +47,7 @@ fn(10)
 ## 默认参数
 
 ```typescript
-function fn( num:Number, num1:Number = 10 ):Number
+function fn( num:number, num1:number = 10 ):number
 {
     return num + num1;
 }
@@ -67,7 +67,7 @@ Note：
 3. 传入的 `实参对象` 不能出现多于 `约束对象` 的键值对
 
 ```TypeScript
-function argumentsRule( obj: { name:String } ) {
+function argumentsRule( obj: { name:string } ) {
     console.log( obj.name );
 }
 
@@ -87,9 +87,9 @@ Note：
 
 ```TypeScript
 interface Person {
-    name:   String;
-    age:    Number;
-    gender: String;
+    name:   string;
+    age:    number;
+    gender: string;
 }
 
 function doSomething( person:Person ):void {
@@ -131,9 +131,9 @@ doSomething( obj )
 
 ```TypeScript
 interface Person{
-    name:   String;
-    age:    Number;
-    gender?:String;
+    name:   string;
+    age:    number;
+    gender?:string;
 }
 
 function doSomething( obj:Person ):void {
@@ -167,10 +167,10 @@ doSomething(obj1)
 /* ------不带函数的形参------ */
 // 接口
 interface Do1{
-    ( arg1:String, arg2:Number ):String;
+    ( arg1:string, arg2:number ):string;
 }
 
-let doSomething1 = function( c:String, d:Number ):String {
+let doSomething1 = function( c:string, d:number ):string {
     return String(c) + d;
 }
 
@@ -181,10 +181,10 @@ console.log(doSomething1( 'age ', 18 ));
 /* ------带函数的形参------ */
 // 接口
 interface Do{
-    ( thing:String, doSometing:Function ):any;
+    ( thing:string, doSometing:Function ):any;
 }
 
-let doSomething:Do = function( a:String, b:Function ):any {
+let doSomething:Do = function( a:string, b:Function ):any {
     console.log( `${a}，${b()}`)
 }
 
@@ -197,10 +197,10 @@ doSomething( 'Say', function(){
 /* ------带函数形参的约束------ */
 // 接口
 interface Do{
-    ( thing:String, doSometing:( word:String )=>String ):any;
+    ( thing:string, doSometing:( word:string )=>string ):any;
 }
 
-let doSomething:Do = function( a:String, b:( word:String )=>String ) {
+let doSomething:Do = function( a:string, b:( word:string )=>string ) {
     console.log( `${a} ${b( 'are you doing?' )}`)
 }
 

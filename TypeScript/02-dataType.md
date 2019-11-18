@@ -18,13 +18,13 @@
 
 ```TypeScript
 /*
-*   布尔类型    ( Boolean )
-*   数字类型    ( Number )
-*   字符类型    ( String )
-*   数组类型    ( Array )
-*   元组类型    ( Tuple )
-*   枚举类型    ( Enum )
-*   任意类型    ( Any )
+*   布尔类型    ( boolean )
+*   数字类型    ( number )
+*   字符类型    ( string )
+*   数组类型    ( array )
+*   元组类型    ( tuple )
+*   枚举类型    ( enum )
+*   任意类型    ( any )
 *   void类型
 *   never类型
 *   null 和 undefined
@@ -34,33 +34,33 @@
 ### 布尔类型
 
 ```TypeScript
-var flag:Boolean = true;
+var flag:boolean = true;
 ```
 
 ### 数字类型
 
 ```TypeScript
-var num:Number = 10;
+var num:number = 10;
 ```
 
 ### 字符类型
 
 ```TypeScript
-var str:String = 'string';
+var str:string = 'string';
 ```
 
 ### 数组类型
 
 ```TypeScript
 // 第一种
-var arr:Number[] = [1, 11, 111, 1111];
-var arr:String[] = ['1', '11', '111', '1111'];
+var arr:number[] = [1, 11, 111, 1111];
+var arr:string[] = ['1', '11', '111', '1111'];
 var arr:any[] = [1, '11', [111], {name: 1111}, true];
 // ...
 
 // 第二种
-var arr:Array<Number> = [1, 11, 111, 1111];
-var arr:Array<String> = ['1', '11', '111', '1111'];
+var arr:array<number> = [1, 11, 111, 1111];
+var arr:array<string> = ['1', '11', '111', '1111'];
 // ...类似第一种写法
 
 // 以上两种写法表示数组内的值只能存对应类型的值
@@ -70,9 +70,9 @@ var arr:Array<String> = ['1', '11', '111', '1111'];
 
 ```TypeScript
 // 元组类型属于数组中的一种
-var arr:[Number, String] = [1, '1'];
+var arr:[number, string] = [1, '1'];
 // 以下错误写法
-var arr:[Number, String] = ['1', 1];
+var arr:[number, string] = ['1', 1];
 // 这种属于 一个萝卜一个坑，且数据类型要对应
 ```
 
@@ -129,10 +129,10 @@ any = null;
  * void 表示没有任何类型，一般用于定义方法的时候，方法没有返回值，同C#
  * 声明类型不为 "void" 或 "any" 的函数必须返回值
 **/
-function say( str:String ):void {
+function say( str:string ):void {
     console.log('Hello', str);
 }
-function say1( str:String ):any {
+function say1( str:string ):any {
     console.log('Hello', str);
 }
 say('Typescript');
@@ -165,14 +165,14 @@ function loop(): never {
 ### Null和Undefined
 
 ```TypeScript
-var res1:Number;
+var res1:number;
 console.log(res1); //undefined。  res1 会导致TypeScript编译失败，因undefined 不属于 number 类型
 
 // 如果针对某个响应的值有两种类型那么使用以下方法
-var res2:Number | undefined;
+var res2:number | undefined;
 console.log(res2); //undefined
 
 // null 同上
-var res3:Number | undefined | null;
+var res3:number | undefined | null;
 console.log(res3); //undefined
 ```
