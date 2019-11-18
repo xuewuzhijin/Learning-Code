@@ -18,7 +18,8 @@ const config: webpack.Configuration = {
     extensions: [ ".ts", ".js", ".json", "*" ],
     alias: {
       "@Js": "./JavaScript/",
-      "@Css": "./css/"
+      "@Css": "./css/",
+      "@": "./"
     }
   },
 

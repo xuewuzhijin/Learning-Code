@@ -1,4 +1,4 @@
-import "./css/tree.styl";
+import "../css/tree.styl";
 import * as d3 from "d3";
 
 // 学习该篇章须有 SVG 基础知识
@@ -32,7 +32,7 @@ const margin = { top: 20, right: 20, bottom: 20, left: 20 },
   .append("g")
     .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
-d3.json("./JavaScript/china.json")
+d3.json("./JavaScript/data/china.json")
   .then(data => {
     svg.each(function(orientations) {
       const cSvg = d3.select(this),
