@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <h1>Hello World</h1>
+  <button id="btn">按钮</button>
+  <script>
+    var createLogin = function(a,b,c) {
+      var div = document.createElement('div')
+      div.innerHTML = "I'm king for the world"
+      div.style.display = 'none'
+      document.body.appendChild(div)
+      return div
+    }
+
+    var getSingle = function(fn) {
+      var result;
+      return function() {
+        return result || (result = fn.apply(this, arguments))
+      }
+    }
+
+    var create = getSingle(createLogin)
+    /**
+      一：
+      此时 create 等于这个函数
+      function() {
+        return result || (result = fn.apply(this, arguments))
+      }
+    */
+
+    document.getElementById('btn').onclick = function() {
+      var div = create(1,2,3)
+      /**
+      * 二:
+      * 第一次执行时，result 等于 undefined，所以将会执行并返回 (result = fn.apply(this, arguments))
+      * 也就是返回 createLogin 函数内创建的 div
+      * 当再次按下按钮时， 此时的 result 已有值了（div），仅仅返回 div
+      */
+      div.style.display = 'block'
+    }
+
+  </script>
+</body>
+</html>
