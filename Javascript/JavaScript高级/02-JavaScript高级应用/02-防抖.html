@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>防抖</title>
+</head>
+
+<body>
+  <h1>Hello World</h1>
+  <input type="text" id="inp">
+
+  <script>
+    var inp = document.getElementById("inp")
+
+    function Debounce(fn, delay = 500) {
+      var timer;
+      return function () {
+        var args = arguments
+        clearTimeout(timer)
+        timer = setTimeout(function () {
+          fn.apply(null, args)
+          clearTimeout(timer)
+        }, delay)
+      }
+    }
+
+    function inpDebounce(e) {
+      console.log(e.target.value);
+    }
+
+    var o = Debounce(inpDebounce)
+    inp.addEventListener('keyup', function (e) {
+      o(e)
+    })
+  </script>
+</body>
+
+</html>

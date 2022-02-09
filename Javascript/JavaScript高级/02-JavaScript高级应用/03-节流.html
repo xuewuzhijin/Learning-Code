@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>节流</title>
+</head>
+
+<body>
+  <h1 id="msg">Hello World</h1>
+
+  <script>
+    function throttle(fn, delay, is = true) {
+      var timer
+      return function () {
+        if (timer || is) {
+          var args = arguments
+          clearTimeout(timer)
+          timer = setTimeout(function () {
+            fn.apply(null, args)
+            timer = 1
+            is = false
+            clearTimeout(timer)
+          }, is ? 0 : delay)
+        }
+        timer = null
+      }
+    }
+
+    var msg = document.getElementById("msg")
+    function changeSize(e) {
+      msg.style.fontSize = e.target.innerWidth / 10  + 'px'
+    }
+
+    window.onresize = throttle(changeSize, 1000)
+  </script>
+</body>
+
+</html>
