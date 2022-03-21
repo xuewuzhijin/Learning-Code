@@ -773,4 +773,4 @@ eth0      1   ALL-SYSTEMS.MCAST.NET lo       1   ff02::1
 eth0      1   ff02::1:ff0a:b0c eth0          1   ff02::1
 ```
 
-> 以上信息收集自 [Linux命令大全](https://www.linuxcool.com/)
+> 以上信息收集自 [Linux命令大全](https://www.linuxcool.com/) 由 [bill](https://github.com/xuewuzhijin/) 进行收集整理
