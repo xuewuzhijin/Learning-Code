@@ -1,0 +1,42 @@
+2022-09-14 11:45:46 [spider_scrapy.pipelines] WARNING: {'approve': '赞同 1',
+ 'comments': None,
+ 'content': '这个问题真是。。。问得好！！！ '
+            '啊！真舒服啊，一觉睡到自然醒的我，看着窗外飘进来的阳光照射在白色的墙壁上，整个房间显得那么暖洋洋与舒适，搓了搓脸颊，起床！！！ '
+            '起身走到浴室，看着墙壁上的水龙头沉思了一会，是先洗脸还是先刷牙呢？最讨厌碰上这种选择题，不管了，先洗个头。。。 '
+            '整备好一切，戴上口罩，拿上水杯和生活垃圾下楼，准备开始一天的搬砖生活了，到了楼下，看着被红色围板圈起来的我，是那么的一脸懵逼，发…',
+ 'created_time': '2022-09-13 12:36',
+ 'title': '中秋节后上班第一天，你的状态怎么样？上完 14 天班又是「小长假」，你有什么安排和打算？'}
+2022-09-14 11:45:46 [spider_scrapy.pipelines] WARNING: {'approve': '赞同',
+ 'comments': None,
+ 'content': '应该要用电动车跑，用脚的话，有点费鞋… '
+            '送外卖没有传言的那么高工资，要有心理准备，如果你想月入过万，那么你需要每天跑十二个小时以上，而最初的两个月应该需要十五个小时。 ',
+ 'created_time': '2022-09-12 17:14',
+ 'title': '负债怎么跑外卖？'}
+2022-09-14 13:09:10 [spider_scrapy.pipelines] WARNING: {'approve': '赞同 1',
+ 'comments': None,
+ 'content': '这个问题真是。。。问得好！！！ '
+            '啊！真舒服啊，一觉睡到自然醒的我，看着窗外飘进来的阳光照射在白色的墙壁上，整个房间显得那么暖洋洋与舒适，搓了搓脸颊，起床！！！ '
+            '起身走到浴室，看着墙壁上的水龙头沉思了一会，是先洗脸还是先刷牙呢？最讨厌碰上这种选择题，不管了，先洗个头。。。 '
+            '整备好一切，戴上口罩，拿上水杯和生活垃圾下楼，准备开始一天的搬砖生活了，到了楼下，看着被红色围板圈起来的我，是那么的一脸懵逼，发…',
+ 'created_time': '2022-09-13 12:36',
+ 'title': '中秋节后上班第一天，你的状态怎么样？上完 14 天班又是「小长假」，你有什么安排和打算？'}
+2022-09-14 13:09:10 [spider_scrapy.pipelines] WARNING: {'approve': '赞同',
+ 'comments': None,
+ 'content': '应该要用电动车跑，用脚的话，有点费鞋… '
+            '送外卖没有传言的那么高工资，要有心理准备，如果你想月入过万，那么你需要每天跑十二个小时以上，而最初的两个月应该需要十五个小时。 ',
+ 'created_time': '2022-09-12 17:14',
+ 'title': '负债怎么跑外卖？'}
+2022-09-14 13:22:16 [scrapy.downloadermiddlewares.retry] ERROR: Gave up retrying <GET https://www.zhihu.com/api/v4/web_moments/xiao-mu-51-86/activities?page_num=1> (failed 3 times): DNS lookup failed: no results for hostname lookup: www.zhihu.com.
+2022-09-14 13:22:17 [scrapy.core.scraper] ERROR: Error downloading <GET https://www.zhihu.com/api/v4/web_moments/xiao-mu-51-86/activities?page_num=1>
+Traceback (most recent call last):
+  File "c:\users\south\appdata\local\programs\python\python39\lib\site-packages\twisted\internet\defer.py", line 1416, in _inlineCallbacks
+    result = result.throwExceptionIntoGenerator(g)
+  File "c:\users\south\appdata\local\programs\python\python39\lib\site-packages\twisted\python\failure.py", line 512, in throwExceptionIntoGenerator
+    return g.throw(self.type, self.value, self.tb)
+  File "c:\users\south\appdata\local\programs\python\python39\lib\site-packages\scrapy\core\downloader\middleware.py", line 49, in process_request
+    return (yield download_func(request=request, spider=spider))
+  File "c:\users\south\appdata\local\programs\python\python39\lib\site-packages\twisted\internet\defer.py", line 654, in _runCallbacks
+    current.result = callback(current.result, *args, **kw)
+  File "c:\users\south\appdata\local\programs\python\python39\lib\site-packages\twisted\internet\endpoints.py", line 981, in startConnectionAttempts
+    raise error.DNSLookupError(
+twisted.internet.error.DNSLookupError: DNS lookup failed: no results for hostname lookup: www.zhihu.com.
