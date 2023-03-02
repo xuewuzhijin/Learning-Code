@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>函数重载</title>
+</head>
+
+<body>
+  <script>
+    function defineFn( obj, key, fn ) {
+      let old = obj[key];
+      obj[key] = function ( ...args ) {
+        if ( args.length === fn.length ) {
+          return fn.apply( this, args );
+        } else if ( typeof old === 'function' ) {
+          return old.apply( this, args );
+        }
+      }
+    }
+
+    const searcher = {};
+
+    defineFn( searcher, 'find', () => {
+      console.log( 'findAll' );
+    } );
+    defineFn( searcher, 'find', ( name ) => {
+      console.log( 'findName', name );
+    } );
+    defineFn( searcher, 'find', ( name, string ) => {
+      console.log( 'findAllName', name, string );
+    } );
+    searcher.find();
+    // searcher.find('a');
+    // searcher.find('a','b');
+  </script>
+</body>
+
+</html>
