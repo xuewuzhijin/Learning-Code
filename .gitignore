@@ -1,6 +1,8 @@
 .DS_Store
 .ide
-
+.idea
+.inputrc
+*.log
 
 yarn.lock
 package-lock.json
@@ -10,5 +12,3 @@ pnpm-debug.log
 
 dist/
 node_modules/
-
-.idea
