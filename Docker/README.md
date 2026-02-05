@@ -9,20 +9,18 @@ Docker version 29.2.0, build 0b9d198
 
 [改用国内镜像](./mirrors.md)
 
-| -                                           | -                           | -                          | -                                | -                               |
-|---------------------------------------------|-----------------------------|----------------------------|----------------------------------|---------------------------------|
-| [run 镜像运行](#run)                            | [name 指定名字](#name)          | [exec 执行命令](#exec)         | [ps 列出容器](#ps)                   | [build 构建镜像](#build)            |
-| [bake 批量构建](#bake)                          | [pull 镜像拉取](#pull)          | [push 推送镜像](#push)         | [images 列出镜像](#images)           | [login 仓库登录](#login)            |
-| [logout 仓库登出](#logout)                      | [search 搜索镜像](#search)      | [version 版本信息](#version)   | [info 系统信息](#info)               | [create 创建容器](#create)          |
-| [start 启动容器](#start)                        | [stop 停止容器](#stop)          | [restart 重启容器](#restart)   | [kill 强制终止容器](#kill)             | [rm 删除容器](#rm)                  |
-| [pause/unpause 冻结/恢复进程](#pause-unpause)     | [commit 容器→新镜像](#commit)    | [tag 镜像打标签](#tag)          | [rmi 删除镜像](#rmi)                 | [save/load 镜像归档/加载](#save-load) |
-| [export-import 容器文件系统导出/导入](#export/import) | [history 查看镜像构建层](#history) | [diff 检查容器文件变更](#diff)     | [cp 容器↔主机文件传输](#cp)              | [logs 查看容器日志](#logs)            |
-| [inspect 查看对象底层详情](#inspect)                | [port 查看端口映射](#port)        | [top 容器内进程列表](#top)        | [stats 实时资源监控](#stats)           | [wait 等待容器退出](#wait)            |
-| [rename 重命名容器](#rename)                     | [update 动态调整资源](#update)    | [attach 附加到容器主进程](#attach) | [events 实时事件流](#events)          | [config 客户端配置目录](#config)       |
-| [c,context 上下文名称](#c-context)               | [D,debug 启用调试模式](#D-debug)  | [H,host 守护进程地址](#H-host)   | [l,log-level 日志级别](#l-log-level) | [tls 启用 TLS](#tls)              |
-| [tlscacert CA 证书路径](#tlscacert)                    | [tlscert 客户端证书](#tlscert)        | [tlskey 客户端私钥](#tlskey)         | [events 实时事件流](#events)               | [tlsverify TLS + 验证](#tlsverify)        |
-| [](#)                                       | [](#)                       | [](#)                      | [](#)                            | [](#)                           |
-| [](#)                                       | [](#)                       | [](#)                      | [](#)                            | [](#)                           |
+| 快速跳转对应位置                                    | -                           | -                          | -                                | -                                |
+|---------------------------------------------|-----------------------------|----------------------------|----------------------------------|----------------------------------|
+| [run 镜像运行](#run)                            | [name 指定名字](#name)          | [exec 执行命令](#exec)         | [ps 列出容器](#ps)                   | [build 构建镜像](#build)             |
+| [bake 批量构建](#bake)                          | [pull 镜像拉取](#pull)          | [push 推送镜像](#push)         | [images 列出镜像](#images)           | [login 仓库登录](#login)             |
+| [logout 仓库登出](#logout)                      | [search 搜索镜像](#search)      | [version 版本信息](#version)   | [info 系统信息](#info)               | [create 创建容器](#create)           |
+| [start 启动容器](#start)                        | [stop 停止容器](#stop)          | [restart 重启容器](#restart)   | [kill 强制终止容器](#kill)             | [rm 删除容器](#rm)                   |
+| [pause/unpause 冻结/恢复进程](#pause-unpause)     | [commit 容器→新镜像](#commit)    | [tag 镜像打标签](#tag)          | [rmi 删除镜像](#rmi)                 | [save/load 镜像归档/加载](#save-load)  |
+| [export-import 容器文件系统导出/导入](#export-import) | [history 查看镜像构建层](#history) | [diff 检查容器文件变更](#diff)     | [cp 容器↔主机文件传输](#cp)              | [logs 查看容器日志](#logs)             |
+| [inspect 查看对象底层详情](#inspect)                | [port 查看端口映射](#port)        | [top 容器内进程列表](#top)        | [stats 实时资源监控](#stats)           | [wait 等待容器退出](#wait)             |
+| [rename 重命名容器](#rename)                     | [update 动态调整资源](#update)    | [attach 附加到容器主进程](#attach) | [events 实时事件流](#events)          | [config 客户端配置目录](#config)        |
+| [c,context 上下文名称](#c-context)               | [D,debug 启用调试模式](#D-debug)  | [H,host 守护进程地址](#H-host)   | [l,log-level 日志级别](#l-log-level) | [tls 启用 TLS](#tls)               |
+| [tlscacert CA 证书路径](#tlscacert)             | [tlscert 客户端证书](#tlscert)   | [tlskey 客户端私钥](#tlskey)    | [events 实时事件流](#events)          | [tlsverify TLS + 验证](#tlsverify) |
 
 ## 常用命令
 
