@@ -83,7 +83,7 @@ docker ps
 # 1b81e8de81e0   nginx     "/docker-entrypoint.…"   17 seconds ago   Up 16 seconds   80/tcp    epic_cori
 ``` 
 
-* 删除容器
+* [删除容器](./docker-run.md#rm)
 ```shell
 # 删除正在运行的容器需要加上 -f force 表示强制删除
 docker rm -f 1b81e8de81e0
