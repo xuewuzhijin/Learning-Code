@@ -28,13 +28,16 @@ Docker version 29.2.0, build 0b9d198
 
 <a id="run"></a>
 ### `run` 镜像运行  
+[点击查看 run 的详细参数](./docker-run.md)  
 基于指定镜像创建并启动新容器（自动拉取镜像、映射端口、挂载卷等），是启动服务最常用命令
+
 ```shell
 # docker run [名字/ID]
 docker run nginx
 # 如果本地不存在 nginx 镜像
 # docker 将默认执行 docker pull nginx && docker run nginx
 ```
+
 <a id="name"></a>
 ### `--name` 指定名字
 
